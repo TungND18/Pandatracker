@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Panda Gym Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- ═══ HEADER ═══ -->
+    <div class="header">
+      <div class="bell-icon" id="bell-icon">🔔</div>
+      <div class="timer-pill-wrapper">
+        <div class="timer-pill">
+          <div class="timer-progress-bar" id="timer-progress-bar"></div>
+          <span class="timer-display" id="time-display">0:00</span>
+        </div>
+      </div>
+      <div class="speech-bubble" id="speech-bubble">
+        <span id="bubble-text">LAZY?</span>
+        <span class="bubble-emoji">🥊</span>
+      </div>
+    </div>
+
+    <!-- ═══ PANDA ═══ -->
+    <div class="panda-area" id="panda-area">
+      <img src="panda.png" alt="Panda coach" class="panda-img" id="panda-img">
+    </div>
+
+    <!-- ═══ MESSAGE BUBBLE ═══ -->
+    <div class="message-bubble" id="message-bubble">
+      <div class="msg-emoji" id="msg-emoji">🐼</div>
+      <div class="msg-text" id="msg-text">Welcome to Panda Gym!<br>Build your workout below.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       VIEW: HOME — new workout + saved profiles
+       ═══════════════════════════════════════════════ -->
+    <div class="view" id="view-home">
+      <div class="home-card">
+        <div class="profiles-list" id="profiles-list">
+          <!-- dynamically filled -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       VIEW: LIBRARY — category tabs + exercise cards
+       ═══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-library">
+      <div class="library-card">
+        <div class="cat-tabs" id="cat-tabs">
+          <!-- dynamically filled -->
+        </div>
+        <div class="exercise-list" id="exercise-list">
+          <!-- dynamically filled -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       VIEW: BUILDER — customise selected exercises
+       ═══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-builder">
+      <div class="builder-card">
+        <div class="builder-header">
+          <span class="builder-title">Your Exercises</span>
+          <span class="builder-count" id="builder-count">0</span>
+        </div>
+        <div class="builder-list" id="builder-list">
+          <!-- dynamically filled -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       VIEW: PLAN OVERVIEW — stats + exercise order
+       ═══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-plan-overview">
+      <div class="plan-card">
+
+        <div class="plan-stats-row">
+          <div class="stat-chip accent"><span class="stat-num" id="plan-total-sets">0</span><span class="stat-lbl">Total
+              Sets</span></div>
+          <div class="stat-chip accent"><span class="stat-num" id="plan-total-time">~0m</span><span
+              class="stat-lbl">Est. Time</span></div>
+          <div class="stat-chip gold"><span class="stat-num" id="plan-total-weight">0 kg</span><span
+              class="stat-lbl">Total Weight</span></div>
+        </div>
+
+        <div class="plan-breakdown" id="plan-breakdown">Training: ~0m · Rest: ~0m</div>
+
+        <div class="plan-exercise-list" id="plan-exercise-list">
+          <!-- dynamically filled -->
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+          </div>
+          <div class="progress-label">
+            <span id="progress-label-text">0 / 0 sets done</span>
+            <span id="progress-pct">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       VIEW: ACTIVE WORKOUT
+       ═══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-workout">
+      <div class="workout-card">
+        <div class="workout-phase-badge" id="phase-badge">TRAINING</div>
+        <div class="workout-exercise-name" id="wo-exercise-name">Barbell Bench Press</div>
+        <div class="workout-info-row">
+          <div class="wi-item"><span class="wi-val" id="wi-exercise">1/3</span><span class="wi-lbl">Exercise</span>
+          </div>
+          <div class="wi-divider"></div>
+          <div class="wi-item"><span class="wi-val" id="wi-set">1/4</span><span class="wi-lbl">Set</span></div>
+          <div class="wi-divider"></div>
+          <div class="wi-item"><span class="wi-val" id="wi-weight">55kg</span><span class="wi-lbl">Weight</span></div>
+          <div class="wi-divider"></div>
+          <div class="wi-item"><span class="wi-val" id="wi-reps">8</span><span class="wi-lbl">Reps</span></div>
+        </div>
+        <div class="progress-wrap mini">
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill-2" style="width:0%"></div>
+          </div>
+          <div class="progress-label">
+            <span id="progress-label-text-2">0 / 0 sets</span>
+            <span id="progress-pct-2">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CONTROLS ═══ -->
+    <div class="controls" id="controls">
+      <div class="ctrl-row" id="ctrl-home">
+        <button class="pill-btn btn-start full-width" id="btn-new-workout">💪 NEW WORKOUT</button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-library">
+        <button class="pill-btn btn-rest" id="btn-lib-back">BACK</button>
+        <button class="pill-btn btn-start" id="btn-lib-done">DONE <span id="lib-sel-count">(0)</span></button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-builder">
+        <button class="pill-btn btn-rest" id="btn-builder-back">BACK</button>
+        <button class="pill-btn btn-start" id="btn-builder-done">OVERVIEW</button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-plan">
+        <button class="pill-btn btn-rest" id="btn-plan-edit">EDIT</button>
+        <button class="pill-btn btn-start" id="btn-plan-save">SAVE</button>
+        <button class="pill-btn btn-go" id="btn-plan-begin">BEGIN</button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-training">
+        <button class="pill-btn btn-rest full-width" id="btn-done-set">✅ DONE SET → REST</button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-resting">
+        <button class="pill-btn btn-start full-width" id="btn-skip-rest">⏭️ SKIP REST</button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-rest-done">
+        <button class="pill-btn btn-start full-width" id="btn-back-to-track">🔥 BACK TO TRACK</button>
+      </div>
+      <div class="ctrl-row hidden" id="ctrl-complete">
+        <button class="pill-btn btn-rest" id="btn-reset">HOME</button>
+      </div>
+    </div>
+
+    <!-- ═══ SAVE MODAL ═══ -->
+    <div class="modal-overlay hidden" id="save-modal">
+      <div class="modal-card">
+        <div class="modal-title">💾 Save Profile</div>
+        <input type="text" class="modal-input" id="profile-name-input" placeholder="e.g. Push Day" maxlength="30">
+        <div class="modal-btns">
+          <button class="pill-btn btn-rest modal-btn" id="modal-cancel">Cancel</button>
+          <button class="pill-btn btn-start modal-btn" id="modal-save">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOTTOM DOCK ═══ -->
+    <div class="bottom-dock">
+      <div class="dock-item">📋<span class="dock-badge">✓</span></div>
+      <div class="dock-item dock-center">⏱️<span class="dock-sub" id="dock-sub-timer">0:00</span><span
+          class="dock-star">✨</span></div>
+      <div class="dock-item">📄<span class="dock-badge red" id="dock-sets-done">0</span></div>
+    </div>
+
+  </div>
+
+  <script src="exercises.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
