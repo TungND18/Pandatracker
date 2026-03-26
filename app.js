@@ -278,6 +278,7 @@ function renderSetupList() {
   setupListEl.innerHTML = workoutPlan.map((ex, i) => `
     <div class="setup-card" data-idx="${i}">
       <div class="setup-card-top">
+        <span class="drag-handle" data-idx="${i}">☰</span>
         <div class="setup-card-name">
           <span class="emoji">${ex.emoji}</span>
           ${ex.name}
@@ -349,6 +350,153 @@ function renderSetupList() {
       updateSetupStats();
     });
   });
+
+  // Wire up drag handles
+  initDragAndDrop();
+}
+
+// ══════════════════════════════════════════════════════
+//  TOUCH-FRIENDLY DRAG \u0026 DROP REORDERING
+// ══════════════════════════════════════════════════════
+let dragState = null; // { dragIdx, ghostEl, placeholder, startY, currentY, scrollInterval }
+
+function initDragAndDrop() {
+  setupListEl.querySelectorAll('.drag-handle').forEach(handle => {
+    // Touch
+    handle.addEventListener('touchstart', onDragStart, { passive: false });
+    // Mouse
+    handle.addEventListener('mousedown', onDragStart);
+  });
+}
+
+function onDragStart(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const handle = e.currentTarget;
+  const dragIdx = parseInt(handle.dataset.idx);
+  const card = handle.closest('.setup-card');
+  const rect = card.getBoundingClientRect();
+  const listRect = setupListEl.getBoundingClientRect();
+
+  // Get start Y from touch or mouse
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  // Create ghost (floating copy of the card)
+  const ghost = card.cloneNode(true);
+  ghost.classList.add('drag-ghost');
+  ghost.style.width = `${rect.width}px`;
+  ghost.style.left = `${rect.left}px`;
+  ghost.style.top = `${rect.top}px`;
+  document.body.appendChild(ghost);
+
+  // Create placeholder in original position
+  const placeholder = document.createElement('div');
+  placeholder.className = 'drag-placeholder';
+  placeholder.style.height = `${rect.height}px`;
+  card.parentNode.insertBefore(placeholder, card);
+
+  // Hide original card
+  card.classList.add('drag-hidden');
+
+  dragState = {
+    dragIdx,
+    ghostEl: ghost,
+    placeholder,
+    originalCard: card,
+    startY: clientY,
+    offsetY: clientY - rect.top,
+    listRect,
+    scrollInterval: null,
+  };
+
+  // Bind move/end to document
+  if (e.touches) {
+    document.addEventListener('touchmove', onDragMove, { passive: false });
+    document.addEventListener('touchend', onDragEnd);
+    document.addEventListener('touchcancel', onDragEnd);
+  } else {
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('mouseup', onDragEnd);
+  }
+}
+
+function onDragMove(e) {
+  if (!dragState) return;
+  e.preventDefault();
+
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  dragState.currentY = clientY;
+
+  // Move ghost
+  dragState.ghostEl.style.top = `${clientY - dragState.offsetY}px`;
+
+  // Auto-scroll the setup list when dragging near edges
+  const listRect = setupListEl.getBoundingClientRect();
+  const scrollZone = 50;
+  clearInterval(dragState.scrollInterval);
+  dragState.scrollInterval = null;
+
+  if (clientY < listRect.top + scrollZone) {
+    dragState.scrollInterval = setInterval(() => { setupListEl.scrollTop -= 8; }, 16);
+  } else if (clientY > listRect.bottom - scrollZone) {
+    dragState.scrollInterval = setInterval(() => { setupListEl.scrollTop += 8; }, 16);
+  }
+
+  // Determine which card we're hovering over
+  const cards = Array.from(setupListEl.querySelectorAll('.setup-card:not(.drag-hidden)'));
+  let inserted = false;
+  for (const c of cards) {
+    const cRect = c.getBoundingClientRect();
+    const cMid = cRect.top + cRect.height / 2;
+    if (clientY < cMid) {
+      setupListEl.insertBefore(dragState.placeholder, c);
+      inserted = true;
+      break;
+    }
+  }
+  if (!inserted) {
+    // After all cards
+    setupListEl.appendChild(dragState.placeholder);
+  }
+}
+
+function onDragEnd(e) {
+  if (!dragState) return;
+
+  // Cleanup listeners
+  document.removeEventListener('touchmove', onDragMove);
+  document.removeEventListener('touchend', onDragEnd);
+  document.removeEventListener('touchcancel', onDragEnd);
+  document.removeEventListener('mousemove', onDragMove);
+  document.removeEventListener('mouseup', onDragEnd);
+  clearInterval(dragState.scrollInterval);
+
+  // Determine drop index from placeholder position
+  const allChildren = Array.from(setupListEl.children);
+  let dropIdx = allChildren.indexOf(dragState.placeholder);
+  // Adjust: if placeholder is after the hidden card, we need to account for it
+  const hiddenIdx = allChildren.indexOf(dragState.originalCard);
+  if (hiddenIdx >= 0 && hiddenIdx < dropIdx) {
+    dropIdx--; // because the hidden card will be removed
+  }
+
+  // Remove ghost and placeholder
+  dragState.ghostEl.remove();
+  dragState.placeholder.remove();
+  dragState.originalCard.classList.remove('drag-hidden');
+
+  // Reorder workoutPlan
+  const fromIdx = dragState.dragIdx;
+  if (fromIdx !== dropIdx && dropIdx >= 0 && dropIdx < workoutPlan.length) {
+    const [moved] = workoutPlan.splice(fromIdx, 1);
+    workoutPlan.splice(dropIdx, 0, moved);
+  }
+
+  dragState = null;
+
+  // Re-render to reflect new order
+  renderSetupList();
 }
 
 function updateSetupStats() {
