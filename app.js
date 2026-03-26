@@ -81,24 +81,29 @@ let currentExIdx = 0;
 let currentSetNum = 1;
 let completedSets = 0;
 let totalSets = 0;
-let setElapsed = 0;
-let restRemaining = 0;
-let ticker = null;
-let nagTimer = null;
-let overtimeNagTimer = null;
-let elapsedTicker = null;
+let ticker = null;             // single 1Hz interval for all timing
 let totalElapsedSec = 0;
 let activeCat = 'Back';
 let speakTimeout = null;
-let overtimeNagStarted = false;
 const SEC_PER_REP = 3;
 const PROFILE_KEY = 'panda_gym_profiles';
 
+// Timestamp-based timing (survives iOS background)
+let trainingStartTime = null;  // Date.now() when training screen entered
+let restStartTime = null;      // Date.now() when rest screen entered
+let workoutElapsedBase = 0;    // total seconds before current phase started
+let workoutStartTime = null;
+
+// Nag deduplication: track last second a nag was spoken
+let lastNagSetSec = -1;        // for coaching nags during training (every 5s)
+let lastOvertimeNagSec = -1;   // for overtime nags during rest (every 10s)
+let overtimeAnnouncedOnce = false; // "rest over" one-shot
+
+// Current app phase: 'idle' | 'training' | 'resting'
+let appPhase = 'idle';
+
 // Rest tracking
 let sessionLog = [];
-let restStartTime = null;
-let overtimeElapsed = 0;
-let workoutStartTime = null;
 
 // Exercise-specific coaching cues (keyed by exercise id)
 const EXERCISE_CUES = {
@@ -157,16 +162,13 @@ function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 function stopAll() {
   clearInterval(ticker);
-  clearInterval(nagTimer);
-  clearInterval(overtimeNagTimer);
-  clearInterval(elapsedTicker);
   clearTimeout(speakTimeout);
   ticker = null;
-  nagTimer = null;
-  overtimeNagTimer = null;
-  elapsedTicker = null;
   speakTimeout = null;
-  overtimeNagStarted = false;
+  appPhase = 'idle';
+  lastNagSetSec = -1;
+  lastOvertimeNagSec = -1;
+  overtimeAnnouncedOnce = false;
   if (window.speechSynthesis) window.speechSynthesis.cancel();
 }
 
@@ -434,7 +436,8 @@ function finishPicking() {
 function enterTraining() {
   stopAll();
   showScreen(screenActive);
-  setElapsed = 0;
+  appPhase = 'training';
+  trainingStartTime = Date.now();
 
   const ex = workoutPlan[currentExIdx];
   activeExercise.textContent = ex.name;
@@ -449,26 +452,27 @@ function enterTraining() {
 
   unlockSpeech();
 
-  // Count up timer for the set
-  ticker = setInterval(() => {
-    setElapsed++;
-    activeTimer.textContent = fmt(setElapsed);
-  }, 1000);
+  // Single ticker recalculates everything from timestamps
+  ticker = setInterval(() => tickTraining(), 1000);
+}
 
-  // Total elapsed timer
-  if (!elapsedTicker) {
-    elapsedTicker = setInterval(() => {
-      totalElapsedSec++;
-      activeElapsed.textContent = fmt(totalElapsedSec);
-    }, 1000);
-  }
+function tickTraining() {
+  if (appPhase !== 'training' || !trainingStartTime) return;
 
-  // Voice coaching every 5s with exercise-specific cues
-  nagTimer = setInterval(() => {
+  const setElapsed = Math.floor((Date.now() - trainingStartTime) / 1000);
+  activeTimer.textContent = fmt(setElapsed);
+
+  totalElapsedSec = workoutElapsedBase + setElapsed;
+  activeElapsed.textContent = fmt(totalElapsedSec);
+
+  // Coaching nag every 5s (skip sec 0, deduplicate)
+  if (setElapsed > 0 && setElapsed % 5 === 0 && setElapsed !== lastNagSetSec) {
+    lastNagSetSec = setElapsed;
+    const ex = workoutPlan[currentExIdx];
     const cue = getCoachingCue(ex.id);
     coachingText.textContent = cue;
     speak(cue);
-  }, 5000);
+  }
 }
 
 function updateWorkoutProgress() {
@@ -486,14 +490,12 @@ function updateWorkoutProgress() {
 function enterResting() {
   stopAll();
   showScreen(screenRest);
+  appPhase = 'resting';
+  restStartTime = Date.now();
 
   const ex = workoutPlan[currentExIdx];
-  restRemaining = ex.rest;
-  restStartTime = Date.now();
-  overtimeElapsed = 0;
-  overtimeNagStarted = false;
 
-  restTimer.textContent = fmt(restRemaining);
+  restTimer.textContent = fmt(ex.rest);
   restTimer.classList.remove('overtime');
   restRingFg.classList.remove('overtime');
   restMotivational.textContent = randomFrom(REST_MSGS);
@@ -520,46 +522,54 @@ function enterResting() {
   restRingFg.style.strokeDasharray = circumference;
   restRingFg.style.strokeDashoffset = '0';
 
+  // Single ticker recalculates everything from timestamps
+  ticker = setInterval(() => tickResting(), 1000);
+}
 
-  ticker = setInterval(() => {
-    restRemaining--;
+function tickResting() {
+  if (appPhase !== 'resting' || !restStartTime) return;
 
-    if (restRemaining >= 0) {
-      // Normal countdown
-      restTimer.textContent = fmt(restRemaining);
-      const fraction = restRemaining / ex.rest;
-      restRingFg.style.strokeDashoffset = `${circumference * (1 - fraction)}`;
-    } else {
-      // Overtime
-      overtimeElapsed = Math.abs(restRemaining);
-      restTimer.textContent = `+${fmt(overtimeElapsed)}`;
-      restTimer.classList.add('overtime');
-      restRingFg.classList.add('overtime');
-      restRingFg.style.strokeDashoffset = `${circumference}`;
+  const ex = workoutPlan[currentExIdx];
+  const elapsedRestSec = Math.floor((Date.now() - restStartTime) / 1000);
+  const restRemaining = ex.rest - elapsedRestSec;
+  const circumference = 2 * Math.PI * 70;
 
-      if (!overtimeNagStarted) {
-        overtimeNagStarted = true;
-        // Announce rest is over
-        speak('Back to track. Rest over.');
-        restMotivational.textContent = 'Rest over! Get back to it! ⚡';
-        // Start nagging every 10s
-        overtimeNagTimer = setInterval(() => {
-          const nagMsg = Math.random() < 0.5 ? 'Why so slow?' : 'Back to track.';
-          speak(nagMsg);
-          restMotivational.textContent = nagMsg === 'Why so slow?'
-            ? 'Panda is getting impatient... 😤'
-            : 'Rest over! Move it! ⚡';
-        }, 10000);
-      }
+  // Update total elapsed
+  totalElapsedSec = workoutElapsedBase + elapsedRestSec;
+  restElapsed.textContent = fmt(totalElapsedSec);
+
+  if (restRemaining >= 0) {
+    // Normal countdown
+    restTimer.textContent = fmt(restRemaining);
+    const fraction = restRemaining / ex.rest;
+    restRingFg.style.strokeDashoffset = `${circumference * (1 - fraction)}`;
+    restTimer.classList.remove('overtime');
+    restRingFg.classList.remove('overtime');
+  } else {
+    // Overtime
+    const overtimeElapsed = Math.abs(restRemaining);
+    restTimer.textContent = `+${fmt(overtimeElapsed)}`;
+    restTimer.classList.add('overtime');
+    restRingFg.classList.add('overtime');
+    restRingFg.style.strokeDashoffset = `${circumference}`;
+
+    // One-shot "rest over" announcement
+    if (!overtimeAnnouncedOnce) {
+      overtimeAnnouncedOnce = true;
+      speak('Back to track. Rest over.');
+      restMotivational.textContent = 'Rest over! Get back to it! ⚡';
     }
-  }, 1000);
 
-  // Elapsed timer continues
-  if (!elapsedTicker) {
-    elapsedTicker = setInterval(() => {
-      totalElapsedSec++;
-      restElapsed.textContent = fmt(totalElapsedSec);
-    }, 1000);
+    // Nag every 10s of overtime (deduplicated)
+    const nagBucket = Math.floor(overtimeElapsed / 10) * 10;
+    if (nagBucket > 0 && nagBucket !== lastOvertimeNagSec) {
+      lastOvertimeNagSec = nagBucket;
+      const nagMsg = Math.random() < 0.5 ? 'Why so slow?' : 'Back to track.';
+      speak(nagMsg);
+      restMotivational.textContent = nagMsg === 'Why so slow?'
+        ? 'Panda is getting impatient... 😤'
+        : 'Rest over! Move it! ⚡';
+    }
   }
 }
 
@@ -578,6 +588,8 @@ function advanceToNext() {
       plannedRest: ex.rest,
       actualRest: actualRest
     });
+    // Save accumulated elapsed time before switching phase
+    workoutElapsedBase = workoutElapsedBase + actualRest;
     restStartTime = null;
   }
 
@@ -720,7 +732,9 @@ btnBeginWorkout.addEventListener('click', () => {
   totalSets = workoutPlan.reduce((s, e) => s + e.sets, 0);
   sessionLog = [];
   restStartTime = null;
+  trainingStartTime = null;
   totalElapsedSec = 0;
+  workoutElapsedBase = 0;
   workoutStartTime = Date.now();
   updateWorkoutProgress();
   enterTraining();
@@ -731,7 +745,15 @@ pickerClose.addEventListener('click', closePicker);
 pickerDone.addEventListener('click', finishPicking);
 
 // Active
-btnFinishSet.addEventListener('click', enterResting);
+btnFinishSet.addEventListener('click', () => {
+  // Save training time into elapsed base before switching to rest
+  if (trainingStartTime) {
+    const setElapsed = Math.floor((Date.now() - trainingStartTime) / 1000);
+    workoutElapsedBase += setElapsed;
+    trainingStartTime = null;
+  }
+  enterResting();
+});
 
 // Rest
 btnSkipRest.addEventListener('click', advanceToNext);
@@ -779,3 +801,17 @@ function seedDefaults() {
 // ══════════════════════════════════════════════════════
 seedDefaults();
 enterHome();
+
+// ══════════════════════════════════════════════════════
+//  VISIBILITY CHANGE — recover state when returning from background
+// ══════════════════════════════════════════════════════
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible') return;
+
+  // Force an immediate tick to sync displayed times with reality
+  if (appPhase === 'training') {
+    tickTraining();
+  } else if (appPhase === 'resting') {
+    tickResting();
+  }
+});
