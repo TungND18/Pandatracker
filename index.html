@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Panda Gym Tracker</title>
+  <title>Panda Gym — Guided Workout</title>
   <link rel="stylesheet" href="styles.css">
   <link
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 </head>
 
@@ -15,184 +15,218 @@
 
   <div class="app-container">
 
-    <!-- ═══ HEADER ═══ -->
-    <div class="header">
-      <div class="bell-icon" id="bell-icon">🔔</div>
-      <div class="timer-pill-wrapper">
-        <div class="timer-pill">
-          <div class="timer-progress-bar" id="timer-progress-bar"></div>
-          <span class="timer-display" id="time-display">0:00</span>
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 1: HOME
+       ═══════════════════════════════════════════════ -->
+    <div class="screen" id="screen-home">
+      <div class="home-top">
+        <div class="home-panda">
+          <img src="panda.png" alt="Panda coach" class="panda-hero" id="panda-hero">
+        </div>
+        <div class="home-greeting">
+          <h1 class="home-title">Ready to crush it? 🔥</h1>
+          <p class="home-sub">Your panda coach is waiting.</p>
         </div>
       </div>
-      <div class="speech-bubble" id="speech-bubble">
-        <span id="bubble-text">LAZY?</span>
-        <span class="bubble-emoji">🥊</span>
+      <div class="home-actions">
+        <button class="btn-primary btn-big" id="btn-start-workout">
+          <span class="btn-icon">💪</span>
+          <span class="btn-label">Start Workout</span>
+        </button>
+        <button class="btn-secondary btn-big" id="btn-saved-workouts">
+          <span class="btn-icon">📋</span>
+          <span class="btn-label">Saved Workouts</span>
+        </button>
       </div>
-    </div>
-
-    <!-- ═══ PANDA ═══ -->
-    <div class="panda-area" id="panda-area">
-      <img src="panda.png" alt="Panda coach" class="panda-img" id="panda-img">
-    </div>
-
-    <!-- ═══ MESSAGE BUBBLE ═══ -->
-    <div class="message-bubble" id="message-bubble">
-      <div class="msg-emoji" id="msg-emoji">🐼</div>
-      <div class="msg-text" id="msg-text">Welcome to Panda Gym!<br>Build your workout below.</div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════
-       VIEW: HOME — new workout + saved profiles
-       ═══════════════════════════════════════════════ -->
-    <div class="view" id="view-home">
-      <div class="home-card">
-        <div class="profiles-list" id="profiles-list">
+      <!-- Saved profiles (hidden by default, toggled by "Saved Workouts") -->
+      <div class="saved-panel hidden" id="saved-panel">
+        <div class="saved-header">
+          <span class="saved-title">Your Workouts</span>
+          <button class="saved-close" id="saved-close">✕</button>
+        </div>
+        <div class="saved-list" id="saved-list">
           <!-- dynamically filled -->
         </div>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       VIEW: LIBRARY — category tabs + exercise cards
+       SCREEN 2: WORKOUT SETUP
        ═══════════════════════════════════════════════ -->
-    <div class="view hidden" id="view-library">
-      <div class="library-card">
-        <div class="cat-tabs" id="cat-tabs">
-          <!-- dynamically filled -->
-        </div>
-        <div class="exercise-list" id="exercise-list">
-          <!-- dynamically filled -->
-        </div>
+    <div class="screen hidden" id="screen-setup">
+      <div class="setup-header">
+        <button class="back-btn" id="btn-setup-back">←</button>
+        <h2 class="setup-title">Workout Setup</h2>
+        <button class="add-btn" id="btn-add-exercise">+ Add</button>
+      </div>
+      <div class="setup-list" id="setup-list">
+        <!-- exercise cards filled dynamically -->
+      </div>
+      <div class="setup-stats" id="setup-stats">
+        <div class="stat-pill"><span class="stat-val" id="stat-exercises">0</span><span class="stat-lbl">exercises</span></div>
+        <div class="stat-pill"><span class="stat-val" id="stat-sets">0</span><span class="stat-lbl">sets</span></div>
+        <div class="stat-pill"><span class="stat-val" id="stat-est">~0m</span><span class="stat-lbl">est.</span></div>
+      </div>
+      <div class="setup-actions">
+        <button class="btn-primary btn-big" id="btn-begin-workout" disabled>
+          <span class="btn-icon">🔥</span>
+          <span class="btn-label">Begin Workout</span>
+        </button>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       VIEW: BUILDER — customise selected exercises
+       SCREEN 3: ACTIVE WORKOUT (TRAINING STATE)
        ═══════════════════════════════════════════════ -->
-    <div class="view hidden" id="view-builder">
-      <div class="builder-card">
-        <div class="builder-header">
-          <span class="builder-title">Your Exercises</span>
-          <span class="builder-count" id="builder-count">0</span>
+    <div class="screen hidden" id="screen-active">
+      <!-- top bar -->
+      <div class="active-top-bar">
+        <div class="active-elapsed" id="active-elapsed">0:00</div>
+        <div class="active-progress-wrap">
+          <div class="active-progress-track">
+            <div class="active-progress-fill" id="active-progress-fill"></div>
+          </div>
+          <span class="active-progress-label" id="active-progress-label">0%</span>
         </div>
-        <div class="builder-list" id="builder-list">
-          <!-- dynamically filled -->
+      </div>
+
+      <!-- center content -->
+      <div class="active-center">
+        <div class="active-timer" id="active-timer">0:00</div>
+        <div class="active-exercise" id="active-exercise">Exercise Name</div>
+        <div class="active-set-info">
+          <span class="set-badge" id="active-set-badge">Set 1/4</span>
         </div>
+        <div class="active-details">
+          <div class="detail-chip">
+            <span class="detail-val" id="detail-reps">8</span>
+            <span class="detail-lbl">reps</span>
+          </div>
+          <div class="detail-divider"></div>
+          <div class="detail-chip">
+            <span class="detail-val" id="detail-weight">55kg</span>
+            <span class="detail-lbl">weight</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- coaching -->
+      <div class="coaching-area" id="coaching-area">
+        <img src="panda.png" alt="Coach" class="coaching-panda">
+        <div class="coaching-bubble" id="coaching-text">Keep your back straight! 💪</div>
+      </div>
+
+      <!-- action button -->
+      <div class="active-action">
+        <button class="btn-primary btn-big btn-finish" id="btn-finish-set">
+          <span class="btn-label">✅ Finish Set</span>
+        </button>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       VIEW: PLAN OVERVIEW — stats + exercise order
+       SCREEN 4: REST STATE
        ═══════════════════════════════════════════════ -->
-    <div class="view hidden" id="view-plan-overview">
-      <div class="plan-card">
-
-        <div class="plan-stats-row">
-          <div class="stat-chip accent"><span class="stat-num" id="plan-total-sets">0</span><span class="stat-lbl">Total
-              Sets</span></div>
-          <div class="stat-chip accent"><span class="stat-num" id="plan-total-time">~0m</span><span
-              class="stat-lbl">Est. Time</span></div>
-          <div class="stat-chip gold"><span class="stat-num" id="plan-total-weight">0 kg</span><span
-              class="stat-lbl">Total Weight</span></div>
-        </div>
-
-        <div class="plan-breakdown" id="plan-breakdown">Training: ~0m · Rest: ~0m</div>
-
-        <div class="plan-exercise-list" id="plan-exercise-list">
-          <!-- dynamically filled -->
-        </div>
-
-        <div class="progress-wrap">
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    <div class="screen hidden" id="screen-rest">
+      <div class="rest-top-bar">
+        <div class="active-elapsed" id="rest-elapsed">0:00</div>
+        <div class="active-progress-wrap">
+          <div class="active-progress-track">
+            <div class="active-progress-fill" id="rest-progress-fill"></div>
           </div>
-          <div class="progress-label">
-            <span id="progress-label-text">0 / 0 sets done</span>
-            <span id="progress-pct">0%</span>
-          </div>
+          <span class="active-progress-label" id="rest-progress-label">0%</span>
         </div>
+      </div>
+
+      <div class="rest-center">
+        <div class="rest-label">REST</div>
+        <div class="rest-timer" id="rest-timer">1:30</div>
+        <div class="rest-ring-wrap">
+          <svg class="rest-ring" viewBox="0 0 160 160">
+            <circle class="rest-ring-bg" cx="80" cy="80" r="70" />
+            <circle class="rest-ring-fg" id="rest-ring-fg" cx="80" cy="80" r="70" />
+          </svg>
+        </div>
+        <div class="rest-motivational" id="rest-motivational">Great set! Let your muscles recover 💤</div>
+        <div class="rest-next" id="rest-next">Next: Set 2/4</div>
+      </div>
+
+      <div class="rest-action">
+        <button class="btn-secondary btn-big" id="btn-skip-rest">
+          <span class="btn-label">⏭️ Skip Rest</span>
+        </button>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       VIEW: ACTIVE WORKOUT
+       SCREEN 5: COMPLETION
        ═══════════════════════════════════════════════ -->
-    <div class="view hidden" id="view-workout">
-      <div class="workout-card">
-        <div class="workout-phase-badge" id="phase-badge">TRAINING</div>
-        <div class="workout-exercise-name" id="wo-exercise-name">Barbell Bench Press</div>
-        <div class="workout-info-row">
-          <div class="wi-item"><span class="wi-val" id="wi-exercise">1/3</span><span class="wi-lbl">Exercise</span>
-          </div>
-          <div class="wi-divider"></div>
-          <div class="wi-item"><span class="wi-val" id="wi-set">1/4</span><span class="wi-lbl">Set</span></div>
-          <div class="wi-divider"></div>
-          <div class="wi-item"><span class="wi-val" id="wi-weight">55kg</span><span class="wi-lbl">Weight</span></div>
-          <div class="wi-divider"></div>
-          <div class="wi-item"><span class="wi-val" id="wi-reps">8</span><span class="wi-lbl">Reps</span></div>
+    <div class="screen hidden" id="screen-complete">
+      <div class="complete-celebration">
+        <div class="confetti-burst" id="confetti-burst"></div>
+        <img src="panda.png" alt="Happy panda" class="complete-panda">
+        <h1 class="complete-title">You crushed it! 🏆</h1>
+        <p class="complete-sub" id="complete-sub">Workout complete</p>
+      </div>
+
+      <div class="complete-stats" id="complete-stats">
+        <div class="cstat-card">
+          <span class="cstat-val" id="cstat-sets">0</span>
+          <span class="cstat-lbl">Total Sets</span>
         </div>
-        <div class="progress-wrap mini">
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-fill-2" style="width:0%"></div>
-          </div>
-          <div class="progress-label">
-            <span id="progress-label-text-2">0 / 0 sets</span>
-            <span id="progress-pct-2">0%</span>
-          </div>
+        <div class="cstat-card">
+          <span class="cstat-val" id="cstat-weight">0 kg</span>
+          <span class="cstat-lbl">Total Weight</span>
         </div>
+        <div class="cstat-card">
+          <span class="cstat-val" id="cstat-time">0:00</span>
+          <span class="cstat-lbl">Total Time</span>
+        </div>
+      </div>
+
+      <div class="complete-rest-report" id="complete-rest-report">
+        <!-- dynamically filled -->
+      </div>
+
+      <div class="complete-actions">
+        <button class="btn-primary btn-big" id="btn-save-workout">
+          <span class="btn-icon">💾</span>
+          <span class="btn-label">Save Workout</span>
+        </button>
+        <button class="btn-secondary btn-big" id="btn-go-home">
+          <span class="btn-icon">🏠</span>
+          <span class="btn-label">Home</span>
+        </button>
       </div>
     </div>
 
-    <!-- ═══ CONTROLS ═══ -->
-    <div class="controls" id="controls">
-      <div class="ctrl-row" id="ctrl-home">
-        <button class="pill-btn btn-start full-width" id="btn-new-workout">💪 NEW WORKOUT</button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-library">
-        <button class="pill-btn btn-rest" id="btn-lib-back">BACK</button>
-        <button class="pill-btn btn-start" id="btn-lib-done">DONE <span id="lib-sel-count">(0)</span></button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-builder">
-        <button class="pill-btn btn-rest" id="btn-builder-back">BACK</button>
-        <button class="pill-btn btn-start" id="btn-builder-done">OVERVIEW</button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-plan">
-        <button class="pill-btn btn-rest" id="btn-plan-edit">EDIT</button>
-        <button class="pill-btn btn-start" id="btn-plan-save">SAVE</button>
-        <button class="pill-btn btn-go" id="btn-plan-begin">BEGIN</button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-training">
-        <button class="pill-btn btn-rest full-width" id="btn-done-set">✅ DONE SET → REST</button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-resting">
-        <button class="pill-btn btn-start full-width" id="btn-skip-rest">⏭️ SKIP REST</button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-rest-done">
-        <button class="pill-btn btn-start full-width" id="btn-back-to-track">🔥 BACK TO TRACK</button>
-      </div>
-      <div class="ctrl-row hidden" id="ctrl-complete">
-        <button class="pill-btn btn-rest" id="btn-reset">HOME</button>
+    <!-- ═══ EXERCISE PICKER MODAL ═══ -->
+    <div class="modal-overlay hidden" id="picker-modal">
+      <div class="picker-card">
+        <div class="picker-header">
+          <span class="picker-title">Add Exercises</span>
+          <button class="picker-close" id="picker-close">✕</button>
+        </div>
+        <div class="picker-tabs" id="picker-tabs">
+          <!-- category tabs -->
+        </div>
+        <div class="picker-list" id="picker-list">
+          <!-- exercise cards -->
+        </div>
+        <button class="btn-primary picker-done" id="picker-done">Done <span id="picker-count">(0)</span></button>
       </div>
     </div>
 
     <!-- ═══ SAVE MODAL ═══ -->
     <div class="modal-overlay hidden" id="save-modal">
-      <div class="modal-card">
-        <div class="modal-title">💾 Save Profile</div>
-        <input type="text" class="modal-input" id="profile-name-input" placeholder="e.g. Push Day" maxlength="30">
-        <div class="modal-btns">
-          <button class="pill-btn btn-rest modal-btn" id="modal-cancel">Cancel</button>
-          <button class="pill-btn btn-start modal-btn" id="modal-save">Save</button>
+      <div class="save-card">
+        <div class="save-title">💾 Save Workout</div>
+        <input type="text" class="save-input" id="save-name-input" placeholder="e.g. Push Day" maxlength="30">
+        <div class="save-btns">
+          <button class="btn-secondary save-btn" id="save-cancel">Cancel</button>
+          <button class="btn-primary save-btn" id="save-confirm">Save</button>
         </div>
       </div>
-    </div>
-
-    <!-- ═══ BOTTOM DOCK ═══ -->
-    <div class="bottom-dock">
-      <div class="dock-item">📋<span class="dock-badge">✓</span></div>
-      <div class="dock-item dock-center">⏱️<span class="dock-sub" id="dock-sub-timer">0:00</span><span
-          class="dock-star">✨</span></div>
-      <div class="dock-item">📄<span class="dock-badge red" id="dock-sets-done">0</span></div>
     </div>
 
   </div>
