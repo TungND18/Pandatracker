@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Panda Gym — Guided Workout</title>
+  <title>Foxy Gym — Guided Workout</title>
   <link rel="stylesheet" href="styles.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
@@ -19,25 +19,27 @@
        SCREEN 1: HOME
        ═══════════════════════════════════════════════ -->
     <div class="screen" id="screen-home">
-      <div class="home-top">
-        <div class="home-panda">
-          <img src="panda.png" alt="Panda coach" class="panda-hero" id="panda-hero">
+      <div class="home-mascot-area">
+        <div class="home-fox-wrap">
+          <img src="fox.png" alt="Fox coach" class="panda-hero" id="panda-hero">
         </div>
-        <div class="home-greeting">
-          <h1 class="home-title">Ready to crush it? 🔥</h1>
-          <p class="home-sub">Your panda coach is waiting.</p>
-        </div>
+        <div class="home-speech-bubble">Let's train!!</div>
       </div>
+      <div class="home-spacer"></div>
       <div class="home-actions">
-        <button class="btn-primary btn-big" id="btn-start-workout">
-          <span class="btn-icon">💪</span>
-          <span class="btn-label">Start Workout</span>
+        <button class="btn-primary btn-big btn-glow" id="btn-start-workout">
+          <span class="btn-label">Tập ngay</span>
         </button>
         <button class="btn-secondary btn-big" id="btn-saved-workouts">
-          <span class="btn-icon">📋</span>
-          <span class="btn-label">Saved Workouts</span>
+          <span class="btn-icon-dot"></span>
+          <span class="btn-label">Chọn bài tập</span>
+        </button>
+        <button class="btn-pt btn-big" id="btn-book-pt">
+          <span class="btn-pt-icon">🏋️</span>
+          <span class="btn-label">Tập với PT</span>
         </button>
       </div>
+      <div class="version-text">app version v1.1.2</div>
       <!-- Saved profiles (hidden by default, toggled by "Saved Workouts") -->
       <div class="saved-panel hidden" id="saved-panel">
         <div class="saved-header">
@@ -112,7 +114,7 @@
 
       <!-- coaching -->
       <div class="coaching-area" id="coaching-area">
-        <img src="panda.png" alt="Coach" class="coaching-panda">
+        <img src="fox.png" alt="Coach" class="coaching-panda">
         <div class="coaching-bubble" id="coaching-text">Keep your back straight! 💪</div>
       </div>
 
@@ -164,7 +166,7 @@
     <div class="screen hidden" id="screen-complete">
       <div class="complete-celebration">
         <div class="confetti-burst" id="confetti-burst"></div>
-        <img src="panda.png" alt="Happy panda" class="complete-panda">
+        <img src="fox.png" alt="Happy fox" class="complete-panda">
         <h1 class="complete-title">You crushed it! 🏆</h1>
         <p class="complete-sub" id="complete-sub">Workout complete</p>
       </div>
@@ -229,9 +231,61 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════
+       SCREEN: PT BOOKING
+       ═══════════════════════════════════════════════ -->
+    <div class="screen hidden" id="screen-pt-booking">
+      <div class="pt-header">
+        <button class="back-btn" id="btn-pt-back">←</button>
+        <h2 class="setup-title">Tập với PT</h2>
+        <div style="width:40px"></div>
+      </div>
+
+      <!-- Step 1: Calendar -->
+      <div class="pt-section" id="pt-calendar-section">
+        <div class="pt-section-label">📅 Chọn ngày tập</div>
+        <div class="pt-calendar">
+          <div class="pt-cal-weekdays">
+            <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+          </div>
+          <div class="pt-cal-grid" id="pt-cal-grid">
+            <!-- dynamically filled -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Time Picker (hidden until date selected) -->
+      <div class="pt-section hidden" id="pt-time-section">
+        <div class="pt-section-label">⏰ Chọn khung giờ</div>
+        <div class="pt-time-picker">
+          <div class="pt-time-field">
+            <label class="pt-time-label">Bắt đầu</label>
+            <select class="pt-time-select" id="pt-time-start"></select>
+          </div>
+          <div class="pt-time-divider">→</div>
+          <div class="pt-time-field">
+            <label class="pt-time-label">Kết thúc</label>
+            <select class="pt-time-select" id="pt-time-end"></select>
+          </div>
+        </div>
+        <button class="btn-primary pt-find-btn" id="btn-find-pt">
+          <span class="btn-label">Tìm PT</span>
+        </button>
+      </div>
+
+      <!-- Step 3: PT Results (hidden until search) -->
+      <div class="pt-section hidden" id="pt-results-section">
+        <div class="pt-section-label" id="pt-results-label">🎯 PT có sẵn</div>
+        <div class="pt-results-scroll" id="pt-results-scroll">
+          <!-- dynamically filled -->
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script src="exercises.js"></script>
+  <script src="pt-data.js"></script>
   <script src="app.js"></script>
 </body>
 

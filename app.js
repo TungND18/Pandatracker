@@ -74,6 +74,8 @@ const saveNameInput = document.getElementById('save-name-input');
 const saveCancel = document.getElementById('save-cancel');
 const saveConfirm = document.getElementById('save-confirm');
 
+
+
 // ── State ────────────────────────────────────────────
 let workoutPlan = [];          // [{...exercise, weight, sets, reps, rest}]
 let selectedIds = new Set();   // picker selections
@@ -99,32 +101,60 @@ let lastNagSetSec = -1;        // for coaching nags during training (every 5s)
 let lastOvertimeNagSec = -1;   // for overtime nags during rest (every 10s)
 let overtimeAnnouncedOnce = false; // "rest over" one-shot
 
+// One coaching cue per set, no repeats between consecutive sets
+let setCueSpoken = false;      // true after cue is spoken this set
+let lastCueIdx = -1;           // index of last cue used (prevent repeats)
+
 // Current app phase: 'idle' | 'training' | 'resting'
 let appPhase = 'idle';
+
+
 
 // Rest tracking
 let sessionLog = [];
 
 // Exercise-specific coaching cues (keyed by exercise id)
 const EXERCISE_CUES = {
-  'barbell-bench':    ["Shoulders back. Chest up. Stop being lazy.","Control it down. Don't drop the bar, hero.","Drive through your feet. Yes, legs exist.","Bar path straight. Not a rollercoaster.","Lock in. One more rep. Don't think."],
-  'barbell-bench-s':  ["Shoulders back. Chest up. Stop being lazy.","Control it down. Don't drop the bar, hero.","Drive through your feet. Yes, legs exist.","Bar path straight. Not a rollercoaster.","Lock in. One more rep. Don't think."],
-  'incline-barbell':  ["Upper chest. Not shoulders. Fix it.","Slow down. You're not escaping gravity.","Elbows under control. No flaring chaos.","Stretch it. Feel it. Don't rush reps.","You call that depth? Go lower."],
-  'machine-shoulder': ["Core tight. You're not a noodle.","Don't slam it. Control the weight.","Full lockout. Earn it.","Head through. Yes, like that.","Stop cheating. Press properly."],
-  'lateral-raise':    ["No swinging. Ego down.","Lift with shoulders, not momentum.","Small weight. Big control. Accept it.","Pause at top. Suffer a bit.","If traps take over, you failed."],
-  'machine-fly':      ["Squeeze. HARDER. Hug the damn air.","Slow return. Milk every inch.","Chest only. Arms are just hooks.","Pause. Feel it. That's the point.","Don't rush. This is where growth happens."],
-  'barbell-curl':     ["No swinging. I see you cheating.","Elbows locked. Only forearms move.","Slow down. You're not speedrunning.","Squeeze at top. Make it count.","Control down. That's half the rep."],
-  'seated-db-curl':   ["Full stretch. Let it open.","Twist the wrist. Finish strong.","No shoulders. Just biceps.","Slow and painful. Good.","You're here for arms, act like it."],
-  'hammer-curl':      ["No rest. Keep going.","Burn is good. Stop complaining.","Neutral grip. Stay clean.","Last reps. Don't quit now.","This is where weak people stop."]
+  // ─── CHEST ──────────────────────────────────────────
+  'barbell-bench':    ["Anh ơi... thẳng tay lên... lưng đặt sát ghế... cùi chỏ hướng ra ngoài anh nhé!!","Hít vào lúc hạ tạ... thở ra lúc đẩy lên... kiểm soát từng nhịp anh nhé!!","Đừng nảy tạ lên ngực... hạ chậm lại... cảm nhận cơ ngực kéo dãn ra!!","Vai ép xuống ghế... không nhún vai lên... giữ ngực luôn căng anh nhé!!","Tay đẩy thẳng lên... khóa khuỷu nhẹ ở đỉnh... tốt lắm, tiếp đi!!"],
+  'barbell-bench-s':  ["Anh ơi... single nặng đấy... tập trung... siết core... đẩy bùng nổ lên!!","Hít một hơi thật sâu... giữ hơi... rồi đẩy!! mạnh lên anh!!","Kiểm soát lúc hạ... đừng để tạ rơi tự do... nguy hiểm lắm!!","Vai ép sát ghế... chân đạp mạnh xuống sàn... đẩy hết sức!!","Một rep thôi... làm cho ra hồn... tập trung tối đa anh nhé!!"],
+  'incline-barbell':  ["Ngực trên là mục tiêu... cùi chỏ mở rộng... cảm nhận phần trên ngực căng ra!!","Hạ tạ chậm xuống ngực trên... không để tạ trượt xuống bụng!!","Đẩy lên theo đường thẳng... đừng đẩy ra trước mặt anh nhé!!","Lưng trên dán sát ghế... không ưỡn quá... giữ tư thế chuẩn!!","Cố thêm rep nữa... ngực trên cần nhiều kích thích hơn đó anh!!"],
+  'db-bench':         ["Hạ tạ xuống hai bên ngực... cảm nhận cơ ngực kéo dãn... rồi đẩy lên!!","Hai tay đẩy đều nhau... đừng để một bên yếu hơn anh nhé!!","Cùi chỏ mở rộng 45 độ... không quá rộng... không quá hẹp!!","Siết cơ ngực ở đỉnh... ép hai tạ lại gần nhau... tốt lắm!!","Kiểm soát đường đi của tạ... chậm lúc hạ... bùng nổ lúc đẩy!!"],
+  'incline-db':       ["Ngực trên phải cháy lên... hạ tạ từ từ hai bên... cảm nhận sức căng!!","Đẩy tạ lên... xoay nhẹ để hai tạ gần chạm nhau ở đỉnh!!","Vai không được nhún lên... ép vai xuống ghế... chỉ dùng ngực thôi!!","Hít vào lúc hạ... thở ra mạnh lúc đẩy... nhịp thở rất quan trọng!!","Cố gắng thêm... ngực trên đang được kích thích tối đa đấy!!"],
+  'machine-fly':      ["Siết chặt ở giữa... ép hai tay lại... như ôm một cái cây lớn!!","Mở rộng từ từ... cảm nhận cơ ngực kéo dãn ra... đừng vội!!","Chỉ dùng cơ ngực thôi... tay chỉ là móc treo... cảm nhận ngực co lại!!","Giữ ở giữa 1 giây... siết mạnh... rồi mở ra chậm rãi!!","Đừng dùng tay kéo... dùng ngực ép vào... đó mới là đúng kỹ thuật!!"],
+  // ─── SHOULDERS ──────────────────────────────────────
+  'machine-shoulder': ["Core siết chặt vào... đừng lỏng người anh ơi!!","Đừng quăng tạ lên... kiểm soát từng nhịp!!","Khóa tay ở đỉnh... ép vai lên hết cỡ!!","Đầu đưa qua trước... đúng rồi... cứ thế!!","Đừng lấy đà... đẩy bằng vai thôi... đúng kỹ thuật!!"],
+  'lateral-raise':    ["Đừng lắc người... bỏ cái tôi xuống anh ơi!!","Nâng bằng vai... không phải bằng đà!!","Tạ nhẹ thôi... nhưng kiểm soát thật chặt... chấp nhận đi!!","Giữ ở đỉnh... chịu đau 1 chút!!","Nếu cơ bả vai lên trước... là sai rồi đó!!"],
+  'db-ohp':           ["Đẩy thẳng lên trời... đừng đẩy ra trước!!","Hít vào lúc hạ... thở mạnh ra lúc đẩy lên!!","Cùi chỏ hạ ngang vai... không hạ quá thấp!!","Core siết chặt... lưng thẳng... đẩy mạnh lên!!","Kiểm soát lúc hạ... đừng để tạ rơi tự do!!"],
+  // ─── BICEPS ─────────────────────────────────────────
+  'barbell-curl':     ["Đừng lắc người... anh đang gian lận kìa!!","Khóa cùi chỏ... chỉ cẳng tay chuyển động thôi!!","Chậm lại... đừng tập kiểu tốc độ!!","Siết mạnh ở đỉnh... cảm nhận bắp tay căng lên!!","Kiểm soát lúc hạ... đó là nửa rep quan trọng!!"],
+  'seated-db-curl':   ["Duỗi hết tay ra... cảm nhận cơ kéo dãn!!","Xoay cổ tay ở đỉnh... siết mạnh vào!!","Không nhún vai... chỉ dùng bắp tay thôi!!","Chậm và đau... tốt lắm... cứ thế!!","Anh đến đây để tập tay... thì tập cho ra hồn!!"],
+  'hammer-curl':      ["Không nghỉ... tiếp tục đi anh!!","Nóng rát là tốt... đừng than vãn!!","Giữ tay song song... kỹ thuật sạch!!","Mấy rep cuối... đừng bỏ cuộc!!","Đây là lúc người yếu đuối dừng lại... anh thì không!!"],
+  // ─── TRICEPS ────────────────────────────────────────
+  'cable-pushdown':   ["Khóa cùi chỏ sát hông... chỉ cẳng tay chuyển động!!","Siết mạnh ở dưới... đừng vội kéo lên!!","Đừng dùng vai đè xuống... chỉ dùng cơ tay sau thôi!!","Kiểm soát lúc lên... chậm rãi... cảm nhận cơ kéo dãn!!","Tốt lắm... ép mạnh xuống... khóa tay thẳng!!"],
+  'rope-pushdown':    ["Xoè hai tay ra ở dưới... siết cơ tay sau!!","Đừng lắc người... đứng thẳng... core chặt!!","Cảm nhận cơ tay sau cháy lên... đó mới là đúng!!","Chậm lúc lên... nhanh lúc xuống... kiểm soát!!","Mấy rep cuối... ép thêm... đừng bỏ!!"],
+  'cable-overhead-ext':["Kéo dãn cơ tay sau hết cỡ ở dưới... rồi duỗi mạnh lên!!","Khóa cùi chỏ... đừng xòe ra... giữ sát đầu!!","Siết mạnh ở đỉnh... cảm nhận cơ co lại!!","Hít vào lúc hạ... thở ra lúc duỗi lên!!","Cố thêm... cơ tay sau cần kéo dãn nhiều hơn!!"],
+  // ─── BACK ───────────────────────────────────────────
+  'lat-pulldown-chin':["Kéo bằng lưng... đừng kéo bằng tay!!","Ngả người nhẹ ra sau... siết xương bả vai lại!!","Hạ thanh xuống ngực... không phải xuống bụng!!","Kiểm soát lúc thả lên... đừng để tạ kéo anh!!","Siết lưng mạnh ở dưới... giữ 1 giây... rồi thả!!"],
+  'lat-pulldown-std': ["Tay rộng hơn vai... kéo xuống ngực!!","Ép xương bả vai lại... cảm nhận lưng co!!","Đừng lắc người... ngồi thẳng... kéo bằng lưng!!","Thả chậm lên trên... kiểm soát từng nhịp!!","Tốt lắm... siết mạnh ở dưới... giữ chặt!!"],
+  'lat-pulldown-vbar':["Kéo sát vào ngực... siết lưng giữa!!","Cùi chỏ hướng xuống... không xòe ra!!","Ngả nhẹ ra sau... cảm nhận cơ lưng kéo!!","Kiểm soát đường lên... đừng thả rơi!!","Mấy rep cuối... ép thêm... đừng buông!!"],
+  'seated-cable-row': ["Kéo về phía bụng... ép xương bả vai lại!!","Ngồi thẳng... đừng ngả ra sau quá nhiều!!","Siết lưng giữa ở cuối... giữ 1 giây!!","Thả ra chậm... cảm nhận cơ lưng kéo dãn!!","Tay chỉ là móc treo... lưng mới là chính!!"],
+  'barbell-bent-row': ["Lưng thẳng... đừng gù... giữ core chặt!!","Kéo tạ về phía bụng... cùi chỏ đi sát hông!!","Siết xương bả vai lại ở đỉnh... giữ chặt!!","Hạ tạ chậm xuống... kiểm soát từng nhịp!!","Đầu gối hơi khuỵu... hông đẩy ra sau... tư thế chuẩn!!"],
+  // ─── LEGS ───────────────────────────────────────────
+  'barbell-squat':    ["Lưng thẳng... core siết chặt... hít hơi vào!!","Hạ người xuống... đùi song song sàn... đừng nông quá!!","Đầu gối đẩy ra ngoài... không kẹp vào trong!!","Đẩy mạnh lên... chân ép xuống sàn... bùng nổ!!","Hít hơi sâu... giữ hơi... rồi squat xuống!!"],
+  'leg-press':        ["Đừng khóa đầu gối ở đỉnh... giữ hơi cong!!","Hạ từ từ xuống... đầu gối mở rộng ra!!","Đẩy bằng gót chân... không phải mũi chân!!","Lưng dán sát ghế... đừng nhấc mông lên!!","Kiểm soát lúc hạ... chậm rãi... rồi đẩy mạnh!!"],
+  'leg-extension':    ["Siết cơ đùi trước ở đỉnh... giữ 1 giây!!","Hạ chậm xuống... kiểm soát từng nhịp!!","Đừng lấy đà... nâng bằng cơ đùi thôi!!","Mũi chân hướng lên trên... siết đùi mạnh!!","Mấy rep cuối... ép thêm... đùi phải cháy lên!!"],
+  'lying-leg-curl':   ["Siết cơ đùi sau lại... kéo gót chân về mông!!","Đừng nhấc hông lên... giữ hông dán sát ghế!!","Hạ chậm xuống... cảm nhận đùi sau kéo dãn!!","Siết mạnh ở đỉnh... giữ 1 giây!!","Kiểm soát đường về... đừng thả rơi!!"],
+  'rdl-dumbbell':     ["Lưng thẳng... đẩy hông ra sau... đừng gù lưng!!","Cảm nhận đùi sau kéo dãn... hạ tạ từ từ!!","Đầu gối hơi khuỵu... không khóa thẳng!!","Siết mông ở đỉnh... đứng thẳng lên!!","Kiểm soát đường xuống... chậm rãi... cảm nhận từng centimet!!"]
 };
 
-// Generic fallback cues (only used for exercises without specific cues)
+// Generic fallback cues
 const GENERIC_CUES = [
-  "Control the movement.",
-  "Full range of motion.",
-  "Breathe. Exhale on effort.",
-  "Squeeze at the top.",
-  "Stay focused."
+  "Kiểm soát chuyển động... chậm rãi anh nhé!!",
+  "Biên độ đầy đủ... đừng cắt rep!!",
+  "Hít vào... thở ra lúc gắng sức!!",
+  "Siết cơ ở đỉnh... cảm nhận thật rõ!!",
+  "Tập trung vào anh... đừng phân tâm!!"
 ];
 
 // Get a coaching cue for the current exercise (exercise-specific only)
@@ -132,13 +162,25 @@ function getCoachingCue(exerciseId) {
   return randomFrom(EXERCISE_CUES[exerciseId] || GENERIC_CUES);
 }
 
+// Get a cue that is guaranteed different from the last one
+function getCueNoRepeat(exerciseId) {
+  const cues = EXERCISE_CUES[exerciseId] || GENERIC_CUES;
+  if (cues.length <= 1) return cues[0] || '';
+  let idx;
+  do {
+    idx = Math.floor(Math.random() * cues.length);
+  } while (idx === lastCueIdx);
+  lastCueIdx = idx;
+  return cues[idx];
+}
+
 const REST_MSGS = [
-  "Great set! Let your muscles recover 💤",
-  "Shake it off, hydrate up 💧",
-  "Breathe deep, reset your mind 🧘",
-  "You earned this break! ☕",
-  "Muscles growing as we speak 📈",
-  "Stay loose, stay ready 🔄"
+  "Set tốt lắm!! nghỉ ngơi đi anh 💤",
+  "Rũ tay ra... uống nước đi anh 💧",
+  "Hít thở sâu... reset tinh thần 🧘",
+  "Anh xứng đáng nghỉ!! ☕",
+  "Cơ đang phát triển rồi đó 📈",
+  "Giữ người linh hoạt... sẵn sàng set tiếp 🔄"
 ];
 
 // ══════════════════════════════════════════════════════
@@ -170,6 +212,8 @@ function stopAll() {
   lastOvertimeNagSec = -1;
   overtimeAnnouncedOnce = false;
   if (window.speechSynthesis) window.speechSynthesis.cancel();
+  // Stop FPT audio if playing
+  if (fptAudio) { fptAudio.pause(); fptAudio = null; }
 }
 
 function unlockSpeech() {
@@ -186,6 +230,57 @@ function speak(text) {
     u.rate = 0.95; u.pitch = 1; u.volume = 1;
     window.speechSynthesis.speak(u);
   }, 100);
+}
+
+// ── FPT.AI Vietnamese TTS ────────────────────────────
+const FPT_TTS_URL = 'https://api.fpt.ai/hmi/tts/v5';
+const FPT_API_KEY = 'fpXaWur2pE7bHIW6MYZ3A2rk9M6pfaRY';
+const FPT_VOICE   = 'leminh';
+const FPT_SPEED   = '1';
+
+let fptAudio = null; // current FPT audio element
+
+/**
+ * Speak Vietnamese text via FPT.AI TTS.
+ * Calls the API, waits briefly for the MP3 to render, then plays it.
+ */
+function speakFPT(text) {
+  // Stop any previous FPT audio
+  if (fptAudio) { fptAudio.pause(); fptAudio = null; }
+  // Also stop browser speech to avoid overlap
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+  fetch(FPT_TTS_URL, {
+    method: 'POST',
+    headers: {
+      'api-key': FPT_API_KEY,
+      'speed': FPT_SPEED,
+      'voice': FPT_VOICE
+    },
+    body: text
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.error !== 0 || !data.async) {
+      console.warn('FPT TTS error:', data);
+      // Fallback to browser speech
+      speak(text);
+      return;
+    }
+    // Wait 1.5s for the MP3 to be ready, then play
+    setTimeout(() => {
+      if (appPhase === 'idle') return; // user left the screen
+      fptAudio = new Audio(data.async);
+      fptAudio.volume = 1;
+      fptAudio.play().catch(err => {
+        console.warn('FPT audio play failed:', err);
+      });
+    }, 1500);
+  })
+  .catch(err => {
+    console.warn('FPT TTS fetch failed:', err);
+    speak(text); // fallback
+  });
 }
 
 // ── Screen switcher ──────────────────────────────────
@@ -594,6 +689,8 @@ function enterTraining() {
   detailWeight.textContent = `${ex.weight}kg`;
   const firstCue = getCoachingCue(ex.id);
   coachingText.textContent = firstCue;
+  // Don't speak on entry — wait for 5s mark (one cue per set)
+  setCueSpoken = false;
 
   activeTimer.textContent = '0:00';
   updateWorkoutProgress();
@@ -604,6 +701,8 @@ function enterTraining() {
   ticker = setInterval(() => tickTraining(), 1000);
 }
 
+
+
 function tickTraining() {
   if (appPhase !== 'training' || !trainingStartTime) return;
 
@@ -613,13 +712,13 @@ function tickTraining() {
   totalElapsedSec = workoutElapsedBase + setElapsed;
   activeElapsed.textContent = fmt(totalElapsedSec);
 
-  // Coaching nag every 5s (skip sec 0, deduplicate)
-  if (setElapsed > 0 && setElapsed % 5 === 0 && setElapsed !== lastNagSetSec) {
-    lastNagSetSec = setElapsed;
+  // Coaching: speak exactly ONCE per set at 5s mark, no repeat from previous set
+  if (setElapsed >= 5 && !setCueSpoken) {
+    setCueSpoken = true;
     const ex = workoutPlan[currentExIdx];
-    const cue = getCoachingCue(ex.id);
+    const cue = getCueNoRepeat(ex.id);
     coachingText.textContent = cue;
-    speak(cue);
+    speakFPT(cue);
   }
 }
 
@@ -704,19 +803,21 @@ function tickResting() {
     // One-shot "rest over" announcement
     if (!overtimeAnnouncedOnce) {
       overtimeAnnouncedOnce = true;
-      speak('Back to track. Rest over.');
-      restMotivational.textContent = 'Rest over! Get back to it! ⚡';
+      speakFPT('Hết giờ nghỉ rồi anh ơi... quay lại tập thôi!!');
+      restMotivational.textContent = 'Hết giờ nghỉ rồi!! Quay lại tập thôi ⚡';
     }
 
     // Nag every 10s of overtime (deduplicated)
     const nagBucket = Math.floor(overtimeElapsed / 10) * 10;
     if (nagBucket > 0 && nagBucket !== lastOvertimeNagSec) {
       lastOvertimeNagSec = nagBucket;
-      const nagMsg = Math.random() < 0.5 ? 'Why so slow?' : 'Back to track.';
-      speak(nagMsg);
-      restMotivational.textContent = nagMsg === 'Why so slow?'
-        ? 'Panda is getting impatient... 😤'
-        : 'Rest over! Move it! ⚡';
+      const nagMsg = Math.random() < 0.5
+        ? 'Sao chậm thế anh ơi... nhanh lên!!'
+        : 'Quay lại tập đi anh... đừng nghỉ nữa!!';
+      speakFPT(nagMsg);
+      restMotivational.textContent = Math.random() < 0.5
+        ? 'Ếch đang mất kiên nhẫn rồi... 😤'
+        : 'Hết giờ nghỉ!! Đi tập ngay!! ⚡';
     }
   }
 }
@@ -803,12 +904,12 @@ function enterComplete() {
   // Confetti!
   spawnConfetti();
 
-  speak(`Workout complete! You rested ${fmt(totalActualRest)} total. That is ${Math.abs(restPct)} percent ${restDiff >= 0 ? 'more' : 'less'} than planned.`);
+  speakFPT(`Tập xong rồi anh ơi!! Tổng thời gian nghỉ là ${fmt(totalActualRest)}... ${restDiff >= 0 ? 'nhiều hơn' : 'ít hơn'} kế hoạch ${Math.abs(restPct)} phần trăm.`);
 }
 
 function spawnConfetti() {
   confettiBurst.innerHTML = '';
-  const colors = ['#FF6B35', '#34D399', '#60A5FA', '#FBBF24', '#F87171', '#A78BFA'];
+  const colors = ['#58CC02', '#89e219', '#1CB0F6', '#FFC800', '#CE82FF', '#FF4B4B'];
   for (let i = 0; i < 40; i++) {
     const c = document.createElement('div');
     c.className = 'confetti';
@@ -914,6 +1015,8 @@ btnGoHome.addEventListener('click', enterHome);
 saveCancel.addEventListener('click', closeSaveModal);
 saveConfirm.addEventListener('click', doSaveProfile);
 saveNameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSaveProfile(); });
+
+
 
 // ══════════════════════════════════════════════════════
 //  SEED DEFAULT PROFILES
