@@ -28,27 +28,68 @@
       <div class="home-spacer"></div>
       <div class="home-actions">
         <button class="btn-primary btn-big btn-glow" id="btn-start-workout">
-          <span class="btn-label">Tập ngay</span>
-        </button>
-        <button class="btn-secondary btn-big" id="btn-saved-workouts">
-          <span class="btn-icon-dot"></span>
-          <span class="btn-label">Chọn bài tập</span>
+          <span class="btn-label">Tập Ngay</span>
         </button>
         <button class="btn-pt btn-big" id="btn-book-pt">
           <span class="btn-pt-icon">🏋️</span>
           <span class="btn-label">Tập với PT</span>
         </button>
+        <button class="btn-secondary btn-big btn-disabled" id="btn-my-gym" disabled>
+          <span class="btn-label">Phòng Gym của tôi · Coming soon</span>
+        </button>
       </div>
-      <div class="version-text">app version v1.1.2</div>
-      <!-- Saved profiles (hidden by default, toggled by "Saved Workouts") -->
+      <div class="version-text">app version v1.2.0</div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 1B: QUICK WORKOUT PREVIEW
+       ═══════════════════════════════════════════════ -->
+    <div class="screen hidden" id="screen-quick-preview">
+      <div class="setup-header">
+        <button class="back-btn" id="btn-quick-back">←</button>
+        <h2 class="setup-title">Tập Ngay</h2>
+        <div style="width:40px"></div>
+      </div>
+      <div class="quick-title" id="quick-workout-title">🔥 Chest Day</div>
+      <div class="quick-controls-grid">
+        <button class="quick-control-btn" id="btn-change-workout">🔄 Thay đổi bài tập</button>
+        <button class="quick-control-btn" id="btn-duration">⏱️ Thời gian: 1h</button>
+        <button class="quick-control-btn" id="btn-gym">🏢 Phòng tập</button>
+        <button class="quick-control-btn" id="btn-intensity">💪 Cường độ: Intermediate</button>
+      </div>
+      <div class="quick-toggles">
+        <button class="quick-toggle-btn" id="btn-toggle-core">🧱 + Core Workout: OFF</button>
+        <button class="quick-toggle-btn" id="btn-toggle-warmup">🧘 + Warmup/Cool down: OFF</button>
+      </div>
+      <div class="quick-preview-list" id="quick-preview-list"></div>
+      <div class="setup-actions">
+        <button class="btn-primary btn-big" id="btn-start-quick-workout">
+          <span class="btn-label">Bắt đầu tập 🔥</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 1C: CHANGE WORKOUT TYPE
+       ═══════════════════════════════════════════════ -->
+    <div class="screen hidden" id="screen-change-workout">
+      <div class="setup-header">
+        <button class="back-btn" id="btn-change-workout-back">←</button>
+        <h2 class="setup-title">Thay đổi bài tập</h2>
+        <div style="width:40px"></div>
+      </div>
+      <div class="change-workout-grid" id="change-workout-grid"></div>
+      <div class="quick-sub-actions">
+        <button class="btn-secondary btn-big" id="btn-load-saved">My Saved Workouts</button>
+        <button class="btn-primary btn-big" id="btn-create-new-workout">Create New Workout</button>
+      </div>
       <div class="saved-panel hidden" id="saved-panel">
         <div class="saved-header">
           <span class="saved-title">Your Workouts</span>
           <button class="saved-close" id="saved-close">✕</button>
         </div>
-        <div class="saved-list" id="saved-list">
-          <!-- dynamically filled -->
-        </div>
+        <div class="saved-list" id="saved-list"></div>
       </div>
     </div>
 
@@ -219,6 +260,23 @@
       </div>
     </div>
 
+
+    <!-- ═══ DURATION PICKER MODAL ═══ -->
+    <div class="modal-overlay hidden" id="duration-modal">
+      <div class="save-card">
+        <div class="save-title">⏱️ Chọn thời gian</div>
+        <div class="picker-list" id="duration-options"></div>
+      </div>
+    </div>
+
+    <!-- ═══ INTENSITY PICKER MODAL ═══ -->
+    <div class="modal-overlay hidden" id="intensity-modal">
+      <div class="save-card">
+        <div class="save-title">💪 Chọn cường độ</div>
+        <div class="picker-list" id="intensity-options"></div>
+      </div>
+    </div>
+
     <!-- ═══ SAVE MODAL ═══ -->
     <div class="modal-overlay hidden" id="save-modal">
       <div class="save-card">
@@ -285,6 +343,7 @@
   </div>
 
   <script src="exercises.js"></script>
+  <script src="workout-generator.js"></script>
   <script src="pt-data.js"></script>
   <script src="app.js"></script>
 </body>
