@@ -6,18 +6,43 @@
 // ── DOM refs ─────────────────────────────────────────
 // Screens
 const screenHome = document.getElementById('screen-home');
+const screenQuickPreview = document.getElementById('screen-quick-preview');
+const screenChangeWorkout = document.getElementById('screen-change-workout');
 const screenSetup = document.getElementById('screen-setup');
 const screenActive = document.getElementById('screen-active');
 const screenRest = document.getElementById('screen-rest');
 const screenComplete = document.getElementById('screen-complete');
-const ALL_SCREENS = [screenHome, screenSetup, screenActive, screenRest, screenComplete];
+const screenPtBooking = document.getElementById('screen-pt-booking');
+const ALL_SCREENS = [screenHome, screenQuickPreview, screenChangeWorkout, screenSetup, screenActive, screenRest, screenComplete, screenPtBooking];
 
 // Home
 const btnStartWorkout = document.getElementById('btn-start-workout');
-const btnSavedWorkouts = document.getElementById('btn-saved-workouts');
+const btnMyGym = document.getElementById('btn-my-gym');
+const btnBookPt = document.getElementById('btn-book-pt');
 const savedPanel = document.getElementById('saved-panel');
 const savedClose = document.getElementById('saved-close');
 const savedList = document.getElementById('saved-list');
+
+// Quick Workout
+const btnQuickBack = document.getElementById('btn-quick-back');
+const quickWorkoutTitle = document.getElementById('quick-workout-title');
+const quickPreviewList = document.getElementById('quick-preview-list');
+const btnStartQuickWorkout = document.getElementById('btn-start-quick-workout');
+const btnChangeWorkout = document.getElementById('btn-change-workout');
+const btnDuration = document.getElementById('btn-duration');
+const btnGym = document.getElementById('btn-gym');
+const btnIntensity = document.getElementById('btn-intensity');
+const btnToggleCore = document.getElementById('btn-toggle-core');
+const btnToggleWarmup = document.getElementById('btn-toggle-warmup');
+const screenChangeWorkoutGrid = document.getElementById('change-workout-grid');
+const btnChangeWorkoutBack = document.getElementById('btn-change-workout-back');
+const btnLoadSaved = document.getElementById('btn-load-saved');
+const btnCreateNewWorkout = document.getElementById('btn-create-new-workout');
+const durationModal = document.getElementById('duration-modal');
+const durationOptions = document.getElementById('duration-options');
+const intensityModal = document.getElementById('intensity-modal');
+const intensityOptions = document.getElementById('intensity-options');
+const btnPtBack = document.getElementById('btn-pt-back');
 
 // Setup
 const btnSetupBack = document.getElementById('btn-setup-back');
@@ -89,6 +114,15 @@ let activeCat = 'Back';
 let speakTimeout = null;
 const SEC_PER_REP = 3;
 const PROFILE_KEY = 'panda_gym_profiles';
+
+let quickConfig = {
+  type: randomWorkoutType(),
+  durationMin: 60,
+  intensity: 'Intermediate',
+  addCore: false,
+  addWarmup: false,
+};
+let quickGeneratedWorkout = null;
 
 // Timestamp-based timing (survives iOS background)
 let trainingStartTime = null;  // Date.now() when training screen entered
@@ -338,7 +372,7 @@ function renderSavedList() {
 
 function applyProfile(profile) {
   workoutPlan = profile.exercises.map(e => ({ ...e }));
-  savedPanel.classList.add('hidden');
+  if (savedPanel) savedPanel.classList.add('hidden');
   enterSetup();
 }
 
@@ -348,9 +382,80 @@ function applyProfile(profile) {
 function enterHome() {
   stopAll();
   showScreen(screenHome);
-  savedPanel.classList.add('hidden');
+  if (savedPanel) savedPanel.classList.add('hidden');
   workoutPlan = [];
   selectedIds.clear();
+}
+
+
+// ══════════════════════════════════════════════════════
+//  QUICK WORKOUT FLOW
+// ══════════════════════════════════════════════════════
+function regenerateQuickWorkout() {
+  quickGeneratedWorkout = generateWorkout(
+    quickConfig.type,
+    quickConfig.durationMin,
+    quickConfig.intensity,
+    quickConfig.addCore,
+    quickConfig.addWarmup
+  );
+
+  quickWorkoutTitle.textContent = quickGeneratedWorkout.name;
+  btnDuration.textContent = `⏱️ Thời gian: ${quickConfig.durationMin >= 60 && quickConfig.durationMin % 60 === 0 ? `${quickConfig.durationMin / 60}h` : `${quickConfig.durationMin}m`}`;
+  btnIntensity.textContent = `💪 Cường độ: ${quickConfig.intensity}`;
+  btnToggleCore.textContent = `🧱 + Core Workout: ${quickConfig.addCore ? 'ON' : 'OFF'}`;
+  btnToggleWarmup.textContent = `🧘 + Warmup/Cool down: ${quickConfig.addWarmup ? 'ON' : 'OFF'}`;
+
+  quickPreviewList.innerHTML = quickGeneratedWorkout.exercises.map((ex, idx) => `
+    <div class="quick-preview-item">
+      <div><strong>${idx + 1}. ${ex.emoji || '🏋️'} ${ex.name}</strong></div>
+      <div class="picker-item-defaults">${ex.sets} sets × ${ex.reps} reps · rest ${ex.rest}s</div>
+    </div>
+  `).join('');
+}
+
+function enterQuickPreview() {
+  stopAll();
+  showScreen(screenQuickPreview);
+  regenerateQuickWorkout();
+}
+
+function openDurationModal() {
+  const values = [];
+  for (let m = 15; m <= 180; m += 15) values.push(m);
+  durationOptions.innerHTML = values.map(m => `<button class="picker-item ${m===quickConfig.durationMin?'selected':''}" data-duration="${m}">${m >= 60 && m % 60===0 ? `${m/60}h` : `${m} min`}</button>`).join('');
+  durationOptions.querySelectorAll('[data-duration]').forEach(el => el.addEventListener('click', () => {
+    quickConfig.durationMin = parseInt(el.dataset.duration);
+    durationModal.classList.add('hidden');
+    regenerateQuickWorkout();
+  }));
+  durationModal.classList.remove('hidden');
+}
+
+function openIntensityModal() {
+  const levels = Object.keys(INTENSITY_MODIFIERS);
+  intensityOptions.innerHTML = levels.map(level => `<button class="picker-item ${level===quickConfig.intensity?'selected':''}" data-intensity="${level}">${level}</button>`).join('');
+  intensityOptions.querySelectorAll('[data-intensity]').forEach(el => el.addEventListener('click', () => {
+    quickConfig.intensity = el.dataset.intensity;
+    intensityModal.classList.add('hidden');
+    regenerateQuickWorkout();
+  }));
+  intensityModal.classList.remove('hidden');
+}
+
+function enterChangeWorkout() {
+  showScreen(screenChangeWorkout);
+  screenChangeWorkoutGrid.innerHTML = Object.keys(QUICK_WORKOUT_TYPES).map(type => `
+    <button class="quick-type-btn ${type===quickConfig.type?'selected':''}" data-type="${type}">${QUICK_WORKOUT_TYPES[type].emoji} ${type}</button>
+  `).join('');
+
+  screenChangeWorkoutGrid.querySelectorAll('[data-type]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      quickConfig.type = btn.dataset.type;
+      regenerateQuickWorkout();
+      enterQuickPreview();
+    });
+  });
 }
 
 // ══════════════════════════════════════════════════════
@@ -947,26 +1052,63 @@ function doSaveProfile() {
 //  BUTTON WIRING
 // ══════════════════════════════════════════════════════
 
-// Home
-btnStartWorkout.addEventListener('click', () => {
+// Home + Quick Workout
+btnStartWorkout.addEventListener('click', enterQuickPreview);
+btnBookPt?.addEventListener('click', () => showScreen(screenPtBooking));
+btnPtBack?.addEventListener('click', enterHome);
+btnMyGym?.addEventListener('click', () => alert('Phòng Gym của tôi — Coming soon'));
+savedClose?.addEventListener('click', () => {
+  if (savedPanel) savedPanel.classList.add('hidden');
+});
+
+btnQuickBack?.addEventListener('click', enterHome);
+btnChangeWorkout?.addEventListener('click', enterChangeWorkout);
+btnChangeWorkoutBack?.addEventListener('click', enterQuickPreview);
+btnDuration?.addEventListener('click', openDurationModal);
+btnIntensity?.addEventListener('click', openIntensityModal);
+btnGym?.addEventListener('click', () => alert('Phòng tập — Coming soon'));
+btnToggleCore?.addEventListener('click', () => {
+  quickConfig.addCore = !quickConfig.addCore;
+  regenerateQuickWorkout();
+});
+btnToggleWarmup?.addEventListener('click', () => {
+  quickConfig.addWarmup = !quickConfig.addWarmup;
+  regenerateQuickWorkout();
+});
+btnStartQuickWorkout?.addEventListener('click', () => {
+  workoutPlan = (quickGeneratedWorkout?.exercises || []).map(e => ({ ...e }));
+  if (workoutPlan.length === 0) return;
+  currentExIdx = 0;
+  currentSetNum = 1;
+  completedSets = 0;
+  totalSets = workoutPlan.reduce((sum, e) => sum + e.sets, 0);
+  sessionLog = [];
+  restStartTime = null;
+  trainingStartTime = null;
+  totalElapsedSec = 0;
+  workoutElapsedBase = 0;
+  workoutStartTime = Date.now();
+  updateWorkoutProgress();
+  enterTraining();
+});
+btnLoadSaved?.addEventListener('click', () => {
+  savedPanel.classList.toggle('hidden');
+  if (!savedPanel.classList.contains('hidden')) renderSavedList();
+});
+btnCreateNewWorkout?.addEventListener('click', () => {
   selectedIds.clear();
   workoutPlan = [];
   enterSetup();
 });
-
-btnSavedWorkouts.addEventListener('click', () => {
-  savedPanel.classList.toggle('hidden');
-  if (!savedPanel.classList.contains('hidden')) {
-    renderSavedList();
-  }
+durationModal?.addEventListener('click', (e) => {
+  if (e.target === durationModal) durationModal.classList.add('hidden');
 });
-
-savedClose.addEventListener('click', () => {
-  savedPanel.classList.add('hidden');
+intensityModal?.addEventListener('click', (e) => {
+  if (e.target === intensityModal) intensityModal.classList.add('hidden');
 });
 
 // Setup
-btnSetupBack.addEventListener('click', enterHome);
+btnSetupBack.addEventListener('click', enterQuickPreview);
 btnAddExercise.addEventListener('click', () => {
   // Sync selectedIds with current workoutPlan
   selectedIds = new Set(workoutPlan.map(e => e.id));
