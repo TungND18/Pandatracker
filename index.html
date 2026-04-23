@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Foxy Gym — Guided Workout</title>
+  <meta name="description" content="Foxy Gym - Smart personal trainer app that auto-generates workouts tailored to your goals, time and intensity.">
   <link rel="stylesheet" href="styles.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
@@ -27,74 +28,316 @@
       </div>
       <div class="home-spacer"></div>
       <div class="home-actions">
-        <button class="btn-primary btn-big btn-glow" id="btn-start-workout">
+        <button class="btn-primary btn-big btn-glow" id="btn-quick-workout">
+          <span class="btn-icon">⚡</span>
           <span class="btn-label">Tập Ngay</span>
         </button>
         <button class="btn-pt btn-big" id="btn-book-pt">
           <span class="btn-pt-icon">🏋️</span>
           <span class="btn-label">Tập với PT</span>
         </button>
-        <button class="btn-secondary btn-big btn-disabled" id="btn-my-gym" disabled>
-          <span class="btn-label">Phòng Gym của tôi · Coming soon</span>
+        <button class="btn-gym btn-big" id="btn-my-gym" disabled>
+          <span class="btn-icon">🏢</span>
+          <span class="btn-label">Phòng Gym của tôi</span>
+          <span class="btn-badge-soon">Soon</span>
         </button>
       </div>
-      <div class="version-text">app version v1.2.0</div>
+      <div class="version-text">app version v1.4.0</div>
+      <!-- Bottom Nav -->
+      <div class="bottom-nav">
+        <button class="bottom-nav-item active" data-target="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>Home</span>
+        </button>
+        <button class="bottom-nav-item" data-target="workout">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg>
+          <span>Tập Ngay</span>
+        </button>
+        <button class="bottom-nav-item" data-target="profile">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span>Profile</span>
+        </button>
+      </div>
     </div>
 
-
     <!-- ═══════════════════════════════════════════════
-       SCREEN 1B: QUICK WORKOUT PREVIEW
+       SCREEN: QUICK WORKOUT PREVIEW
        ═══════════════════════════════════════════════ -->
-    <div class="screen hidden" id="screen-quick-preview">
-      <div class="setup-header">
-        <button class="back-btn" id="btn-quick-back">←</button>
-        <h2 class="setup-title">Tập Ngay</h2>
-        <div style="width:40px"></div>
+    <div class="screen hidden" id="screen-quick-workout">
+      <!-- Workout Title + Change Button -->
+      <div class="qw-title-row">
+        <span class="qw-title-emoji" id="qw-title-emoji">🔥</span>
+        <div class="qw-title-text">
+          <div class="qw-title-name" id="qw-title-name">Chest Day</div>
+          <div class="qw-title-sub" id="qw-title-sub">Ngực + Tay sau</div>
+        </div>
+        <button class="qw-change-btn" id="btn-qw-change-workout">
+          <svg class="qw-change-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.87 5.87 0 0 1 6 12c0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+          <span>Thay đổi</span>
+        </button>
       </div>
-      <div class="quick-title" id="quick-workout-title">🔥 Chest Day</div>
-      <div class="quick-controls-grid">
-        <button class="quick-control-btn" id="btn-change-workout">🔄 Thay đổi bài tập</button>
-        <button class="quick-control-btn" id="btn-duration">⏱️ Thời gian: 1h</button>
-        <button class="quick-control-btn" id="btn-gym">🏢 Phòng tập</button>
-        <button class="quick-control-btn" id="btn-intensity">💪 Cường độ: Intermediate</button>
+
+      <!-- Horizontal Scroll Controls -->
+      <div class="qw-hscroll-wrap">
+        <div class="qw-hscroll" id="qw-hscroll">
+          <button class="qw-pill" id="btn-qw-duration">
+            <span class="qw-pill-val" id="qw-duration-value">1h</span>
+            <svg class="qw-pill-arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <button class="qw-pill" id="btn-qw-gym">
+            <span class="qw-pill-val">My Gym</span>
+            <svg class="qw-pill-arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <button class="qw-pill" id="btn-qw-intensity">
+            <span class="qw-pill-val" id="qw-intensity-value">Intermediate</span>
+            <svg class="qw-pill-arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <button class="qw-pill qw-pill-toggle" id="btn-qw-core">
+            <span class="qw-pill-sign" id="qw-core-sign">+</span>
+            <span class="qw-pill-val">Core</span>
+          </button>
+          <button class="qw-pill qw-pill-toggle" id="btn-qw-warmup">
+            <span class="qw-pill-sign" id="qw-warmup-sign">+</span>
+            <span class="qw-pill-val">Warm up</span>
+          </button>
+        </div>
       </div>
-      <div class="quick-toggles">
-        <button class="quick-toggle-btn" id="btn-toggle-core">🧱 + Core Workout: OFF</button>
-        <button class="quick-toggle-btn" id="btn-toggle-warmup">🧘 + Warmup/Cool down: OFF</button>
+
+      <!-- Exercise Preview List -->
+      <div class="qw-preview-header">
+        <span class="qw-preview-title">Bài tập</span>
+        <span class="qw-preview-est" id="qw-est-time">~60 phút</span>
       </div>
-      <div class="quick-preview-list" id="quick-preview-list"></div>
-      <div class="setup-actions">
-        <button class="btn-primary btn-big" id="btn-start-quick-workout">
-          <span class="btn-label">Bắt đầu tập 🔥</span>
+      <div class="qw-exercise-list" id="qw-exercise-list">
+        <!-- dynamically filled -->
+      </div>
+
+      <!-- Start Button -->
+      <div class="qw-start-action">
+        <button class="btn-primary btn-big" id="btn-qw-start">
+          <span class="btn-icon">🔥</span>
+          <span class="btn-label">Bắt đầu tập</span>
+        </button>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="bottom-nav">
+        <button class="bottom-nav-item" data-target="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>Home</span>
+        </button>
+        <button class="bottom-nav-item active" data-target="workout">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg>
+          <span>Tập Ngay</span>
+        </button>
+        <button class="bottom-nav-item" data-target="profile">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span>Profile</span>
         </button>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       SCREEN 1C: CHANGE WORKOUT TYPE
+       SCREEN: MY PROFILE
+       ═══════════════════════════════════════════════ -->
+    <div class="screen hidden" id="screen-profile">
+      <div class="profile-header">
+        <h2 class="setup-title">My Profile</h2>
+      </div>
+
+      <div class="profile-scroll">
+        <!-- 1. Pronoun -->
+        <div class="profile-field">
+          <label class="profile-label">Cáo gọi bạn là gì?</label>
+          <div class="profile-chips" id="profile-pronoun">
+            <button class="profile-chip" data-val="Anh">Anh</button>
+            <button class="profile-chip" data-val="Chị">Chị</button>
+            <button class="profile-chip" data-val="Em">Em</button>
+            <button class="profile-chip" data-val="Bạn">Bạn</button>
+            <button class="profile-chip" data-val="Cậu">Cậu</button>
+            <button class="profile-chip" data-val="Cô">Cô</button>
+            <button class="profile-chip" data-val="Bác">Bác</button>
+            <button class="profile-chip" data-val="Chú">Chú</button>
+          </div>
+        </div>
+
+        <!-- 2. Age -->
+        <div class="profile-field">
+          <label class="profile-label">Tuổi</label>
+          <input type="number" class="profile-input" id="profile-age" placeholder="25" min="10" max="99">
+        </div>
+
+        <!-- 3. Weight -->
+        <div class="profile-field">
+          <label class="profile-label">Cân nặng (kg)</label>
+          <input type="number" class="profile-input" id="profile-weight" placeholder="70" min="30" max="300" step="0.5">
+        </div>
+
+        <!-- 4. Goal -->
+        <div class="profile-field">
+          <label class="profile-label">Mục tiêu</label>
+          <div class="profile-chips profile-chips-wrap" id="profile-goal">
+            <button class="profile-chip" data-val="Build Muscle">💪 Build Muscle</button>
+            <button class="profile-chip" data-val="Get Lean">🔥 Get Lean</button>
+            <button class="profile-chip" data-val="Get Stronger">🏋️ Get Stronger</button>
+            <button class="profile-chip" data-val="Weight Loss">⚖️ Weight Loss</button>
+            <button class="profile-chip" data-val="Improve Fitness">🏃 Improve Fitness</button>
+            <button class="profile-chip" data-val="Power Lifting">🦍 Power Lifting</button>
+          </div>
+        </div>
+
+        <!-- 5. Experience -->
+        <div class="profile-field">
+          <label class="profile-label">Kinh nghiệm</label>
+          <div class="profile-chips" id="profile-experience">
+            <button class="profile-chip" data-val="beginner">🌱 Beginner</button>
+            <button class="profile-chip" data-val="intermediate">⚡ Intermediate</button>
+            <button class="profile-chip" data-val="advanced">🔥 Advanced</button>
+          </div>
+        </div>
+
+        <!-- 6. Preferred Duration -->
+        <div class="profile-field">
+          <label class="profile-label">Thời gian tập mặc định</label>
+          <div class="profile-duration-wrap">
+            <input type="range" class="profile-slider" id="profile-duration" min="15" max="180" step="15" value="60">
+            <span class="profile-duration-val" id="profile-duration-val">60 phút</span>
+          </div>
+        </div>
+
+        <!-- 7. Workouts per week -->
+        <div class="profile-field">
+          <label class="profile-label">Số buổi tập / tuần</label>
+          <div class="profile-chips" id="profile-wpw">
+            <button class="profile-chip" data-val="1">1</button>
+            <button class="profile-chip" data-val="2">2</button>
+            <button class="profile-chip" data-val="3">3</button>
+            <button class="profile-chip" data-val="4">4</button>
+            <button class="profile-chip" data-val="5">5</button>
+            <button class="profile-chip" data-val="6">6</button>
+            <button class="profile-chip" data-val="7">7</button>
+          </div>
+        </div>
+
+        <!-- 8. Core workout toggle -->
+        <div class="profile-field profile-toggle-row">
+          <label class="profile-label">Core Workout</label>
+          <button class="profile-toggle-btn" id="profile-core-btn">
+            <span class="qw-toggle" id="profile-core-toggle"></span>
+          </button>
+        </div>
+
+        <!-- 9. Warmup toggle -->
+        <div class="profile-field profile-toggle-row">
+          <label class="profile-label">Warm up</label>
+          <button class="profile-toggle-btn" id="profile-warmup-btn">
+            <span class="qw-toggle" id="profile-warmup-toggle"></span>
+          </button>
+        </div>
+
+        <!-- 10. Stretching toggle -->
+        <div class="profile-field profile-toggle-row">
+          <label class="profile-label">Stretching / Cool down</label>
+          <button class="profile-toggle-btn" id="profile-stretching-btn">
+            <span class="qw-toggle" id="profile-stretching-toggle"></span>
+          </button>
+        </div>
+
+        <!-- Save -->
+        <div class="profile-save-area">
+          <button class="btn-primary btn-big" id="btn-profile-save">
+            <span class="btn-icon">💾</span>
+            <span class="btn-label">Lưu Profile</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="bottom-nav">
+        <button class="bottom-nav-item" data-target="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>Home</span>
+        </button>
+        <button class="bottom-nav-item" data-target="workout">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg>
+          <span>Tập Ngay</span>
+        </button>
+        <button class="bottom-nav-item active" data-target="profile">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span>Profile</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN: CHANGE WORKOUT TYPE
        ═══════════════════════════════════════════════ -->
     <div class="screen hidden" id="screen-change-workout">
-      <div class="setup-header">
-        <button class="back-btn" id="btn-change-workout-back">←</button>
+      <div class="cw-header">
+        <button class="back-btn" id="btn-cw-back">←</button>
         <h2 class="setup-title">Thay đổi bài tập</h2>
         <div style="width:40px"></div>
       </div>
-      <div class="change-workout-grid" id="change-workout-grid"></div>
-      <div class="quick-sub-actions">
-        <button class="btn-secondary btn-big" id="btn-load-saved">My Saved Workouts</button>
-        <button class="btn-primary btn-big" id="btn-create-new-workout">Create New Workout</button>
+
+      <!-- Workout Type Buttons -->
+      <div class="cw-section-label">💪 Nhóm cơ</div>
+      <div class="cw-type-grid" id="cw-type-grid">
+        <!-- dynamically filled -->
       </div>
-      <div class="saved-panel hidden" id="saved-panel">
-        <div class="saved-header">
-          <span class="saved-title">Your Workouts</span>
-          <button class="saved-close" id="saved-close">✕</button>
+
+      <div class="cw-divider"></div>
+
+      <!-- My Saved Workouts -->
+      <div class="cw-section-label">📁 Bài tập đã lưu</div>
+      <div class="cw-saved-list" id="cw-saved-list">
+        <!-- dynamically filled -->
+      </div>
+
+      <div class="cw-divider"></div>
+
+      <!-- Create New Workout -->
+      <button class="btn-secondary btn-big cw-create-btn" id="btn-cw-create-new">
+        <span class="btn-icon">✏️</span>
+        <span class="btn-label">Tạo bài tập mới</span>
+      </button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       DURATION PICKER MODAL
+       ═══════════════════════════════════════════════ -->
+    <div class="modal-overlay hidden" id="duration-modal">
+      <div class="duration-card">
+        <div class="duration-title">⏱️ Thời gian tập</div>
+        <div class="duration-display" id="duration-display">1h</div>
+        <div class="duration-slider-wrap">
+          <input type="range" class="duration-slider" id="duration-slider"
+                 min="15" max="180" step="15" value="60">
+          <div class="duration-range-labels">
+            <span>15p</span>
+            <span>3h</span>
+          </div>
         </div>
-        <div class="saved-list" id="saved-list"></div>
+        <div class="duration-btns">
+          <button class="btn-secondary duration-btn" id="duration-cancel">Huỷ</button>
+          <button class="btn-primary duration-btn" id="duration-confirm">OK</button>
+        </div>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       SCREEN 2: WORKOUT SETUP
+       INTENSITY PICKER MODAL
+       ═══════════════════════════════════════════════ -->
+    <div class="modal-overlay hidden" id="intensity-modal">
+      <div class="intensity-card">
+        <div class="intensity-title">Cường độ tập</div>
+        <div class="intensity-options" id="intensity-options">
+          <!-- dynamically filled -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 2: WORKOUT SETUP (existing)
        ═══════════════════════════════════════════════ -->
     <div class="screen hidden" id="screen-setup">
       <div class="setup-header">
@@ -102,9 +345,7 @@
         <h2 class="setup-title">Workout Setup</h2>
         <button class="add-btn" id="btn-add-exercise">+ Add</button>
       </div>
-      <div class="setup-list" id="setup-list">
-        <!-- exercise cards filled dynamically -->
-      </div>
+      <div class="setup-list" id="setup-list"></div>
       <div class="setup-stats" id="setup-stats">
         <div class="stat-pill"><span class="stat-val" id="stat-exercises">0</span><span class="stat-lbl">exercises</span></div>
         <div class="stat-pill"><span class="stat-val" id="stat-sets">0</span><span class="stat-lbl">sets</span></div>
@@ -122,7 +363,6 @@
        SCREEN 3: ACTIVE WORKOUT (TRAINING STATE)
        ═══════════════════════════════════════════════ -->
     <div class="screen hidden" id="screen-active">
-      <!-- top bar -->
       <div class="active-top-bar">
         <div class="active-elapsed" id="active-elapsed">0:00</div>
         <div class="active-progress-wrap">
@@ -132,8 +372,6 @@
           <span class="active-progress-label" id="active-progress-label">0%</span>
         </div>
       </div>
-
-      <!-- center content -->
       <div class="active-center">
         <div class="active-timer" id="active-timer">0:00</div>
         <div class="active-exercise" id="active-exercise">Exercise Name</div>
@@ -152,14 +390,10 @@
           </div>
         </div>
       </div>
-
-      <!-- coaching -->
       <div class="coaching-area" id="coaching-area">
         <img src="fox.png" alt="Coach" class="coaching-panda">
         <div class="coaching-bubble" id="coaching-text">Keep your back straight! 💪</div>
       </div>
-
-      <!-- action button -->
       <div class="active-action">
         <button class="btn-primary btn-big btn-finish" id="btn-finish-set">
           <span class="btn-label">✅ Finish Set</span>
@@ -180,7 +414,6 @@
           <span class="active-progress-label" id="rest-progress-label">0%</span>
         </div>
       </div>
-
       <div class="rest-center">
         <div class="rest-label">REST</div>
         <div class="rest-timer" id="rest-timer">1:30</div>
@@ -193,7 +426,6 @@
         <div class="rest-motivational" id="rest-motivational">Great set! Let your muscles recover 💤</div>
         <div class="rest-next" id="rest-next">Next: Set 2/4</div>
       </div>
-
       <div class="rest-action">
         <button class="btn-secondary btn-big" id="btn-skip-rest">
           <span class="btn-label">⏭️ Skip Rest</span>
@@ -211,86 +443,57 @@
         <h1 class="complete-title">You crushed it! 🏆</h1>
         <p class="complete-sub" id="complete-sub">Workout complete</p>
       </div>
-
       <div class="complete-stats" id="complete-stats">
-        <div class="cstat-card">
-          <span class="cstat-val" id="cstat-sets">0</span>
-          <span class="cstat-lbl">Total Sets</span>
-        </div>
-        <div class="cstat-card">
-          <span class="cstat-val" id="cstat-weight">0 kg</span>
-          <span class="cstat-lbl">Total Weight</span>
-        </div>
-        <div class="cstat-card">
-          <span class="cstat-val" id="cstat-time">0:00</span>
-          <span class="cstat-lbl">Total Time</span>
-        </div>
+        <div class="cstat-card"><span class="cstat-val" id="cstat-sets">0</span><span class="cstat-lbl">Total Sets</span></div>
+        <div class="cstat-card"><span class="cstat-val" id="cstat-weight">0 kg</span><span class="cstat-lbl">Total Weight</span></div>
+        <div class="cstat-card"><span class="cstat-val" id="cstat-time">0:00</span><span class="cstat-lbl">Total Time</span></div>
       </div>
-
-      <div class="complete-rest-report" id="complete-rest-report">
-        <!-- dynamically filled -->
-      </div>
-
+      <div class="complete-rest-report" id="complete-rest-report"></div>
       <div class="complete-actions">
         <button class="btn-primary btn-big" id="btn-save-workout">
           <span class="btn-icon">💾</span>
-          <span class="btn-label">Save Workout</span>
+          <span class="btn-label">Lưu bài tập</span>
         </button>
         <button class="btn-secondary btn-big" id="btn-go-home">
-          <span class="btn-icon">🏠</span>
-          <span class="btn-label">Home</span>
+          <span class="btn-label">🏠 Về trang chủ</span>
         </button>
       </div>
     </div>
 
-    <!-- ═══ EXERCISE PICKER MODAL ═══ -->
+    <!-- ═══════════════════════════════════════════════
+       EXERCISE PICKER MODAL
+       ═══════════════════════════════════════════════ -->
     <div class="modal-overlay hidden" id="picker-modal">
       <div class="picker-card">
-        <div class="picker-header">
-          <span class="picker-title">Add Exercises</span>
+        <div class="picker-top">
           <button class="picker-close" id="picker-close">✕</button>
+          <div class="picker-title">Thêm bài tập</div>
+          <div class="picker-count" id="picker-count">0 selected</div>
         </div>
-        <div class="picker-tabs" id="picker-tabs">
-          <!-- category tabs -->
-        </div>
-        <div class="picker-list" id="picker-list">
-          <!-- exercise cards -->
-        </div>
-        <button class="btn-primary picker-done" id="picker-done">Done <span id="picker-count">(0)</span></button>
-      </div>
-    </div>
-
-
-    <!-- ═══ DURATION PICKER MODAL ═══ -->
-    <div class="modal-overlay hidden" id="duration-modal">
-      <div class="save-card">
-        <div class="save-title">⏱️ Chọn thời gian</div>
-        <div class="picker-list" id="duration-options"></div>
-      </div>
-    </div>
-
-    <!-- ═══ INTENSITY PICKER MODAL ═══ -->
-    <div class="modal-overlay hidden" id="intensity-modal">
-      <div class="save-card">
-        <div class="save-title">💪 Chọn cường độ</div>
-        <div class="picker-list" id="intensity-options"></div>
-      </div>
-    </div>
-
-    <!-- ═══ SAVE MODAL ═══ -->
-    <div class="modal-overlay hidden" id="save-modal">
-      <div class="save-card">
-        <div class="save-title">💾 Save Workout</div>
-        <input type="text" class="save-input" id="save-name-input" placeholder="e.g. Push Day" maxlength="30">
-        <div class="save-btns">
-          <button class="btn-secondary save-btn" id="save-cancel">Cancel</button>
-          <button class="btn-primary save-btn" id="save-confirm">Save</button>
+        <div class="picker-tabs" id="picker-tabs"></div>
+        <div class="picker-list" id="picker-list"></div>
+        <div class="picker-footer">
+          <button class="btn-primary" id="picker-done">Xong ✓</button>
         </div>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
-       SCREEN: PT BOOKING
+       SAVE MODAL
+       ═══════════════════════════════════════════════ -->
+    <div class="modal-overlay hidden" id="save-modal">
+      <div class="save-card">
+        <div class="save-title">💾 Lưu bài tập</div>
+        <input type="text" class="save-input" id="save-name-input" placeholder="Tên bài tập..." maxlength="40">
+        <div class="save-btns">
+          <button class="btn-secondary" id="save-cancel">Huỷ</button>
+          <button class="btn-primary" id="save-confirm">Lưu ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       PT BOOKING SCREEN
        ═══════════════════════════════════════════════ -->
     <div class="screen hidden" id="screen-pt-booking">
       <div class="pt-header">
@@ -298,21 +501,15 @@
         <h2 class="setup-title">Tập với PT</h2>
         <div style="width:40px"></div>
       </div>
-
-      <!-- Step 1: Calendar -->
-      <div class="pt-section" id="pt-calendar-section">
-        <div class="pt-section-label">📅 Chọn ngày tập</div>
-        <div class="pt-calendar">
-          <div class="pt-cal-weekdays">
-            <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
-          </div>
-          <div class="pt-cal-grid" id="pt-cal-grid">
-            <!-- dynamically filled -->
-          </div>
+      <div class="pt-section" id="pt-cal-section">
+        <div class="pt-section-label">📅 Chọn ngày</div>
+        <div class="pt-cal-header">
+          <button class="pt-cal-nav" id="pt-cal-prev">‹</button>
+          <span class="pt-cal-month" id="pt-cal-month">Tháng 4</span>
+          <button class="pt-cal-nav" id="pt-cal-next">›</button>
         </div>
+        <div class="pt-cal-grid" id="pt-cal-grid"></div>
       </div>
-
-      <!-- Step 2: Time Picker (hidden until date selected) -->
       <div class="pt-section hidden" id="pt-time-section">
         <div class="pt-section-label">⏰ Chọn khung giờ</div>
         <div class="pt-time-picker">
@@ -330,12 +527,21 @@
           <span class="btn-label">Tìm PT</span>
         </button>
       </div>
-
-      <!-- Step 3: PT Results (hidden until search) -->
       <div class="pt-section hidden" id="pt-results-section">
         <div class="pt-section-label" id="pt-results-label">🎯 PT có sẵn</div>
-        <div class="pt-results-scroll" id="pt-results-scroll">
-          <!-- dynamically filled -->
+        <div class="pt-results-scroll" id="pt-results-scroll"></div>
+      </div>
+    </div>
+
+    <!-- ═══ PT BOOKING CONFIRMATION MODAL ═══ -->
+    <div class="pt-confirm-overlay hidden" id="pt-confirm-overlay">
+      <div class="pt-confirm-card">
+        <div class="pt-confirm-icon" id="pt-confirm-icon">📋</div>
+        <div class="pt-confirm-title" id="pt-confirm-title">Xác nhận đặt lịch</div>
+        <div class="pt-confirm-details" id="pt-confirm-details"></div>
+        <div class="pt-confirm-btns" id="pt-confirm-btns">
+          <button class="btn-secondary" id="pt-confirm-cancel">Huỷ</button>
+          <button class="btn-primary" id="pt-confirm-ok">Xác nhận</button>
         </div>
       </div>
     </div>
@@ -343,8 +549,8 @@
   </div>
 
   <script src="exercises.js"></script>
-  <script src="workout-generator.js"></script>
   <script src="pt-data.js"></script>
+  <script src="workout-generator.js"></script>
   <script src="app.js"></script>
 </body>
 

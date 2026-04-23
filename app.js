@@ -1,48 +1,60 @@
 // =====================================================
-//  PANDA GYM TRACKER — app.js (v3)
-//  5 screens: home → setup → active → rest → complete
+//  PANDA GYM TRACKER — app.js (v4)
+//  Screens: home → quick-workout → setup → active → rest → complete
+//  + PT booking, change workout, duration/intensity pickers
 // =====================================================
 
 // ── DOM refs ─────────────────────────────────────────
 // Screens
 const screenHome = document.getElementById('screen-home');
-const screenQuickPreview = document.getElementById('screen-quick-preview');
+const screenQuickWorkout = document.getElementById('screen-quick-workout');
 const screenChangeWorkout = document.getElementById('screen-change-workout');
 const screenSetup = document.getElementById('screen-setup');
 const screenActive = document.getElementById('screen-active');
 const screenRest = document.getElementById('screen-rest');
 const screenComplete = document.getElementById('screen-complete');
 const screenPtBooking = document.getElementById('screen-pt-booking');
-const ALL_SCREENS = [screenHome, screenQuickPreview, screenChangeWorkout, screenSetup, screenActive, screenRest, screenComplete, screenPtBooking];
+const screenProfile = document.getElementById('screen-profile');
+const ALL_SCREENS = [screenHome, screenQuickWorkout, screenChangeWorkout, screenSetup, screenActive, screenRest, screenComplete, screenPtBooking, screenProfile];
 
 // Home
-const btnStartWorkout = document.getElementById('btn-start-workout');
-const btnMyGym = document.getElementById('btn-my-gym');
-const btnBookPt = document.getElementById('btn-book-pt');
-const savedPanel = document.getElementById('saved-panel');
-const savedClose = document.getElementById('saved-close');
-const savedList = document.getElementById('saved-list');
+const btnQuickWorkout = document.getElementById('btn-quick-workout');
+const btnBookPT = document.getElementById('btn-book-pt');
 
 // Quick Workout
-const btnQuickBack = document.getElementById('btn-quick-back');
-const quickWorkoutTitle = document.getElementById('quick-workout-title');
-const quickPreviewList = document.getElementById('quick-preview-list');
-const btnStartQuickWorkout = document.getElementById('btn-start-quick-workout');
-const btnChangeWorkout = document.getElementById('btn-change-workout');
-const btnDuration = document.getElementById('btn-duration');
-const btnGym = document.getElementById('btn-gym');
-const btnIntensity = document.getElementById('btn-intensity');
-const btnToggleCore = document.getElementById('btn-toggle-core');
-const btnToggleWarmup = document.getElementById('btn-toggle-warmup');
-const screenChangeWorkoutGrid = document.getElementById('change-workout-grid');
-const btnChangeWorkoutBack = document.getElementById('btn-change-workout-back');
-const btnLoadSaved = document.getElementById('btn-load-saved');
-const btnCreateNewWorkout = document.getElementById('btn-create-new-workout');
+const qwTitleEmoji = document.getElementById('qw-title-emoji');
+const qwTitleName = document.getElementById('qw-title-name');
+const qwTitleSub = document.getElementById('qw-title-sub');
+const btnQwChangeWorkout = document.getElementById('btn-qw-change-workout');
+const btnQwDuration = document.getElementById('btn-qw-duration');
+const qwDurationValue = document.getElementById('qw-duration-value');
+const btnQwGym = document.getElementById('btn-qw-gym');
+const btnQwIntensity = document.getElementById('btn-qw-intensity');
+const qwIntensityValue = document.getElementById('qw-intensity-value');
+const btnQwCore = document.getElementById('btn-qw-core');
+const qwCoreSign = document.getElementById('qw-core-sign');
+const btnQwWarmup = document.getElementById('btn-qw-warmup');
+const qwWarmupSign = document.getElementById('qw-warmup-sign');
+const qwExerciseList = document.getElementById('qw-exercise-list');
+const qwEstTime = document.getElementById('qw-est-time');
+const btnQwStart = document.getElementById('btn-qw-start');
+
+// Change Workout
+const btnCwBack = document.getElementById('btn-cw-back');
+const cwTypeGrid = document.getElementById('cw-type-grid');
+const cwSavedList = document.getElementById('cw-saved-list');
+const btnCwCreateNew = document.getElementById('btn-cw-create-new');
+
+// Duration Modal
 const durationModal = document.getElementById('duration-modal');
-const durationOptions = document.getElementById('duration-options');
+const durationDisplay = document.getElementById('duration-display');
+const durationSlider = document.getElementById('duration-slider');
+const durationCancel = document.getElementById('duration-cancel');
+const durationConfirm = document.getElementById('duration-confirm');
+
+// Intensity Modal
 const intensityModal = document.getElementById('intensity-modal');
 const intensityOptions = document.getElementById('intensity-options');
-const btnPtBack = document.getElementById('btn-pt-back');
 
 // Setup
 const btnSetupBack = document.getElementById('btn-setup-back');
@@ -99,9 +111,40 @@ const saveNameInput = document.getElementById('save-name-input');
 const saveCancel = document.getElementById('save-cancel');
 const saveConfirm = document.getElementById('save-confirm');
 
+// PT Booking
+const btnPtBack = document.getElementById('btn-pt-back');
+const ptCalGrid = document.getElementById('pt-cal-grid');
+const ptTimeSection = document.getElementById('pt-time-section');
+const ptTimeStart = document.getElementById('pt-time-start');
+const ptTimeEnd = document.getElementById('pt-time-end');
+const btnFindPT = document.getElementById('btn-find-pt');
+const ptResultsSection = document.getElementById('pt-results-section');
+const ptResultsLabel = document.getElementById('pt-results-label');
+const ptResultsScroll = document.getElementById('pt-results-scroll');
+const ptConfirmOverlay = document.getElementById('pt-confirm-overlay');
+const ptConfirmIcon = document.getElementById('pt-confirm-icon');
+const ptConfirmTitle = document.getElementById('pt-confirm-title');
+const ptConfirmDetails = document.getElementById('pt-confirm-details');
+const ptConfirmBtns = document.getElementById('pt-confirm-btns');
+// Note: ptConfirmCancel and ptConfirmOk are re-created dynamically via innerHTML in openBookingConfirm()
+const ptConfirmCancel = null; // placeholder — wired dynamically
+const ptConfirmOk = null;     // placeholder — wired dynamically
 
+// Bottom Nav
+const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
 
-// ── State ────────────────────────────────────────────
+// Profile Screen
+const profileDurationSlider = document.getElementById('profile-duration');
+const profileDurationVal = document.getElementById('profile-duration-val');
+const profileCoreBtn = document.getElementById('profile-core-btn');
+const profileCoreToggle = document.getElementById('profile-core-toggle');
+const profileWarmupBtn = document.getElementById('profile-warmup-btn');
+const profileWarmupToggle = document.getElementById('profile-warmup-toggle');
+const profileStretchingBtn = document.getElementById('profile-stretching-btn');
+const profileStretchingToggle = document.getElementById('profile-stretching-toggle');
+const btnProfileSave = document.getElementById('btn-profile-save');
+
+// ── State ────────────────────────────────────
 let workoutPlan = [];          // [{...exercise, weight, sets, reps, rest}]
 let selectedIds = new Set();   // picker selections
 let currentExIdx = 0;
@@ -114,15 +157,21 @@ let activeCat = 'Back';
 let speakTimeout = null;
 const SEC_PER_REP = 3;
 const PROFILE_KEY = 'panda_gym_profiles';
+const USER_PREFS_KEY = 'foxy_user_prefs';
 
-let quickConfig = {
-  type: randomWorkoutType(),
-  durationMin: 60,
-  intensity: 'Intermediate',
-  addCore: false,
-  addWarmup: false,
+// User Profile Preferences
+let userPrefs = {
+  pronoun: 'Bạn',
+  age: '',
+  weight: '',
+  goal: '',
+  experience: 'Intermediate',
+  duration: 60,
+  wpw: '',
+  core: false,
+  warmup: false,
+  stretching: false
 };
-let quickGeneratedWorkout = null;
 
 // Timestamp-based timing (survives iOS background)
 let trainingStartTime = null;  // Date.now() when training screen entered
@@ -142,10 +191,26 @@ let lastCueIdx = -1;           // index of last cue used (prevent repeats)
 // Current app phase: 'idle' | 'training' | 'resting'
 let appPhase = 'idle';
 
+// Quick Workout state
+let qwDurationMin = 60;
+let qwIntensityId = 'intermediate';
+let qwWorkoutTypeId = null;
+let qwAddCore = false;
+let qwAddWarmup = false;
+let qwGeneratedWorkout = null;
+let qwFromSavedProfile = false; // true if loaded from saved profile
 
+// Navigation memory
+let setupBackTarget = 'home'; // 'home' | 'quick-workout'
 
 // Rest tracking
 let sessionLog = [];
+
+// PT Booking state
+let ptSelectedDate = null;       // Date object
+let ptSelectedStart = null;      // 'HH:MM' string
+let ptSelectedEnd = null;        // 'HH:MM' string
+let ptPendingBooking = null;     // { ptId, ptName, date, start, end }
 
 // Exercise-specific coaching cues (keyed by exercise id)
 const EXERCISE_CUES = {
@@ -332,49 +397,27 @@ function loadProfiles() {
 }
 function saveProfiles(arr) { localStorage.setItem(PROFILE_KEY, JSON.stringify(arr)); }
 
-function renderSavedList() {
-  const profiles = loadProfiles();
-  if (profiles.length === 0) {
-    savedList.innerHTML = '<div class="no-saved">No saved workouts yet.<br>Create your first one!</div>';
-    return;
+function loadUserPrefs() {
+  try {
+    const p = JSON.parse(localStorage.getItem(USER_PREFS_KEY));
+    if (p) {
+      userPrefs = { ...userPrefs, ...p };
+      // Sync Quick Workout defaults from loaded profile
+      qwDurationMin = userPrefs.duration;
+      qwIntensityId = userPrefs.experience.toLowerCase();
+      qwAddCore = userPrefs.core;
+      qwAddWarmup = userPrefs.warmup;
+    }
+  } catch (e) {
+    console.warn("Failed to load user prefs", e);
   }
-  savedList.innerHTML = profiles.map((p, i) => {
-    const ts = p.exercises.reduce((s, e) => s + e.sets, 0);
-    const tk = p.exercises.reduce((s, e) => s + e.weight * e.reps * e.sets, 0);
-    return `
-      <div class="saved-card" data-idx="${i}">
-        <div class="saved-info">
-          <div class="saved-name">${esc(p.name)}</div>
-          <div class="saved-meta">${p.exercises.length} exercises · ${ts} sets · ${fmtWeight(Math.round(tk))}</div>
-        </div>
-        <button class="saved-del" data-delidx="${i}" title="Delete">🗑️</button>
-      </div>`;
-  }).join('');
-
-  savedList.querySelectorAll('.saved-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('.saved-del')) return;
-      const idx = parseInt(card.dataset.idx);
-      applyProfile(loadProfiles()[idx]);
-    });
-  });
-  savedList.querySelectorAll('.saved-del').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const idx = parseInt(btn.dataset.delidx);
-      const profs = loadProfiles();
-      profs.splice(idx, 1);
-      saveProfiles(profs);
-      renderSavedList();
-    });
-  });
+}
+function saveUserPrefs() {
+  localStorage.setItem(USER_PREFS_KEY, JSON.stringify(userPrefs));
 }
 
-function applyProfile(profile) {
-  workoutPlan = profile.exercises.map(e => ({ ...e }));
-  if (savedPanel) savedPanel.classList.add('hidden');
-  enterSetup();
-}
+// Ensure prefs are loaded on startup
+loadUserPrefs();
 
 // ══════════════════════════════════════════════════════
 //  SCREEN 1: HOME
@@ -382,80 +425,260 @@ function applyProfile(profile) {
 function enterHome() {
   stopAll();
   showScreen(screenHome);
-  if (savedPanel) savedPanel.classList.add('hidden');
+  updateBottomNav('home');
   workoutPlan = [];
   selectedIds.clear();
+  qwFromSavedProfile = false;
 }
 
-
 // ══════════════════════════════════════════════════════
-//  QUICK WORKOUT FLOW
+//  QUICK WORKOUT SCREEN
 // ══════════════════════════════════════════════════════
-function regenerateQuickWorkout() {
-  quickGeneratedWorkout = generateWorkout(
-    quickConfig.type,
-    quickConfig.durationMin,
-    quickConfig.intensity,
-    quickConfig.addCore,
-    quickConfig.addWarmup
-  );
-
-  quickWorkoutTitle.textContent = quickGeneratedWorkout.name;
-  btnDuration.textContent = `⏱️ Thời gian: ${quickConfig.durationMin >= 60 && quickConfig.durationMin % 60 === 0 ? `${quickConfig.durationMin / 60}h` : `${quickConfig.durationMin}m`}`;
-  btnIntensity.textContent = `💪 Cường độ: ${quickConfig.intensity}`;
-  btnToggleCore.textContent = `🧱 + Core Workout: ${quickConfig.addCore ? 'ON' : 'OFF'}`;
-  btnToggleWarmup.textContent = `🧘 + Warmup/Cool down: ${quickConfig.addWarmup ? 'ON' : 'OFF'}`;
-
-  quickPreviewList.innerHTML = quickGeneratedWorkout.exercises.map((ex, idx) => `
-    <div class="quick-preview-item">
-      <div><strong>${idx + 1}. ${ex.emoji || '🏋️'} ${ex.name}</strong></div>
-      <div class="picker-item-defaults">${ex.sets} sets × ${ex.reps} reps · rest ${ex.rest}s</div>
-    </div>
-  `).join('');
-}
-
-function enterQuickPreview() {
+function enterQuickWorkout() {
   stopAll();
-  showScreen(screenQuickPreview);
+  showScreen(screenQuickWorkout);
+  updateBottomNav('workout');
+
+  // Pick a random workout type if not already set
+  if (!qwWorkoutTypeId) {
+    qwWorkoutTypeId = getRandomWorkoutType();
+  }
+
   regenerateQuickWorkout();
 }
 
+function regenerateQuickWorkout() {
+  if (qwFromSavedProfile) {
+    // Using a saved profile, don't regenerate
+    renderQuickWorkoutPreview();
+    return;
+  }
+
+  qwGeneratedWorkout = generateWorkout(
+    qwWorkoutTypeId,
+    qwDurationMin,
+    qwIntensityId,
+    qwAddCore,
+    qwAddWarmup
+  );
+
+  workoutPlan = qwGeneratedWorkout.exercises.map(e => ({ ...e }));
+  renderQuickWorkoutPreview();
+}
+
+function renderQuickWorkoutPreview() {
+  const workout = qwGeneratedWorkout;
+
+  // Title area
+  if (qwFromSavedProfile) {
+    qwTitleEmoji.textContent = '📁';
+    qwTitleName.textContent = workout ? workout.name : 'Saved Workout';
+    qwTitleSub.textContent = 'Bài tập đã lưu';
+  } else {
+    qwTitleEmoji.textContent = workout.emoji;
+    qwTitleName.textContent = workout.name;
+    qwTitleSub.textContent = workout.subtitle;
+  }
+
+  // Duration display
+  updateDurationDisplay();
+
+  // Intensity display
+  const intensity = INTENSITY_LEVELS.find(i => i.id === qwIntensityId);
+  qwIntensityValue.textContent = intensity ? intensity.name : 'Intermediate';
+
+  // Toggles
+  btnQwCore.classList.toggle('active', qwAddCore);
+  qwCoreSign.textContent = qwAddCore ? '−' : '+';
+  btnQwWarmup.classList.toggle('active', qwAddWarmup);
+  qwWarmupSign.textContent = qwAddWarmup ? '−' : '+';
+
+  // Estimated time
+  const estSec = workoutPlan.reduce((sum, ex) => {
+    const trainSec = ex.sets * ex.reps * SEC_PER_REP;
+    const restSec = (ex.sets - 1) * ex.rest;
+    return sum + trainSec + restSec;
+  }, 0);
+  qwEstTime.textContent = `~${formatDurationViet(estSec)}`;
+
+  // Exercise list
+  renderQuickExerciseList();
+}
+
+function renderQuickExerciseList() {
+  if (workoutPlan.length === 0) {
+    qwExerciseList.innerHTML = '<div class="no-saved" style="padding:20px 0;">Không có bài tập nào</div>';
+    return;
+  }
+
+  let html = '';
+  let lastCategory = '';
+
+  workoutPlan.forEach((ex, i) => {
+    // Section labels for warmup/core/cooldown
+    if (ex.category !== lastCategory) {
+      if (ex.category === 'Warmup') {
+        html += '<div class="qw-ex-section-label">🔥 Khởi động</div>';
+      } else if (ex.category === 'Core') {
+        html += '<div class="qw-ex-section-label">🧱 Core</div>';
+      } else if (ex.category === 'Cooldown') {
+        html += '<div class="qw-ex-section-label">🧘 Giãn cơ</div>';
+      } else if (lastCategory === 'Warmup' || lastCategory === '') {
+        if (lastCategory === 'Warmup') {
+          html += '<div class="qw-ex-section-label">💪 Bài chính</div>';
+        }
+      }
+      lastCategory = ex.category;
+    }
+
+    const weightStr = ex.weight > 0 ? `${ex.weight}kg` : 'BW';
+    html += `
+      <div class="qw-ex-item">
+        <span class="qw-ex-emoji">${ex.emoji}</span>
+        <div class="qw-ex-info">
+          <div class="qw-ex-name">${ex.name}</div>
+          <div class="qw-ex-meta">${weightStr} · ${ex.sets}×${ex.reps} · rest ${ex.rest}s</div>
+        </div>
+        <span class="qw-ex-category-tag">${ex.category}</span>
+      </div>`;
+  });
+
+  qwExerciseList.innerHTML = html;
+}
+
+function updateDurationDisplay() {
+  const min = qwDurationMin;
+  if (min < 60) {
+    qwDurationValue.textContent = `${min}p`;
+  } else if (min === 60) {
+    qwDurationValue.textContent = '1h';
+  } else if (min % 60 === 0) {
+    qwDurationValue.textContent = `${min / 60}h`;
+  } else {
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    qwDurationValue.textContent = `${h}h${m < 10 ? '0' : ''}${m}`;
+  }
+}
+
+function formatDurationForModal(min) {
+  if (min < 60) return `${min} phút`;
+  if (min === 60) return '1 giờ';
+  if (min % 60 === 0) return `${min / 60} giờ`;
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  return `${h}h${m < 10 ? '0' : ''}${m}`;
+}
+
+// ══════════════════════════════════════════════════════
+//  CHANGE WORKOUT SCREEN
+// ══════════════════════════════════════════════════════
+function enterChangeWorkout() {
+  showScreen(screenChangeWorkout);
+  renderWorkoutTypeGrid();
+  renderCwSavedList();
+}
+
+function renderWorkoutTypeGrid() {
+  cwTypeGrid.innerHTML = WORKOUT_TYPES.map(wt => `
+    <button class="cw-type-btn${wt.id === qwWorkoutTypeId ? ' selected' : ''}" data-type-id="${wt.id}">
+      <span class="cw-type-emoji">${wt.emoji}</span>
+      <div class="cw-type-info">
+        <div class="cw-type-name">${wt.name}</div>
+        <div class="cw-type-sub">${wt.subtitle}</div>
+      </div>
+    </button>
+  `).join('');
+
+  cwTypeGrid.querySelectorAll('.cw-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      qwWorkoutTypeId = btn.dataset.typeId;
+      qwFromSavedProfile = false;
+      regenerateQuickWorkout();
+      showScreen(screenQuickWorkout);
+    });
+  });
+}
+
+function renderCwSavedList() {
+  const profiles = loadProfiles();
+  if (profiles.length === 0) {
+    cwSavedList.innerHTML = '<div class="cw-no-saved">Chưa có bài tập đã lưu</div>';
+    return;
+  }
+
+  cwSavedList.innerHTML = profiles.map((p, i) => {
+    const ts = p.exercises.reduce((s, e) => s + e.sets, 0);
+    return `
+      <div class="cw-saved-card" data-idx="${i}">
+        <span class="cw-saved-icon">📋</span>
+        <div class="cw-saved-info">
+          <div class="cw-saved-name">${esc(p.name)}</div>
+          <div class="cw-saved-meta">${p.exercises.length} bài · ${ts} sets</div>
+        </div>
+        <span class="cw-saved-arrow">→</span>
+      </div>`;
+  }).join('');
+
+  cwSavedList.querySelectorAll('.cw-saved-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = parseInt(card.dataset.idx);
+      const profile = loadProfiles()[idx];
+      if (!profile) return;
+
+      // Load saved workout into quick workout
+      workoutPlan = profile.exercises.map(e => ({ ...e }));
+      qwFromSavedProfile = true;
+      qwGeneratedWorkout = {
+        name: profile.name,
+        emoji: '📁',
+        subtitle: 'Bài tập đã lưu',
+        exercises: workoutPlan,
+      };
+      showScreen(screenQuickWorkout);
+      renderQuickWorkoutPreview();
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════
+//  DURATION PICKER MODAL
+// ══════════════════════════════════════════════════════
 function openDurationModal() {
-  const values = [];
-  for (let m = 15; m <= 180; m += 15) values.push(m);
-  durationOptions.innerHTML = values.map(m => `<button class="picker-item ${m===quickConfig.durationMin?'selected':''}" data-duration="${m}">${m >= 60 && m % 60===0 ? `${m/60}h` : `${m} min`}</button>`).join('');
-  durationOptions.querySelectorAll('[data-duration]').forEach(el => el.addEventListener('click', () => {
-    quickConfig.durationMin = parseInt(el.dataset.duration);
-    durationModal.classList.add('hidden');
-    regenerateQuickWorkout();
-  }));
+  durationSlider.value = qwDurationMin;
+  durationDisplay.textContent = formatDurationForModal(qwDurationMin);
   durationModal.classList.remove('hidden');
 }
 
-function openIntensityModal() {
-  const levels = Object.keys(INTENSITY_MODIFIERS);
-  intensityOptions.innerHTML = levels.map(level => `<button class="picker-item ${level===quickConfig.intensity?'selected':''}" data-intensity="${level}">${level}</button>`).join('');
-  intensityOptions.querySelectorAll('[data-intensity]').forEach(el => el.addEventListener('click', () => {
-    quickConfig.intensity = el.dataset.intensity;
-    intensityModal.classList.add('hidden');
-    regenerateQuickWorkout();
-  }));
-  intensityModal.classList.remove('hidden');
+function closeDurationModal() {
+  durationModal.classList.add('hidden');
 }
 
-function enterChangeWorkout() {
-  showScreen(screenChangeWorkout);
-  screenChangeWorkoutGrid.innerHTML = Object.keys(QUICK_WORKOUT_TYPES).map(type => `
-    <button class="quick-type-btn ${type===quickConfig.type?'selected':''}" data-type="${type}">${QUICK_WORKOUT_TYPES[type].emoji} ${type}</button>
+// ══════════════════════════════════════════════════════
+//  INTENSITY PICKER MODAL
+// ══════════════════════════════════════════════════════
+function openIntensityModal() {
+  intensityOptions.innerHTML = INTENSITY_LEVELS.map(il => `
+    <div class="intensity-option${il.id === qwIntensityId ? ' selected' : ''}" data-id="${il.id}">
+      <span class="intensity-option-emoji">${il.emoji}</span>
+      <div class="intensity-option-info">
+        <div class="intensity-option-name">${il.name}</div>
+        <div class="intensity-option-sub">${il.subtitle}</div>
+      </div>
+      <div class="intensity-option-check">${il.id === qwIntensityId ? '✓' : ''}</div>
+    </div>
   `).join('');
 
-  screenChangeWorkoutGrid.querySelectorAll('[data-type]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      quickConfig.type = btn.dataset.type;
+  intensityOptions.querySelectorAll('.intensity-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      qwIntensityId = opt.dataset.id;
+      qwFromSavedProfile = false;
+      intensityModal.classList.add('hidden');
       regenerateQuickWorkout();
-      enterQuickPreview();
     });
   });
+
+  intensityModal.classList.remove('hidden');
 }
 
 // ══════════════════════════════════════════════════════
@@ -556,7 +779,7 @@ function renderSetupList() {
 }
 
 // ══════════════════════════════════════════════════════
-//  TOUCH-FRIENDLY DRAG \u0026 DROP REORDERING
+//  TOUCH-FRIENDLY DRAG & DROP REORDERING
 // ══════════════════════════════════════════════════════
 let dragState = null; // { dragIdx, ghostEl, placeholder, startY, currentY, scrollInterval }
 
@@ -1049,39 +1272,332 @@ function doSaveProfile() {
 }
 
 // ══════════════════════════════════════════════════════
+//  PT BOOKING FLOW
+// ══════════════════════════════════════════════════════
+
+const VIET_DAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+const VIET_MONTHS = ['Th.01','Th.02','Th.03','Th.04','Th.05','Th.06','Th.07','Th.08','Th.09','Th.10','Th.11','Th.12'];
+
+function enterPTBooking() {
+  stopAll();
+  showScreen(screenPtBooking);
+  ptSelectedDate = null;
+  ptSelectedStart = null;
+  ptSelectedEnd = null;
+  ptPendingBooking = null;
+  ptTimeSection.classList.add('hidden');
+  ptResultsSection.classList.add('hidden');
+  ptConfirmOverlay.classList.add('hidden');
+  renderPTCalendar();
+}
+
+// ── Calendar ──────────────────────────────────────────
+function renderPTCalendar() {
+  const { start, end, dates } = getCalendarRange();
+  const todayStr = dateToStr(start); // today's date string
+
+  let html = '';
+  let lastMonth = -1;
+
+  dates.forEach((d, i) => {
+    // Month separator
+    const m = d.getMonth();
+    if (m !== lastMonth) {
+      // If not first month, close previous month rows, add label
+      if (i > 0) {
+        // Pad remaining cells if needed (already handled by grid)
+      }
+      html += `<div class="pt-cal-month-label" style="grid-column: 1/-1;">${VIET_MONTHS[m]} ${d.getFullYear()}</div>`;
+      lastMonth = m;
+    }
+
+    const dStr = dateToStr(d);
+    const isToday = dStr === todayStr;
+    const isPast = d < start;
+    const dayNum = d.getDate();
+
+    if (isPast) {
+      html += `<div class="pt-cal-day past">${dayNum}</div>`;
+    } else {
+      const hasAvail = isAnyPTAvailableOnDate(d);
+      const cls = hasAvail ? 'available' : 'dimmed';
+      const todayCls = isToday ? ' today' : '';
+      html += `<div class="pt-cal-day ${cls}${todayCls}" data-date="${dStr}">${dayNum}</div>`;
+    }
+  });
+
+  ptCalGrid.innerHTML = html;
+
+  // Click handlers on available days
+  ptCalGrid.querySelectorAll('.pt-cal-day.available').forEach(el => {
+    el.addEventListener('click', () => {
+      ptCalGrid.querySelectorAll('.pt-cal-day.selected').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+      ptSelectedDate = new Date(el.dataset.date + 'T00:00:00');
+      onDateSelected();
+    });
+  });
+}
+
+function onDateSelected() {
+  // Show time picker
+  ptTimeSection.classList.remove('hidden');
+  ptResultsSection.classList.add('hidden');
+
+  // Populate time options
+  const times = generateTimeOptions();
+  populateTimeSelect(ptTimeStart, times, '08:00');
+  populateTimeSelect(ptTimeEnd, times, '09:00');
+
+  // Scroll time picker into view
+  setTimeout(() => {
+    ptTimeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function populateTimeSelect(sel, times, defaultVal) {
+  sel.innerHTML = times.map(t => {
+    const selected = t === defaultVal ? ' selected' : '';
+    return `<option value="${t}"${selected}>${t}</option>`;
+  }).join('');
+}
+
+// ── PT Search ─────────────────────────────────────────
+function searchPTs() {
+  if (!ptSelectedDate) return;
+
+  ptSelectedStart = ptTimeStart.value;
+  ptSelectedEnd = ptTimeEnd.value;
+
+  // Validate times
+  const startMin = timeToMin(ptSelectedStart);
+  const endMin = timeToMin(ptSelectedEnd);
+  if (endMin <= startMin) {
+    // Show brief error via results
+    ptResultsSection.classList.remove('hidden');
+    ptResultsLabel.textContent = '⚠️ Giờ không hợp lệ';
+    ptResultsScroll.innerHTML = `
+      <div class="pt-empty">
+        <div class="pt-empty-icon">⏰</div>
+        <div class="pt-empty-title">Thời gian không hợp lệ</div>
+        <div class="pt-empty-sub">Giờ kết thúc phải sau giờ bắt đầu.<br>Vui lòng chọn lại.</div>
+      </div>`;
+    return;
+  }
+
+  const availablePTs = getAvailablePTs(ptSelectedDate, ptSelectedStart, ptSelectedEnd);
+
+  ptResultsSection.classList.remove('hidden');
+
+  if (availablePTs.length === 0) {
+    ptResultsLabel.textContent = '😔 Kết quả';
+    ptResultsScroll.innerHTML = `
+      <div class="pt-empty">
+        <div class="pt-empty-icon">😔</div>
+        <div class="pt-empty-title">Rất tiếc!</div>
+        <div class="pt-empty-sub">Không có PT nào rảnh trong khung giờ<br>${ptSelectedStart} → ${ptSelectedEnd} ngày ${formatDateViet(ptSelectedDate)}.<br><br>Hãy thử chọn khung giờ khác!</div>
+      </div>`;
+  } else {
+    ptResultsLabel.textContent = `🎯 ${availablePTs.length} PT có sẵn`;
+    ptResultsScroll.innerHTML = availablePTs.map(pt => renderPTCard(pt)).join('');
+
+    // Wire book buttons
+    ptResultsScroll.querySelectorAll('.pt-book-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ptId = btn.dataset.ptid;
+        const pt = PT_PROFILES.find(p => p.id === ptId);
+        if (pt) openBookingConfirm(pt);
+      });
+    });
+  }
+
+  // Scroll results into view
+  setTimeout(() => {
+    ptResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
+}
+
+function renderPTCard(pt) {
+  const stars = '★'.repeat(Math.floor(pt.rating)) + (pt.rating % 1 >= 0.5 ? '½' : '');
+  const certs = pt.certifications.map(c => `<span class="pt-cert-badge">${c}</span>`).join('');
+
+  return `
+    <div class="pt-card">
+      <div class="pt-card-top">
+        <div class="pt-avatar-wrap">
+          <img src="${pt.avatar}" alt="${pt.name}" class="pt-avatar">
+        </div>
+        <div class="pt-info">
+          <div class="pt-name">${pt.name}</div>
+          <div class="pt-specialty">${pt.specialty}</div>
+          <div class="pt-meta-row">
+            <div class="pt-rating">
+              <span class="pt-rating-stars">${stars}</span>
+              <span>${pt.rating}</span>
+            </div>
+            <div class="pt-experience">📅 ${pt.experience}</div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-bio">${pt.bio}</div>
+      <div class="pt-certs">${certs}</div>
+      <button class="btn-primary pt-book-btn" data-ptid="${pt.id}">
+        <span class="btn-label">Đặt lịch với ${pt.name.split(' ')[0]}</span>
+      </button>
+    </div>`;
+}
+
+function formatDateViet(date) {
+  const day = VIET_DAYS[date.getDay()];
+  const d = date.getDate();
+  const m = date.getMonth() + 1;
+  return `${day}, ${d}/${m}`;
+}
+
+// ── Booking Confirmation ──────────────────────────────
+function openBookingConfirm(pt) {
+  ptPendingBooking = {
+    ptId: pt.id,
+    ptName: pt.name,
+    date: ptSelectedDate,
+    start: ptSelectedStart,
+    end: ptSelectedEnd
+  };
+
+  ptConfirmIcon.textContent = '📋';
+  ptConfirmTitle.textContent = 'Xác nhận đặt lịch';
+
+  ptConfirmDetails.innerHTML = `
+    <div class="pt-confirm-row">
+      <span class="pt-confirm-row-label">PT</span>
+      <span class="pt-confirm-row-value">${pt.name}</span>
+    </div>
+    <div class="pt-confirm-row">
+      <span class="pt-confirm-row-label">Chuyên môn</span>
+      <span class="pt-confirm-row-value">${pt.specialty}</span>
+    </div>
+    <div class="pt-confirm-row">
+      <span class="pt-confirm-row-label">Ngày</span>
+      <span class="pt-confirm-row-value">${formatDateViet(ptSelectedDate)}</span>
+    </div>
+    <div class="pt-confirm-row">
+      <span class="pt-confirm-row-label">Giờ</span>
+      <span class="pt-confirm-row-value">${ptSelectedStart} → ${ptSelectedEnd}</span>
+    </div>`;
+
+  // Show confirm/cancel buttons
+  ptConfirmBtns.innerHTML = `
+    <button class="btn-secondary" id="pt-confirm-cancel">Huỷ</button>
+    <button class="btn-primary" id="pt-confirm-ok">Xác nhận ✓</button>`;
+
+  ptConfirmOverlay.classList.remove('hidden');
+
+  // Re-wire buttons since innerHTML replaced them
+  document.getElementById('pt-confirm-cancel').addEventListener('click', closeBookingConfirm);
+  document.getElementById('pt-confirm-ok').addEventListener('click', confirmBooking);
+}
+
+function closeBookingConfirm() {
+  ptConfirmOverlay.classList.add('hidden');
+  ptPendingBooking = null;
+}
+
+function confirmBooking() {
+  if (!ptPendingBooking) return;
+
+  const result = bookPTSlot(
+    ptPendingBooking.ptId,
+    ptPendingBooking.date,
+    ptPendingBooking.start,
+    ptPendingBooking.end
+  );
+
+  if (result.success) {
+    // Show success state
+    ptConfirmIcon.textContent = '✅';
+    ptConfirmTitle.textContent = 'Đã đặt lịch thành công!';
+
+    ptConfirmDetails.innerHTML = `
+      <div class="pt-confirm-row">
+        <span class="pt-confirm-row-label">PT</span>
+        <span class="pt-confirm-row-value">${ptPendingBooking.ptName}</span>
+      </div>
+      <div class="pt-confirm-row">
+        <span class="pt-confirm-row-label">Ngày</span>
+        <span class="pt-confirm-row-value">${formatDateViet(ptPendingBooking.date)}</span>
+      </div>
+      <div class="pt-confirm-row">
+        <span class="pt-confirm-row-label">Giờ</span>
+        <span class="pt-confirm-row-value">${ptPendingBooking.start} → ${ptPendingBooking.end}</span>
+      </div>`;
+
+    ptConfirmBtns.innerHTML = `
+      <button class="btn-primary" id="pt-confirm-done" style="flex:1;">OK 🎉</button>`;
+
+    document.getElementById('pt-confirm-done').addEventListener('click', () => {
+      closeBookingConfirm();
+      enterHome();
+    });
+  } else {
+    ptConfirmIcon.textContent = '❌';
+    ptConfirmTitle.textContent = 'Lỗi đặt lịch';
+    ptConfirmDetails.innerHTML = `<div class="pt-empty-sub">${result.error}</div>`;
+  }
+}
+
+// Safe event listener — skips if element is null
+function on(el, event, handler) {
+  if (el) el.addEventListener(event, handler);
+  else console.warn('[app] Missing element for event:', event, handler?.name || '');
+}
+
+// ══════════════════════════════════════════════════════
 //  BUTTON WIRING
 // ══════════════════════════════════════════════════════
 
-// Home + Quick Workout
-btnStartWorkout.addEventListener('click', enterQuickPreview);
-btnBookPt?.addEventListener('click', () => showScreen(screenPtBooking));
-btnPtBack?.addEventListener('click', enterHome);
-btnMyGym?.addEventListener('click', () => alert('Phòng Gym của tôi — Coming soon'));
-savedClose?.addEventListener('click', () => {
-  if (savedPanel) savedPanel.classList.add('hidden');
+// Home
+btnQuickWorkout.addEventListener('click', () => {
+  qwWorkoutTypeId = getRandomWorkoutType();
+  qwFromSavedProfile = false;
+  enterQuickWorkout();
 });
 
-btnQuickBack?.addEventListener('click', enterHome);
-btnChangeWorkout?.addEventListener('click', enterChangeWorkout);
-btnChangeWorkoutBack?.addEventListener('click', enterQuickPreview);
-btnDuration?.addEventListener('click', openDurationModal);
-btnIntensity?.addEventListener('click', openIntensityModal);
-btnGym?.addEventListener('click', () => alert('Phòng tập — Coming soon'));
-btnToggleCore?.addEventListener('click', () => {
-  quickConfig.addCore = !quickConfig.addCore;
+// PT Booking
+btnBookPT.addEventListener('click', enterPTBooking);
+btnPtBack.addEventListener('click', enterHome);
+btnFindPT.addEventListener('click', searchPTs);
+if (ptConfirmCancel) ptConfirmCancel.addEventListener('click', closeBookingConfirm);
+if (ptConfirmOk) ptConfirmOk.addEventListener('click', confirmBooking);
+
+// Quick Workout
+btnQwChangeWorkout.addEventListener('click', enterChangeWorkout);
+
+btnQwDuration.addEventListener('click', openDurationModal);
+
+btnQwGym.addEventListener('click', () => {
+  // Coming soon — do nothing
+});
+
+btnQwIntensity.addEventListener('click', openIntensityModal);
+
+btnQwCore.addEventListener('click', () => {
+  qwAddCore = !qwAddCore;
+  qwFromSavedProfile = false;
   regenerateQuickWorkout();
 });
-btnToggleWarmup?.addEventListener('click', () => {
-  quickConfig.addWarmup = !quickConfig.addWarmup;
+
+btnQwWarmup.addEventListener('click', () => {
+  qwAddWarmup = !qwAddWarmup;
+  qwFromSavedProfile = false;
   regenerateQuickWorkout();
 });
-btnStartQuickWorkout?.addEventListener('click', () => {
-  workoutPlan = (quickGeneratedWorkout?.exercises || []).map(e => ({ ...e }));
+
+btnQwStart.addEventListener('click', () => {
   if (workoutPlan.length === 0) return;
   currentExIdx = 0;
   currentSetNum = 1;
   completedSets = 0;
-  totalSets = workoutPlan.reduce((sum, e) => sum + e.sets, 0);
+  totalSets = workoutPlan.reduce((s, e) => s + e.sets, 0);
   sessionLog = [];
   restStartTime = null;
   trainingStartTime = null;
@@ -1091,24 +1607,51 @@ btnStartQuickWorkout?.addEventListener('click', () => {
   updateWorkoutProgress();
   enterTraining();
 });
-btnLoadSaved?.addEventListener('click', () => {
-  savedPanel.classList.toggle('hidden');
-  if (!savedPanel.classList.contains('hidden')) renderSavedList();
+
+// Change Workout
+btnCwBack.addEventListener('click', () => {
+  showScreen(screenQuickWorkout);
 });
-btnCreateNewWorkout?.addEventListener('click', () => {
-  selectedIds.clear();
+
+btnCwCreateNew.addEventListener('click', () => {
   workoutPlan = [];
+  selectedIds.clear();
+  setupBackTarget = 'quick-workout';
   enterSetup();
 });
-durationModal?.addEventListener('click', (e) => {
-  if (e.target === durationModal) durationModal.classList.add('hidden');
+
+// Duration Modal
+durationSlider.addEventListener('input', () => {
+  const val = parseInt(durationSlider.value);
+  durationDisplay.textContent = formatDurationForModal(val);
 });
-intensityModal?.addEventListener('click', (e) => {
-  if (e.target === intensityModal) intensityModal.classList.add('hidden');
+
+durationCancel.addEventListener('click', closeDurationModal);
+
+durationConfirm.addEventListener('click', () => {
+  qwDurationMin = parseInt(durationSlider.value);
+  qwFromSavedProfile = false;
+  closeDurationModal();
+  regenerateQuickWorkout();
+});
+
+// Intensity Modal — clicking the overlay background closes it
+intensityModal.addEventListener('click', (e) => {
+  if (e.target === intensityModal) {
+    intensityModal.classList.add('hidden');
+  }
 });
 
 // Setup
-btnSetupBack.addEventListener('click', enterQuickPreview);
+btnSetupBack.addEventListener('click', () => {
+  if (setupBackTarget === 'quick-workout') {
+    setupBackTarget = 'home';
+    showScreen(screenQuickWorkout);
+  } else {
+    enterHome();
+  }
+});
+
 btnAddExercise.addEventListener('click', () => {
   // Sync selectedIds with current workoutPlan
   selectedIds = new Set(workoutPlan.map(e => e.id));
@@ -1190,10 +1733,118 @@ function seedDefaults() {
 }
 
 // ══════════════════════════════════════════════════════
+//  BOTTOM NAVIGATION & PROFILE
+// ══════════════════════════════════════════════════════
+function updateBottomNav(target) {
+  bottomNavItems.forEach(nav => {
+    nav.classList.toggle('active', nav.dataset.target === target);
+  });
+}
+
+bottomNavItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const target = item.dataset.target;
+    if (target === 'home') enterHome();
+    else if (target === 'workout') { qwWorkoutTypeId = qwWorkoutTypeId || getRandomWorkoutType(); enterQuickWorkout(); }
+    else if (target === 'profile') enterProfile();
+  });
+});
+
+function enterProfile() {
+  stopAll();
+  showScreen(screenProfile);
+  updateBottomNav('profile');
+  loadProfileScreenData();
+}
+
+// ── Profile chip helpers ──────────────────────────────
+function setupChipGroup(containerId, onSelect) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.querySelectorAll('.profile-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      container.querySelectorAll('.profile-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      if (onSelect) onSelect(chip.dataset.val);
+    });
+  });
+}
+
+function getChipVal(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return '';
+  const active = container.querySelector('.profile-chip.active');
+  return active ? active.dataset.val : '';
+}
+
+function setChipVal(containerId, val) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.querySelectorAll('.profile-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.val === String(val));
+  });
+}
+
+// Wire chip groups
+setupChipGroup('profile-pronoun');
+setupChipGroup('profile-goal');
+setupChipGroup('profile-experience');
+setupChipGroup('profile-wpw');
+
+function loadProfileScreenData() {
+  setChipVal('profile-pronoun', userPrefs.pronoun);
+  document.getElementById('profile-age').value = userPrefs.age;
+  document.getElementById('profile-weight').value = userPrefs.weight;
+  setChipVal('profile-goal', userPrefs.goal);
+  setChipVal('profile-experience', userPrefs.experience);
+  profileDurationSlider.value = userPrefs.duration;
+  profileDurationVal.textContent = userPrefs.duration + ' phút';
+  setChipVal('profile-wpw', userPrefs.wpw);
+  profileCoreToggle.classList.toggle('active', userPrefs.core);
+  profileWarmupToggle.classList.toggle('active', userPrefs.warmup);
+  profileStretchingToggle.classList.toggle('active', userPrefs.stretching);
+}
+
+// Profile Screen Listeners
+profileDurationSlider.addEventListener('input', () => {
+  profileDurationVal.textContent = profileDurationSlider.value + ' phút';
+});
+profileCoreBtn.addEventListener('click', () => profileCoreToggle.classList.toggle('active'));
+profileWarmupBtn.addEventListener('click', () => profileWarmupToggle.classList.toggle('active'));
+profileStretchingBtn.addEventListener('click', () => profileStretchingToggle.classList.toggle('active'));
+
+btnProfileSave.addEventListener('click', () => {
+  userPrefs = {
+    pronoun: getChipVal('profile-pronoun') || 'Bạn',
+    age: document.getElementById('profile-age').value,
+    weight: document.getElementById('profile-weight').value,
+    goal: getChipVal('profile-goal'),
+    experience: getChipVal('profile-experience') || 'intermediate',
+    duration: parseInt(profileDurationSlider.value),
+    wpw: getChipVal('profile-wpw'),
+    core: profileCoreToggle.classList.contains('active'),
+    warmup: profileWarmupToggle.classList.contains('active'),
+    stretching: profileStretchingToggle.classList.contains('active'),
+  };
+  saveUserPrefs();
+  // Sync Quick Workout defaults from profile
+  qwDurationMin = userPrefs.duration;
+  qwIntensityId = userPrefs.experience;
+  qwAddCore = userPrefs.core;
+  qwAddWarmup = userPrefs.warmup;
+
+  // Visual feedback
+  const originalHtml = btnProfileSave.innerHTML;
+  btnProfileSave.innerHTML = `<span class="btn-icon">✓</span><span class="btn-label">Đã lưu!</span>`;
+  setTimeout(() => { btnProfileSave.innerHTML = originalHtml; }, 2000);
+});
+
+
+// ══════════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════════
 seedDefaults();
-enterHome();
+enterHome(); // Home will call updateBottomNav('home') if we modify enterHome
 
 // ══════════════════════════════════════════════════════
 //  VISIBILITY CHANGE — recover state when returning from background
@@ -1208,3 +1859,4 @@ document.addEventListener('visibilitychange', () => {
     tickResting();
   }
 });
+

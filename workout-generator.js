@@ -1,87 +1,371 @@
-const QUICK_WORKOUT_TYPES = {
-  'Chest Day': { emoji: '🔥', categories: ['Chest', 'Triceps'] },
-  'Back Day': { emoji: '🦍', categories: ['Back', 'Biceps'] },
-  'Leg Day': { emoji: '🦵', categories: ['Legs'] },
-  'Upper Body Day': { emoji: '💪', categories: ['Chest', 'Back', 'Shoulders'] },
-  'Push Day': { emoji: '🚀', categories: ['Chest', 'Shoulders', 'Triceps'] },
-  'Pull Day': { emoji: '🪝', categories: ['Back', 'Biceps'] },
-  'Lower Body Day': { emoji: '🏋️', categories: ['Legs'] },
-  'Cardio Day': { emoji: '❤️', categories: ['Cardio', 'Legs', 'Core'] },
-};
+// =====================================================
+//  WORKOUT GENERATOR — workout-generator.js
+//  Auto-generates workout plans based on:
+//  - Workout type (muscle group focus)
+//  - Target duration (15min → 3h)
+//  - Intensity level
+//  - Optional add-ons (core, warmup/cooldown)
+// =====================================================
 
-const INTENSITY_MODIFIERS = {
-  Beginner: { sets: 0.7, reps: 0.8, rest: 1.3 },
-  Intermediate: { sets: 1.0, reps: 1.0, rest: 1.0 },
-  Hardcore: { sets: 1.3, reps: 1.2, rest: 0.8 },
-  Cardio: { sets: 1.0, reps: 1.5, rest: 0.5 },
-  'De-load': { sets: 0.6, reps: 0.7, rest: 1.5 },
-};
+// ── Workout Type Definitions ─────────────────────────
+const WORKOUT_TYPES = [
+  {
+    id: 'chest-day',
+    name: 'Chest Day',
+    emoji: '🏋️',
+    subtitle: 'Ngực + Tay sau',
+    categories: ['Chest', 'Triceps'],
+    primaryCategory: 'Chest',
+  },
+  {
+    id: 'back-day',
+    name: 'Back Day',
+    emoji: '🏋️',
+    subtitle: 'Lưng + Tay trước',
+    categories: ['Back', 'Biceps'],
+    primaryCategory: 'Back',
+  },
+  {
+    id: 'leg-day',
+    name: 'Leg Day',
+    emoji: '🦵',
+    subtitle: 'Chân toàn diện',
+    categories: ['Legs'],
+    primaryCategory: 'Legs',
+  },
+  {
+    id: 'upper-body',
+    name: 'Upper Body',
+    emoji: '💪',
+    subtitle: 'Thân trên toàn diện',
+    categories: ['Chest', 'Back', 'Shoulders'],
+    primaryCategory: 'Chest',
+  },
+  {
+    id: 'push-day',
+    name: 'Push Day',
+    emoji: '🫸',
+    subtitle: 'Ngực + Vai + Tay sau',
+    categories: ['Chest', 'Shoulders', 'Triceps'],
+    primaryCategory: 'Chest',
+  },
+  {
+    id: 'pull-day',
+    name: 'Pull Day',
+    emoji: '🫷',
+    subtitle: 'Lưng + Tay trước',
+    categories: ['Back', 'Biceps'],
+    primaryCategory: 'Back',
+  },
+  {
+    id: 'lower-body',
+    name: 'Lower Body',
+    emoji: '🦿',
+    subtitle: 'Chân + Mông',
+    categories: ['Legs'],
+    primaryCategory: 'Legs',
+  },
+  {
+    id: 'cardio-day',
+    name: 'Cardio Day',
+    emoji: '🏃',
+    subtitle: 'Nhịp tim cao, nhẹ tạ',
+    categories: ['Chest', 'Back', 'Legs', 'Shoulders'],
+    primaryCategory: 'Legs',
+  },
+];
 
-const CORE_EXERCISE_IDS = ['plank', 'crunches', 'russian-twist', 'leg-raises', 'mountain-climbers'];
-const WARMUP_EXERCISE_IDS = ['jumping-jacks', 'arm-circles', 'hip-circles', 'light-cardio'];
-const COOLDOWN_EXERCISE_IDS = ['static-stretches', 'deep-breathing'];
+// ── Intensity Levels ─────────────────────────────────
+const INTENSITY_LEVELS = [
+  {
+    id: 'beginner',
+    name: 'Beginner',
+    emoji: '🌱',
+    subtitle: 'Nhẹ nhàng, học kỹ thuật',
+    setsMod: 0.7,
+    repsMod: 0.8,
+    restMod: 1.4,
+    weightMod: 0.7,
+  },
+  {
+    id: 'intermediate',
+    name: 'Intermediate',
+    emoji: '⚡',
+    subtitle: 'Chuẩn, cân bằng',
+    setsMod: 1.0,
+    repsMod: 1.0,
+    restMod: 1.0,
+    weightMod: 1.0,
+  },
+  {
+    id: 'hardcore',
+    name: 'Hardcore',
+    emoji: '🔥',
+    subtitle: 'Nặng, ít nghỉ',
+    setsMod: 1.3,
+    repsMod: 1.2,
+    restMod: 0.7,
+    weightMod: 1.1,
+  },
+  {
+    id: 'advanced',
+    name: 'Advanced',
+    emoji: '🔥',
+    subtitle: 'Nặng, cường độ cao',
+    setsMod: 1.2,
+    repsMod: 1.1,
+    restMod: 0.75,
+    weightMod: 1.05,
+  },
+  {
+    id: 'cardio',
+    name: 'Cardio Day',
+    emoji: '💓',
+    subtitle: 'Nhẹ tạ, nhiều rep',
+    setsMod: 1.0,
+    repsMod: 1.6,
+    restMod: 0.5,
+    weightMod: 0.5,
+  },
+  {
+    id: 'deload',
+    name: 'De-load',
+    emoji: '🧘',
+    subtitle: 'Nhẹ, phục hồi',
+    setsMod: 0.6,
+    repsMod: 0.7,
+    restMod: 1.6,
+    weightMod: 0.6,
+  },
+];
 
-function randomWorkoutType() {
-  const keys = Object.keys(QUICK_WORKOUT_TYPES);
-  return keys[Math.floor(Math.random() * keys.length)];
-}
+// ── Core Exercises ───────────────────────────────────
+const CORE_EXERCISES = [
+  { id: 'plank',          name: 'Plank',                 category: 'Core', emoji: '🧱', weight: 0, sets: 3, reps: 1,  rest: 30, note: '30-60 giây' },
+  { id: 'crunches',       name: 'Crunches',              category: 'Core', emoji: '🧱', weight: 0, sets: 3, reps: 20, rest: 30 },
+  { id: 'russian-twist',  name: 'Russian Twist',         category: 'Core', emoji: '🔄', weight: 5, sets: 3, reps: 20, rest: 30 },
+  { id: 'leg-raises',     name: 'Lying Leg Raises',      category: 'Core', emoji: '🦵', weight: 0, sets: 3, reps: 15, rest: 30 },
+  { id: 'mountain-climb', name: 'Mountain Climbers',     category: 'Core', emoji: '⛰️', weight: 0, sets: 3, reps: 20, rest: 30 },
+  { id: 'dead-bug',       name: 'Dead Bug',              category: 'Core', emoji: '🐛', weight: 0, sets: 3, reps: 12, rest: 30 },
+  { id: 'bicycle-crunch', name: 'Bicycle Crunches',      category: 'Core', emoji: '🚲', weight: 0, sets: 3, reps: 20, rest: 30 },
+];
 
-function estimateExerciseSeconds(ex) {
-  return (ex.sets * ex.reps * 3) + ((ex.sets - 1) * ex.rest);
-}
+// ── Warmup / Cooldown Exercises ──────────────────────
+const WARMUP_EXERCISES = [
+  { id: 'jumping-jacks',  name: 'Jumping Jacks',         category: 'Warmup', emoji: '⭐', weight: 0, sets: 1, reps: 30, rest: 15 },
+  { id: 'arm-circles',    name: 'Arm Circles',           category: 'Warmup', emoji: '🔄', weight: 0, sets: 1, reps: 20, rest: 15 },
+  { id: 'hip-circles',    name: 'Hip Circles',           category: 'Warmup', emoji: '🔄', weight: 0, sets: 1, reps: 15, rest: 15 },
+  { id: 'high-knees',     name: 'High Knees',            category: 'Warmup', emoji: '🦵', weight: 0, sets: 1, reps: 30, rest: 15 },
+  { id: 'leg-swings',     name: 'Leg Swings',            category: 'Warmup', emoji: '🦵', weight: 0, sets: 1, reps: 15, rest: 15 },
+];
 
-function applyIntensity(baseExercise, intensity) {
-  const mod = INTENSITY_MODIFIERS[intensity] || INTENSITY_MODIFIERS.Intermediate;
-  return {
-    ...baseExercise,
-    sets: Math.max(1, Math.round(baseExercise.sets * mod.sets)),
-    reps: Math.max(3, Math.round(baseExercise.reps * mod.reps)),
-    rest: Math.max(15, Math.round(baseExercise.rest * mod.rest)),
-  };
-}
+const COOLDOWN_EXERCISES = [
+  { id: 'quad-stretch',   name: 'Standing Quad Stretch',  category: 'Cooldown', emoji: '🧘', weight: 0, sets: 1, reps: 1, rest: 10, note: '30 giây mỗi bên' },
+  { id: 'hamstring-str',  name: 'Seated Hamstring Stretch',category: 'Cooldown', emoji: '🧘', weight: 0, sets: 1, reps: 1, rest: 10, note: '30 giây' },
+  { id: 'chest-stretch',  name: 'Doorway Chest Stretch',  category: 'Cooldown', emoji: '🧘', weight: 0, sets: 1, reps: 1, rest: 10, note: '30 giây' },
+  { id: 'cat-cow',        name: 'Cat-Cow Stretch',        category: 'Cooldown', emoji: '🐱', weight: 0, sets: 1, reps: 10, rest: 10 },
+  { id: 'deep-breathing', name: 'Deep Breathing',         category: 'Cooldown', emoji: '🫁', weight: 0, sets: 1, reps: 10, rest: 0, note: 'Hít thở sâu' },
+];
 
-function byIds(ids) {
-  return EXERCISE_LIBRARY.filter(e => ids.includes(e.id));
-}
+// ── Constants ────────────────────────────────────────
+const GEN_SEC_PER_REP = 3; // seconds per rep for time estimation
+const CORE_TIME_BUDGET = 5 * 60; // ~5 min for core
+const WARMUP_TIME_BUDGET = 4 * 60; // ~4 min for warmup
+const COOLDOWN_TIME_BUDGET = 4 * 60; // ~4 min for cooldown
 
-function generateWorkout(type, durationMin = 60, intensity = 'Intermediate', addCore = false, addWarmup = false) {
-  const spec = QUICK_WORKOUT_TYPES[type] || QUICK_WORKOUT_TYPES['Upper Body Day'];
-  const targetSec = durationMin * 60;
+// ══════════════════════════════════════════════════════
+//  GENERATOR FUNCTION
+// ══════════════════════════════════════════════════════
 
-  const pool = EXERCISE_LIBRARY
-    .filter(ex => spec.categories.includes(ex.category))
-    .filter(ex => !(ex.tags || []).includes('warmup') && !(ex.tags || []).includes('cooldown') && !(ex.tags || []).includes('core'));
+/**
+ * Generate a full workout plan.
+ * 
+ * @param {string} typeId - Workout type ID (e.g., 'chest-day')
+ * @param {number} durationMin - Target duration in minutes (15–180)
+ * @param {string} intensityId - Intensity level ID (e.g., 'intermediate')
+ * @param {boolean} addCore - Whether to append core exercises
+ * @param {boolean} addWarmup - Whether to add warmup & cooldown
+ * @returns {{ name: string, emoji: string, exercises: Array, estimatedTime: number }}
+ */
+function generateWorkout(typeId, durationMin, intensityId, addCore, addWarmup) {
+  const workoutType = WORKOUT_TYPES.find(t => t.id === typeId) || WORKOUT_TYPES[0];
+  const intensity = INTENSITY_LEVELS.find(i => i.id === intensityId) || INTENSITY_LEVELS[1];
 
-  let totalSec = 0;
-  const selected = [];
-  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  const totalBudgetSec = durationMin * 60;
 
-  while (shuffled.length && totalSec < targetSec * 0.88) {
-    const ex = applyIntensity(shuffled.shift(), intensity);
-    const exSec = estimateExerciseSeconds(ex);
-    if (totalSec + exSec > targetSec * 1.1 && selected.length > 0) continue;
-    selected.push(ex);
-    totalSec += exSec;
+  // Calculate time budgets for add-ons
+  let mainBudgetSec = totalBudgetSec;
+  if (addCore) mainBudgetSec -= CORE_TIME_BUDGET;
+  if (addWarmup) mainBudgetSec -= (WARMUP_TIME_BUDGET + COOLDOWN_TIME_BUDGET);
+  mainBudgetSec = Math.max(mainBudgetSec, 5 * 60); // at least 5 min for main workout
+
+  // Get available exercises for this workout type
+  const pool = getExercisePool(workoutType);
+
+  // Shuffle pool
+  const shuffled = shuffleArray([...pool]);
+
+  // Pick exercises that fit within the time budget
+  const mainExercises = [];
+  let usedTimeSec = 0;
+
+  for (const ex of shuffled) {
+    // Apply intensity modifiers
+    const modEx = applyIntensity(ex, intensity);
+    const exTimeSec = estimateExerciseTime(modEx);
+
+    if (usedTimeSec + exTimeSec <= mainBudgetSec) {
+      mainExercises.push(modEx);
+      usedTimeSec += exTimeSec;
+    }
+
+    // If we've filled at least 80% of the budget, stop
+    if (usedTimeSec >= mainBudgetSec * 0.8) break;
   }
 
-  if (selected.length === 0 && pool.length > 0) {
-    selected.push(applyIntensity(pool[0], intensity));
+  // If we haven't filled enough time, increase sets on existing exercises
+  if (usedTimeSec < mainBudgetSec * 0.6 && mainExercises.length > 0) {
+    let idx = 0;
+    while (usedTimeSec < mainBudgetSec * 0.75) {
+      const ex = mainExercises[idx % mainExercises.length];
+      const oldTime = estimateExerciseTime(ex);
+      ex.sets = Math.min(ex.sets + 1, 8);
+      const newTime = estimateExerciseTime(ex);
+      usedTimeSec += (newTime - oldTime);
+      idx++;
+      if (idx > mainExercises.length * 3) break; // safety
+    }
   }
 
+  // Build final exercise list
+  const finalExercises = [];
+
+  // Warmup
   if (addWarmup) {
-    selected.unshift(...byIds(WARMUP_EXERCISE_IDS).map(ex => applyIntensity(ex, 'Beginner')));
-    selected.push(...byIds(COOLDOWN_EXERCISE_IDS).map(ex => applyIntensity(ex, 'De-load')));
+    const warmups = pickAddonExercises(WARMUP_EXERCISES, 3);
+    finalExercises.push(...warmups);
   }
 
+  // Main exercises
+  finalExercises.push(...mainExercises);
+
+  // Core
   if (addCore) {
-    selected.push(...byIds(CORE_EXERCISE_IDS).slice(0, 3).map(ex => applyIntensity(ex, intensity)));
+    const cores = pickAddonExercises(CORE_EXERCISES, 3);
+    finalExercises.push(...cores);
   }
+
+  // Cooldown
+  if (addWarmup) {
+    const cooldowns = pickAddonExercises(COOLDOWN_EXERCISES, 3);
+    finalExercises.push(...cooldowns);
+  }
+
+  // Calculate total estimated time
+  const estimatedTime = finalExercises.reduce((sum, ex) => sum + estimateExerciseTime(ex), 0);
 
   return {
-    name: `${spec.emoji} ${type}`,
-    type,
-    durationMin,
-    intensity,
-    exercises: selected.map(ex => ({ ...ex })),
+    name: workoutType.name,
+    emoji: workoutType.emoji,
+    subtitle: workoutType.subtitle,
+    typeId: workoutType.id,
+    intensityId: intensity.id,
+    exercises: finalExercises,
+    estimatedTimeSec: estimatedTime,
   };
+}
+
+// ══════════════════════════════════════════════════════
+//  HELPER FUNCTIONS
+// ══════════════════════════════════════════════════════
+
+/**
+ * Get the exercise pool from EXERCISE_LIBRARY for a workout type.
+ * Distributes exercises from primary + secondary categories.
+ */
+function getExercisePool(workoutType) {
+  const { categories, primaryCategory } = workoutType;
+
+  // Get exercises by category
+  const byCategory = {};
+  categories.forEach(cat => {
+    byCategory[cat] = EXERCISE_LIBRARY.filter(e => e.category === cat);
+  });
+
+  // Build pool: primary category gets more exercises
+  const pool = [];
+  categories.forEach(cat => {
+    const exercises = byCategory[cat] || [];
+    if (cat === primaryCategory) {
+      // Include all from primary
+      pool.push(...exercises);
+    } else {
+      // Include subset from secondary (2–3 exercises)
+      const shuffled = shuffleArray([...exercises]);
+      pool.push(...shuffled.slice(0, Math.min(3, shuffled.length)));
+    }
+  });
+
+  return pool;
+}
+
+/**
+ * Apply intensity modifiers to an exercise.
+ * Returns a new exercise object with adjusted values.
+ */
+function applyIntensity(exercise, intensity) {
+  return {
+    ...exercise,
+    sets: Math.max(1, Math.round(exercise.sets * intensity.setsMod)),
+    reps: Math.max(1, Math.round(exercise.reps * intensity.repsMod)),
+    rest: Math.max(15, Math.round((exercise.rest * intensity.restMod) / 5) * 5), // round to 5s
+    weight: Math.round(exercise.weight * intensity.weightMod * 2) / 2, // round to 0.5kg
+  };
+}
+
+/**
+ * Estimate the time an exercise takes (training + rest) in seconds.
+ */
+function estimateExerciseTime(exercise) {
+  const trainSec = exercise.sets * exercise.reps * GEN_SEC_PER_REP;
+  const restSec = (exercise.sets - 1) * exercise.rest;
+  return trainSec + restSec;
+}
+
+/**
+ * Pick a random subset of addon exercises.
+ */
+function pickAddonExercises(pool, count) {
+  const shuffled = shuffleArray([...pool]);
+  return shuffled.slice(0, Math.min(count, shuffled.length)).map(e => ({ ...e }));
+}
+
+/**
+ * Fisher-Yates shuffle.
+ */
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/**
+ * Get a random workout type ID.
+ */
+function getRandomWorkoutType() {
+  return WORKOUT_TYPES[Math.floor(Math.random() * WORKOUT_TYPES.length)].id;
+}
+
+/**
+ * Format seconds to human-readable Vietnamese duration.
+ */
+function formatDurationViet(sec) {
+  const mins = Math.round(sec / 60);
+  if (mins < 60) return `${mins} phút`;
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  if (m === 0) return `${h} giờ`;
+  return `${h}h${m < 10 ? '0' : ''}${m}`;
 }

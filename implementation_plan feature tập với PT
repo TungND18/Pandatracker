@@ -1,0 +1,52 @@
+# Feature: Tập với PT (Book a Personal Trainer)
+
+## Overview
+Add a PT booking flow from the home screen:
+Home → Calendar (4 weeks) → Time Picker → PT List → Booking confirmation
+
+## User Flow
+1. Tap "Tập với PT" button on home screen
+2. Calendar screen shows 4 weeks from today
+   - Days with PT availability highlighted in orange/accent
+   - Other days dimmed
+3. After selecting a date → time picker appears (start + end time, 5-min increments)
+4. After selecting time → scrollable PT cards shown
+5. If no PT available → "Rất tiếc" message
+
+## Architecture (Future-friendly)
+
+### Data Layer (`pt-data.js`)
+- `PT_PROFILES[]` - PT info (id, name, specialty, experience, rating, avatar, bio)
+- `PT_SCHEDULES{}` - Keyed by PT id, with:
+  - `recurring` - Weekly recurring availability (day-of-week → time slots)
+  - `overrides` - Specific date overrides (date string → slots or null for blocked)
+- Helper functions:
+  - `getAvailableDatesInRange(startDate, endDate)` → dates with any PT
+  - `getAvailablePTs(date, startTime, endTime)` → PT profiles available
+  - `isPTAvailable(ptId, date, startTime, endTime)` → boolean
+
+### UI Components
+- Calendar grid (reusable, week-based)
+- Time picker (two selects: start/end, 5-min steps)
+- PT card (avatar + profile, horizontal scroll)
+
+## Proposed Changes
+
+### [NEW] pt-data.js
+Mock PT profiles and schedules with clean API for future backend integration.
+
+### [MODIFY] index.html
+- Add "Tập với PT" button on home screen
+- Add PT booking screen with calendar, time picker, PT list sections
+
+### [MODIFY] styles.css
+- Calendar grid styles (dark theme, orange highlights)
+- Time picker styles
+- PT card styles (scrollable, glassmorphism)
+
+### [MODIFY] app.js
+- Wire up PT booking navigation and logic
+
+## Mock Data
+- 5 PTs with generated avatars
+- Various schedules across the 4-week window

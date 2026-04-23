@@ -1,0 +1,147 @@
+# Redesign Home Screen + "Tập Ngay" Quick Workout Generator
+
+## Goal
+Redesign the home screen to have 3 main buttons and implement the "Tập Ngay" (Quick Workout) feature that auto-generates a full workout based on muscle group, time, intensity, and optional add-ons.
+
+## Proposed Changes
+
+### Screen 1: Home Screen Redesign
+
+Replace the current 3 buttons (`Tập ngay`, `Chọn bài tập`, `Tập với PT`) with:
+1. **Tập Ngay** — Goes to new Quick Workout Preview screen
+2. **Tập với PT** — Existing PT booking flow (unchanged)
+3. **Phòng Gym của tôi** — Placeholder for future (disabled/coming soon)
+
+Remove the old `Chọn bài tập` (Saved Workouts) button from the home screen. The saved workouts will be accessible from the "Thay đổi bài tập" flow inside the Quick Workout screen.
+
+---
+
+### Screen: Quick Workout Preview (NEW)
+
+When user taps "Tập Ngay", an algorithm picks a random workout type and generates exercises to fill the chosen time (default 1h).
+
+**Top section:**
+- Workout name displayed prominently (e.g., "🔥 Chest Day", "💪 Upper Body", "🦵 Leg Day")
+- Auto-suggested by algorithm (random rotation)
+
+**Control buttons (grid/list):**
+
+1. **🔄 Thay đổi bài tập** — Opens a new sub-screen with:
+   - Muscle group buttons: Chest Day, Back Day, Leg Day, Cardio Day, Upper Body Day, Push Day, Pull Day, Lower Body Day
+   - My Saved Workouts — loads from localStorage (same as existing profiles)
+   - Create New Workout — goes to existing Workout Setup screen
+
+2. **⏱️ Thời gian: 1h** — Tappable button to cycle duration (15min → 3h, step 15min). Regenerates exercises on change.
+
+3. **🏢 Phòng tập** — Change gym (placeholder for now, shows "Coming soon")
+
+4. **💪 Cường độ** — Intensity selector: Beginner, Intermediate, Hardcore, Cardio, De-load. Changes sets/reps/rest parameters.
+
+5. **🧱 + Core Workout** — Toggle to add core exercises at the end
+
+6. **🧘 + Warmup/Cool down** — Toggle to add warmup & cooldown
+
+**Below controls: Exercise list preview** showing generated exercises with sets/reps/rest.
+
+**Bottom: "Bắt đầu tập 🔥" button** to start the workout.
+
+---
+
+### Workout Generation Algorithm
+
+A new file `workout-generator.js` will contain:
+
+**Workout types with exercise mapping:**
+| Workout Type | Categories Used |
+|---|---|
+| Chest Day | Chest + Triceps |
+| Back Day | Back + Biceps |
+| Leg Day | Legs |
+| Upper Body Day | Chest + Back + Shoulders |
+| Push Day | Chest + Shoulders + Triceps |
+| Pull Day | Back + Biceps |
+| Lower Body Day | Legs |
+| Cardio Day | Light compound movements |
+
+**Time-based exercise selection:**
+- Algorithm calculates time per exercise: `(sets × reps × SEC_PER_REP) + ((sets-1) × rest)`
+- Picks exercises until total time ≈ target duration
+- Adjusts sets/reps based on intensity level
+
+**Intensity modifiers:**
+| Intensity | Sets Modifier | Reps Modifier | Rest Modifier |
+|---|---|---|---|
+| Beginner | ×0.7 | ×0.8 | ×1.3 |
+| Intermediate | ×1.0 | ×1.0 | ×1.0 |
+| Hardcore | ×1.3 | ×1.2 | ×0.8 |
+| Cardio | ×1.0 | ×1.5 | ×0.5 |
+| De-load | ×0.6 | ×0.7 | ×1.5 |
+
+**Core exercises (added when toggled):**
+- Plank, Crunches, Russian Twist, Leg Raises, Mountain Climbers
+
+**Warmup/Cooldown (added when toggled):**
+- Warmup: Jumping Jacks, Arm Circles, Hip Circles, Light Cardio
+- Cooldown: Static Stretches, Deep Breathing
+
+---
+
+### File Changes
+
+#### [NEW] [workout-generator.js](file:///c:/Users/NODUN/.gemini/antigravity/scratch/iphone-timer/workout-generator.js)
+- Workout type definitions with exercise pools
+- `generateWorkout(type, durationMin, intensity, addCore, addWarmup)` function
+- Core exercise definitions
+- Warmup/cooldown exercise definitions
+
+#### [MODIFY] [index.html](file:///c:/Users/NODUN/.gemini/antigravity/scratch/iphone-timer/index.html)
+- Update home screen buttons (3 new buttons)
+- Add new Quick Workout Preview screen HTML
+- Add "Change Workout" sub-screen HTML
+- Add duration picker modal
+- Add intensity picker modal
+- Include `workout-generator.js` script
+
+#### [MODIFY] [app.js](file:///c:/Users/NODUN/.gemini/antigravity/scratch/iphone-timer/app.js)
+- Update home screen button wiring
+- Add Quick Workout screen logic
+- Add workout generation integration
+- Wire duration/intensity/toggle controls
+- Wire "Change Workout" sub-screen navigation
+- Update `ALL_SCREENS` array
+
+#### [MODIFY] [styles.css](file:///c:/Users/NODUN/.gemini/antigravity/scratch/iphone-timer/styles.css)
+- Quick Workout Preview screen styles
+- Control button grid styles
+- Duration picker styles
+- Intensity selector styles
+- Toggle button styles
+- Change Workout sub-screen styles
+- Exercise preview list styles
+
+#### [MODIFY] [exercises.js](file:///c:/Users/NODUN/.gemini/antigravity/scratch/iphone-timer/exercises.js)
+- Add core exercises (Plank, Crunches, etc.)
+- Add warmup/cooldown exercises
+- Add `tags` property to exercises for workout type mapping
+
+---
+
+## Open Questions
+
+> [!IMPORTANT]
+> **Saved Workouts access**: The "Chọn bài tập" button is being removed from home. Saved workouts will be accessible from the "Thay đổi bài tập" flow inside Quick Workout + from the "Create New Workout" path. Is this OK?
+
+> [!NOTE]
+> **"Phòng Gym của tôi"** will show as a disabled button with "Coming soon" text. Is that acceptable for now?
+
+## Verification Plan
+
+### Manual Verification
+- Launch in browser, verify 3 home buttons
+- Tap "Tập Ngay" → verify generated workout appears
+- Change workout type → verify exercises regenerate
+- Change duration → verify exercise count adjusts
+- Change intensity → verify sets/reps/rest change
+- Toggle core/warmup → verify exercises added/removed
+- Start workout → verify it enters existing active workout flow
+- Access saved workouts from "Thay đổi bài tập" → verify they load correctly
