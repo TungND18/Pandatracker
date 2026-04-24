@@ -1,0 +1,138 @@
+# Foxy Gym — UI/UX & Feature Update Plan (23/04)
+
+## Tóm tắt thay đổi
+Cập nhật toàn diện 5 module chính: Global Profile Avatar, Main Screen, Tập Ngay, Tập cùng PT, và Phòng gym của tôi.
+
+---
+
+## 1. Global UI — My Profile Avatar
+
+### [MODIFY] index.html
+- Thêm `<div id="global-profile-avatar">` vào đầu mỗi screen (hoặc một element fixed chung)
+- Hiển thị chữ cái đầu (VD: "Duy Tung" → "DT") hoặc avatar ảnh
+
+### [MODIFY] styles.css
+- `.profile-avatar-btn` — fixed top-right, hình tròn, glow accent
+- Responsive cho mọi screen
+
+### [MODIFY] app.js
+- Hàm `renderProfileAvatar()` đọc từ `userPrefs.name` → initials
+- Gọi khi load app và khi save profile
+- **Xóa** "Profile" khỏi tất cả bottom nav bars
+
+---
+
+## 2. Main Screen (Home)
+
+### [MODIFY] index.html
+- **Xóa** `<div class="bottom-nav">` khỏi `#screen-home`
+
+### [MODIFY] styles.css
+- Tăng `padding-bottom` cho `.home-actions` vì không còn bottom bar
+
+---
+
+## 3. Tập Ngay
+
+### 3.1 Bottom Navigation
+**Bottom bar mới cho Quick Workout screen:**
+```
+Home | Tập Ngay | Saved Workout
+```
+- Move "Saved Workout" từ change-workout screen xuống bottom bar
+- Fix: nút "Bắt đầu tập" bị che — thêm `padding-bottom` cho `.qw-start-action`
+
+### 3.2 Workout Customization (Exercise List)
+- **Drag & Drop** trong exercise preview list (hiện chỉ có ở setup screen)
+- **Nút ➕ / ✕** để thêm/xóa bài tập ngay tại đây
+- **Nút 🔄** trên mỗi bài để gợi ý bài thay thế cùng nhóm cơ
+- **Stepper controls** weight/reps/rest inline (giống setup screen)
+
+### 3.3 During Workout — Floating Menu Button
+- Nút **☰** nổi hiển thị khi đang nghỉ (rest screen)
+- Khi bấm: mở slide-up panel cho phép:
+  - Drag & drop reorder
+  - Add/swap bài tập
+  - Adjust weight/reps/rest
+- **Không** gián đoạn timer, voice — tất cả chạy bình thường ở background
+
+### 3.4 Exercise Guidance — Nút ❓
+- Thêm nút `❓` vào mỗi bài trong preview list
+- Thêm vào active workout screen (bên cạnh tên bài)
+- Khi bấm: modal với text hướng dẫn + YouTube embed
+- Icon con cáo 🦊 làm branding
+- **Không gián đoạn timer/voice** — modal chỉ overlay
+- Nếu bấm trong REST: hiển thị hướng dẫn cho bài **tiếp theo**
+
+---
+
+## 4. Tập cùng PT
+
+### 4.1 Bottom Navigation (3 tabs)
+```
+Booking (default) | My Training | My PTs
+```
+
+### 4.2 My Training Screen
+- Hiển thị 2–3 booking mẫu với: Thứ/ngày, giờ, địa điểm, PT, nội dung
+
+### 4.3 My PTs Screen
+- Danh sách PT với filter: location, giá, kinh nghiệm, giới tính, chuyên môn, rating
+- Nút ❤️ Favorite
+- Tab "Danh sách yêu thích"
+
+### 4.4 Booking Screen (Default)
+- **Outlook-style timeline calendar** thay thế calendar grid hiện tại
+  - Thanh ruler 24h, default range = hiện tại ±3h
+  - Cuộn để thay đổi
+  - Slot 30 phút, slot không có PT = màu khác (locked)
+  - Tap để chọn slot, default 1h
+  - Kéo cạnh trên/dưới để đổi start/duration
+  - Constraint: chỉ theo bội số 15 phút
+- Sau khi chọn slot: hiển thị danh sách PT với giá theo thời gian đã chọn
+- Nút ❤️ favorite PT ngay tại đây
+
+---
+
+## 5. Phòng Gym Của Tôi
+
+### [NEW] Screen `#screen-my-gym`
+
+### 5.1 Default — Vé tập
+- Hiển thị QR code vé tập
+- Hình ảnh random thay đổi mỗi ngày + **nhấp nháy mỗi 1s** (anti-screenshot)
+
+### 5.2 Bottom Navigation
+```
+Phòng tập | Lớp tập | Vé tập (default)
+```
+- **Vé tập**: QR code + hình nhấp nháy (chính, default)
+- **Phòng tập**: danh sách gym + filter (khoảng cách, location, giá)
+- **Lớp tập**: spinning, dance, yoga... + filter theo thời gian
+- **Enable** nút "Phòng Gym của tôi" ở Home (bỏ disabled)
+
+---
+
+## Thứ tự triển khai
+
+1. ✅ Global Profile Avatar + xóa Profile khỏi bottom nav
+2. ✅ Home screen: xóa bottom nav
+3. ✅ Tập Ngay: fix bottom nav (thêm Saved Workout, fix Bắt đầu tập bị che)
+4. ✅ Tập Ngay: customization (drag-drop, add/remove/swap, steppers)
+5. ✅ Tập Ngay: During Workout floating ☰ menu
+6. ✅ Tập Ngay: Exercise Guidance nút ❓
+7. ✅ Tập cùng PT: refactor layout với 3-tab bottom nav
+8. ✅ Tập cùng PT: Booking với Outlook-style timeline
+9. ✅ Tập cùng PT: My Training + My PTs screens
+10. ✅ Phòng Gym: new screen với QR + tabs
+
+## Câu hỏi mở
+
+> [!IMPORTANT]
+> **Tên người dùng**: Profile hiện tại không có trường "Tên". Cần thêm trường `name` vào profile để tạo initials cho avatar. Bạn muốn thêm "Tên" vào profile screen không?
+
+> [!NOTE]
+> **YouTube video**: Exercise guidance cần link YouTube cho từng bài tập. Tôi sẽ hardcode một số link demo — bạn có thể update sau.
+
+> [!NOTE]
+> **My Gym QR**: QR code sẽ là QR code static demo. Bạn có muốn kết nối với membership ID thật không?
