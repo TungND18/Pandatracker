@@ -4457,34 +4457,35 @@ body {
 
 .qw-hero-simple {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(130px, 1fr);
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) 154px;
+  gap: 14px;
   align-items: center;
-  min-height: 190px;
+  min-height: 152px;
 }
 
 .qw-hero-copy h1 {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: 42px;
-  line-height: 0.98;
+  font-size: 34px;
+  line-height: 1.04;
   font-weight: 900;
   color: var(--text-primary);
   letter-spacing: 0;
 }
 
 .qw-hero-copy p {
-  margin: 18px 0 0;
-  max-width: 210px;
-  font-size: 18px;
-  line-height: 1.35;
+  margin: 12px 0 0;
+  max-width: 196px;
+  font-size: 15px;
+  line-height: 1.38;
   color: var(--text-secondary);
   font-weight: 700;
 }
 
 .qw-hero-fox {
-  width: min(100%, 230px);
+  width: min(100%, 156px);
   justify-self: end;
+  align-self: center;
   filter: drop-shadow(0 12px 22px rgba(0,0,0,0.32));
 }
 
@@ -4851,9 +4852,10 @@ body {
 }
 
 @media (max-width: 390px) {
-  .qw-hero-copy h1 { font-size: 36px; }
-  .qw-hero-copy p { font-size: 16px; }
-  .qw-hero-simple { grid-template-columns: 1fr 145px; min-height: 165px; }
+  .qw-hero-copy h1 { font-size: 30px; }
+  .qw-hero-copy p { font-size: 14px; max-width: 174px; }
+  .qw-hero-simple { grid-template-columns: 1fr 126px; min-height: 134px; }
+  .qw-hero-fox { width: 126px; }
   .qw-goal-grid { grid-template-columns: 1fr; }
   #screen-quick-workout #btn-qw-start .btn-label { font-size: 23px; }
 }
