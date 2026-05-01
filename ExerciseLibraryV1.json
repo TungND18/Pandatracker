@@ -122,7 +122,32 @@
         "recovery": "60-90"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dumbbell_bench_press",
@@ -189,7 +214,32 @@
         "recovery": "45-75"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "incline_barbell_bench_press",
@@ -257,7 +307,32 @@
         "recovery": "60-75"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "incline_dumbbell_press",
@@ -324,7 +399,32 @@
         "recovery": "45-75"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "machine_chest_press",
@@ -390,7 +490,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "machine_pec_fly",
@@ -455,7 +580,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay hơi cong suốt bài",
+        "Siết ngực ở đỉnh cử động",
+        "Hạ chậm, có kiểm soát"
+      ],
+      "commonMistakes": [
+        "Khuỷu tay thẳng cứng",
+        "Dùng vai thay vì ngực",
+        "Hạ quá nhanh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "cable_chest_fly",
@@ -520,7 +670,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay hơi cong suốt bài",
+        "Siết ngực ở đỉnh cử động",
+        "Hạ chậm, có kiểm soát"
+      ],
+      "commonMistakes": [
+        "Khuỷu tay thẳng cứng",
+        "Dùng vai thay vì ngực",
+        "Hạ quá nhanh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "push_up",
@@ -588,7 +763,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-0-1",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "incline_push_up",
@@ -655,7 +855,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-0-1",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "feet_elevated_push_up",
@@ -723,7 +948,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-0-1",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "resistance_band_chest_press",
@@ -789,7 +1039,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-1",
-      "progressionType": "band_tension_then_reps"
+      "progressionType": "band_tension_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "backpack_floor_press",
@@ -855,7 +1130,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "pull_up",
@@ -923,7 +1223,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-1-1",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "chin_up",
@@ -991,7 +1316,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-1-1",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "lat_pulldown",
@@ -1057,7 +1407,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "single_arm_lat_pulldown",
@@ -1123,7 +1498,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "barbell_bent_over_row",
@@ -1191,7 +1591,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "chest_supported_row",
@@ -1259,7 +1684,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "single_arm_dumbbell_row",
@@ -1328,7 +1778,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "seated_cable_row",
@@ -1395,7 +1870,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "machine_row",
@@ -1462,7 +1962,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "backpack_row",
@@ -1528,7 +2053,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "banded_row",
@@ -1595,7 +2145,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "band_tension_then_reps"
+      "progressionType": "band_tension_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "suspension_row",
@@ -1663,7 +2238,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-1",
-      "progressionType": "body_angle_then_reps"
+      "progressionType": "body_angle_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "barbell_overhead_press",
@@ -1732,7 +2332,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đừng để khuỷu tay bung ra quá rộng",
+        "Giữ lưng thẳng, core siết",
+        "Đẩy thẳng lên trên, không nghiêng người"
+      ],
+      "commonMistakes": [
+        "Lưng quá cong",
+        "Đẩy không thẳng",
+        "Khuỷu tay bung quá rộng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dumbbell_overhead_press",
@@ -1802,7 +2427,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đừng để khuỷu tay bung ra quá rộng",
+        "Giữ lưng thẳng, core siết",
+        "Đẩy thẳng lên trên, không nghiêng người"
+      ],
+      "commonMistakes": [
+        "Lưng quá cong",
+        "Đẩy không thẳng",
+        "Khuỷu tay bung quá rộng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "machine_shoulder_press",
@@ -1868,7 +2518,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đừng để khuỷu tay bung ra quá rộng",
+        "Giữ lưng thẳng, core siết",
+        "Đẩy thẳng lên trên, không nghiêng người"
+      ],
+      "commonMistakes": [
+        "Lưng quá cong",
+        "Đẩy không thẳng",
+        "Khuỷu tay bung quá rộng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "landmine_press",
@@ -1935,7 +2610,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đừng để khuỷu tay bung ra quá rộng",
+        "Giữ lưng thẳng, core siết",
+        "Đẩy thẳng lên trên, không nghiêng người"
+      ],
+      "commonMistakes": [
+        "Lưng quá cong",
+        "Đẩy không thẳng",
+        "Khuỷu tay bung quá rộng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "lateral_raise",
@@ -2000,7 +2700,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "cable_lateral_raise",
@@ -2065,7 +2790,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "rear_delt_fly",
@@ -2132,7 +2882,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "reverse_pec_deck",
@@ -2197,7 +2972,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "face_pull",
@@ -2265,7 +3065,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "pike_push_up",
@@ -2331,7 +3156,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đừng để khuỷu tay bung ra quá rộng",
+        "Giữ lưng thẳng, core siết",
+        "Đẩy thẳng lên trên, không nghiêng người"
+      ],
+      "commonMistakes": [
+        "Lưng quá cong",
+        "Đẩy không thẳng",
+        "Khuỷu tay bung quá rộng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "barbell_curl",
@@ -2396,7 +3246,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dumbbell_curl",
@@ -2461,7 +3336,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hammer_curl",
@@ -2527,7 +3427,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "incline_dumbbell_curl",
@@ -2593,7 +3518,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "preacher_curl",
@@ -2659,7 +3609,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "cable_curl",
@@ -2724,7 +3699,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "rope_hammer_curl",
@@ -2790,7 +3790,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "band_curl",
@@ -2855,7 +3880,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "band_tension_then_reps"
+      "progressionType": "band_tension_then_reps",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "skull_crusher",
@@ -2921,7 +3971,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "rope_pushdown",
@@ -2984,7 +4059,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "straight_bar_pushdown",
@@ -3047,7 +4147,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dumbbell_overhead_extension",
@@ -3113,7 +4238,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dumbbell_kickback",
@@ -3176,7 +4326,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "close_grip_push_up",
@@ -3242,7 +4417,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-0-1",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ khuỷu tay cố định",
+        "Không lắc người để cheat",
+        "Siết cơ ở đỉnh cử động 1 giây"
+      ],
+      "commonMistakes": [
+        "Lắc người",
+        "Khuỷu tay di chuyển",
+        "Dùng tải quá nặng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "barbell_back_squat",
@@ -3311,7 +4511,32 @@
         "recovery": "60-90"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "front_squat",
@@ -3380,7 +4605,32 @@
         "recovery": "60-90"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "goblet_squat",
@@ -3448,7 +4698,32 @@
         "recovery": "45-60"
       },
       "tempo": "3-1-1",
-      "progressionType": "load_then_reps"
+      "progressionType": "load_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "leg_press",
@@ -3514,7 +4789,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hack_squat",
@@ -3579,7 +4879,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "bodyweight_squat",
@@ -3644,7 +4969,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-1",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "romanian_deadlift",
@@ -3712,7 +5062,32 @@
         "recovery": "60-90"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dumbbell_rdl",
@@ -3780,7 +5155,32 @@
         "recovery": "45-60"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "deadlift",
@@ -3850,7 +5250,32 @@
         "recovery": "75-120"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "trap_bar_deadlift",
@@ -3918,7 +5343,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hip_thrust",
@@ -3986,7 +5436,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "glute_bridge",
@@ -4052,7 +5527,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "walking_lunge",
@@ -4121,7 +5621,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Bước dài vừa đủ, gối sau gần chạm sàn",
+        "Giữ thân trên thẳng đứng",
+        "Đẩy lên bằng gót chân trước"
+      ],
+      "commonMistakes": [
+        "Gối trước vượt quá mũi chân quá nhiều",
+        "Mất thăng bằng",
+        "Thân trên nghiêng về phía trước"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "reverse_lunge",
@@ -4189,7 +5714,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Bước dài vừa đủ, gối sau gần chạm sàn",
+        "Giữ thân trên thẳng đứng",
+        "Đẩy lên bằng gót chân trước"
+      ],
+      "commonMistakes": [
+        "Gối trước vượt quá mũi chân quá nhiều",
+        "Mất thăng bằng",
+        "Thân trên nghiêng về phía trước"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "bulgarian_split_squat",
@@ -4260,7 +5810,32 @@
         "recovery": "45-60"
       },
       "tempo": "3-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Bước dài vừa đủ, gối sau gần chạm sàn",
+        "Giữ thân trên thẳng đứng",
+        "Đẩy lên bằng gót chân trước"
+      ],
+      "commonMistakes": [
+        "Gối trước vượt quá mũi chân quá nhiều",
+        "Mất thăng bằng",
+        "Thân trên nghiêng về phía trước"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "split_squat",
@@ -4328,7 +5903,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Bước dài vừa đủ, gối sau gần chạm sàn",
+        "Giữ thân trên thẳng đứng",
+        "Đẩy lên bằng gót chân trước"
+      ],
+      "commonMistakes": [
+        "Gối trước vượt quá mũi chân quá nhiều",
+        "Mất thăng bằng",
+        "Thân trên nghiêng về phía trước"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "step_up",
@@ -4398,7 +5998,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Bước dài vừa đủ, gối sau gần chạm sàn",
+        "Giữ thân trên thẳng đứng",
+        "Đẩy lên bằng gót chân trước"
+      ],
+      "commonMistakes": [
+        "Gối trước vượt quá mũi chân quá nhiều",
+        "Mất thăng bằng",
+        "Thân trên nghiêng về phía trước"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "leg_extension",
@@ -4462,7 +6087,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Siết cơ ở đỉnh cử động 1 giây",
+        "Hạ từ từ, có kiểm soát",
+        "Giữ lưng tựa sát vào ghế"
+      ],
+      "commonMistakes": [
+        "Lưng bật khỏi ghế",
+        "Dùng quán tính",
+        "Không siết ở đỉnh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "seated_leg_curl",
@@ -4527,7 +6177,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Siết cơ ở đỉnh cử động 1 giây",
+        "Hạ từ từ, có kiểm soát",
+        "Giữ lưng tựa sát vào ghế"
+      ],
+      "commonMistakes": [
+        "Lưng bật khỏi ghế",
+        "Dùng quán tính",
+        "Không siết ở đỉnh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "lying_leg_curl",
@@ -4592,7 +6267,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Siết cơ ở đỉnh cử động 1 giây",
+        "Hạ từ từ, có kiểm soát",
+        "Giữ lưng tựa sát vào ghế"
+      ],
+      "commonMistakes": [
+        "Lưng bật khỏi ghế",
+        "Dùng quán tính",
+        "Không siết ở đỉnh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "sliding_leg_curl",
@@ -4656,7 +6356,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "standing_calf_raise",
@@ -4719,7 +6444,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "load_then_reps"
+      "progressionType": "load_then_reps",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Siết cơ ở đỉnh cử động 1 giây",
+        "Hạ từ từ, có kiểm soát",
+        "Giữ lưng tựa sát vào ghế"
+      ],
+      "commonMistakes": [
+        "Lưng bật khỏi ghế",
+        "Dùng quán tính",
+        "Không siết ở đỉnh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "seated_calf_raise",
@@ -4782,7 +6532,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "load_then_reps"
+      "progressionType": "load_then_reps",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Siết cơ ở đỉnh cử động 1 giây",
+        "Hạ từ từ, có kiểm soát",
+        "Giữ lưng tựa sát vào ghế"
+      ],
+      "commonMistakes": [
+        "Lưng bật khỏi ghế",
+        "Dùng quán tính",
+        "Không siết ở đỉnh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "single_leg_glute_bridge",
@@ -4846,7 +6621,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "cable_pull_through",
@@ -4912,7 +6712,32 @@
         "recovery": "30-45"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "plank",
@@ -4976,7 +6801,32 @@
         "recovery": "20-30"
       },
       "tempo": "isometric",
-      "progressionType": "time_then_leverage"
+      "progressionType": "time_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ lưng dưới ép xuống sàn",
+        "Siết bụng, không để lưng võng",
+        "Hít thở đều, giữ ổn định"
+      ],
+      "commonMistakes": [
+        "Lưng dưới bị võng",
+        "Nín thở",
+        "Hông bị xệ"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "side_plank",
@@ -5039,7 +6889,32 @@
         "recovery": "15-20"
       },
       "tempo": "isometric",
-      "progressionType": "time_then_leverage"
+      "progressionType": "time_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ cơ thể thẳng, không xoay",
+        "Siết core chống lại lực kéo",
+        "Hít thở đều suốt bài"
+      ],
+      "commonMistakes": [
+        "Xoay người theo lực",
+        "Nín thở",
+        "Mất thăng bằng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "dead_bug",
@@ -5102,7 +6977,32 @@
         "recovery": "15-20"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ lưng dưới ép xuống sàn",
+        "Siết bụng, không để lưng võng",
+        "Hít thở đều, giữ ổn định"
+      ],
+      "commonMistakes": [
+        "Lưng dưới bị võng",
+        "Nín thở",
+        "Hông bị xệ"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "bird_dog",
@@ -5166,7 +7066,32 @@
         "recovery": "15-20"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ cơ thể thẳng, không xoay",
+        "Siết core chống lại lực kéo",
+        "Hít thở đều suốt bài"
+      ],
+      "commonMistakes": [
+        "Xoay người theo lực",
+        "Nín thở",
+        "Mất thăng bằng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hollow_hold",
@@ -5227,7 +7152,32 @@
         "recovery": "15-20"
       },
       "tempo": "isometric",
-      "progressionType": "time_then_leverage"
+      "progressionType": "time_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ lưng dưới ép xuống sàn",
+        "Siết bụng, không để lưng võng",
+        "Hít thở đều, giữ ổn định"
+      ],
+      "commonMistakes": [
+        "Lưng dưới bị võng",
+        "Nín thở",
+        "Hông bị xệ"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hollow_rock",
@@ -5288,7 +7238,32 @@
         "recovery": "20-30"
       },
       "tempo": "controlled",
-      "progressionType": "reps"
+      "progressionType": "reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ lưng dưới ép xuống sàn",
+        "Siết bụng, không để lưng võng",
+        "Hít thở đều, giữ ổn định"
+      ],
+      "commonMistakes": [
+        "Lưng dưới bị võng",
+        "Nín thở",
+        "Hông bị xệ"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "pallof_press",
@@ -5355,7 +7330,32 @@
         "recovery": "15-20"
       },
       "tempo": "2-1-2",
-      "progressionType": "load_then_reps"
+      "progressionType": "load_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ cơ thể thẳng, không xoay",
+        "Siết core chống lại lực kéo",
+        "Hít thở đều suốt bài"
+      ],
+      "commonMistakes": [
+        "Xoay người theo lực",
+        "Nín thở",
+        "Mất thăng bằng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "cable_crunch",
@@ -5419,7 +7419,32 @@
         "recovery": "15-20"
       },
       "tempo": "2-1-2",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Gập bụng bằng cơ bụng, không bằng cổ",
+        "Giữ lưng dưới sát sàn",
+        "Thở ra khi gập lên"
+      ],
+      "commonMistakes": [
+        "Kéo cổ bằng tay",
+        "Dùng lực quán tính",
+        "Không kiểm soát đường xuống"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "reverse_crunch",
@@ -5480,7 +7505,32 @@
         "recovery": "15-20"
       },
       "tempo": "2-1-2",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Gập bụng bằng cơ bụng, không bằng cổ",
+        "Giữ lưng dưới sát sàn",
+        "Thở ra khi gập lên"
+      ],
+      "commonMistakes": [
+        "Kéo cổ bằng tay",
+        "Dùng lực quán tính",
+        "Không kiểm soát đường xuống"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hanging_knee_raise",
@@ -5545,7 +7595,32 @@
         "recovery": "20-30"
       },
       "tempo": "2-1-1",
-      "progressionType": "reps_then_leverage"
+      "progressionType": "reps_then_leverage",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Gập bụng bằng cơ bụng, không bằng cổ",
+        "Giữ lưng dưới sát sàn",
+        "Thở ra khi gập lên"
+      ],
+      "commonMistakes": [
+        "Kéo cổ bằng tay",
+        "Dùng lực quán tính",
+        "Không kiểm soát đường xuống"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "russian_twist",
@@ -5609,7 +7684,32 @@
         "recovery": "15-20"
       },
       "tempo": "controlled",
-      "progressionType": "load_then_reps"
+      "progressionType": "load_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Xoay từ eo, không từ tay",
+        "Giữ chân cố định",
+        "Kiểm soát tốc độ xoay"
+      ],
+      "commonMistakes": [
+        "Xoay từ tay thay vì eo",
+        "Chân nhấc khỏi sàn",
+        "Quá nhanh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "farmer_carry",
@@ -5679,7 +7779,32 @@
         "recovery": "20-30"
       },
       "tempo": "walk",
-      "progressionType": "load_or_distance"
+      "progressionType": "load_or_distance",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-3",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai hạ, ngực ưỡn",
+        "Bước đều, core siết",
+        "Đừng nghiêng người về một bên"
+      ],
+      "commonMistakes": [
+        "Nghiêng người",
+        "Vai nhún lên",
+        "Bước không đều"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "thruster",
@@ -5750,7 +7875,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-0-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đầu gối đi theo hướng mũi chân",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Hạ từ từ, đẩy lên bằng gót chân"
+      ],
+      "commonMistakes": [
+        "Gối chụm vào trong",
+        "Lưng tròn khi hạ sâu",
+        "Gót chân bật khỏi sàn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "kettlebell_swing",
@@ -5818,7 +7968,32 @@
         "recovery": "30-45"
       },
       "tempo": "explosive",
-      "progressionType": "load_or_density"
+      "progressionType": "load_or_density",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "clean_and_press",
@@ -5891,7 +8066,32 @@
         "recovery": "60-90"
       },
       "tempo": "explosive",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đẩy mông ra sau, giữ lưng thẳng",
+        "Thanh tạ sát người suốt bài",
+        "Siết mông ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Lưng tròn",
+        "Dùng lưng thay vì mông + hamstring",
+        "Tạ xa người"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "push_press",
@@ -5960,7 +8160,32 @@
         "recovery": "60-90"
       },
       "tempo": "explosive",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Đừng để khuỷu tay bung ra quá rộng",
+        "Giữ lưng thẳng, core siết",
+        "Đẩy thẳng lên trên, không nghiêng người"
+      ],
+      "commonMistakes": [
+        "Lưng quá cong",
+        "Đẩy không thẳng",
+        "Khuỷu tay bung quá rộng"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "renegade_row",
@@ -6029,7 +8254,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-1-1",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "man_maker",
@@ -6100,7 +8350,32 @@
         "recovery": "45-60"
       },
       "tempo": "controlled_explosive",
-      "progressionType": "load_or_density"
+      "progressionType": "load_or_density",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "turkish_get_up",
@@ -6171,7 +8446,32 @@
         "recovery": "45-60"
       },
       "tempo": "slow_controlled",
-      "progressionType": "load"
+      "progressionType": "load",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai hạ, ngực ưỡn",
+        "Bước đều, core siết",
+        "Đừng nghiêng người về một bên"
+      ],
+      "commonMistakes": [
+        "Nghiêng người",
+        "Vai nhún lên",
+        "Bước không đều"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "sled_push",
@@ -6239,7 +8539,32 @@
         "recovery": "30-45"
       },
       "tempo": "drive",
-      "progressionType": "load_or_distance"
+      "progressionType": "load_or_distance",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "rowing_interval",
@@ -6307,7 +8632,32 @@
         "recovery": "30-45"
       },
       "tempo": "interval",
-      "progressionType": "distance_or_pace"
+      "progressionType": "distance_or_pace",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "bike_sprint",
@@ -6374,7 +8724,32 @@
         "recovery": "30-45"
       },
       "tempo": "interval",
-      "progressionType": "pace"
+      "progressionType": "pace",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "air_bike_sprint",
@@ -6441,7 +8816,32 @@
         "recovery": "30-45"
       },
       "tempo": "interval",
-      "progressionType": "pace"
+      "progressionType": "pace",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "jump_rope",
@@ -6505,7 +8905,32 @@
         "recovery": "20-30"
       },
       "tempo": "cyclic",
-      "progressionType": "time_or_density"
+      "progressionType": "time_or_density",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "burpee",
@@ -6572,7 +8997,32 @@
         "recovery": "30-45"
       },
       "tempo": "cyclic",
-      "progressionType": "reps_or_density"
+      "progressionType": "reps_or_density",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "mountain_climber",
@@ -6637,7 +9087,32 @@
         "recovery": "20-30"
       },
       "tempo": "cyclic",
-      "progressionType": "time_or_density"
+      "progressionType": "time_or_density",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "high_knees",
@@ -6702,7 +9177,32 @@
         "recovery": "20-30"
       },
       "tempo": "cyclic",
-      "progressionType": "time_or_density"
+      "progressionType": "time_or_density",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "battle_rope_waves",
@@ -6769,7 +9269,32 @@
         "recovery": "20-30"
       },
       "tempo": "cyclic",
-      "progressionType": "time_or_density"
+      "progressionType": "time_or_density",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "med_ball_slam",
@@ -6838,7 +9363,32 @@
         "recovery": "30-45"
       },
       "tempo": "explosive",
-      "progressionType": "load_or_density"
+      "progressionType": "load_or_density",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "ski_erg_interval",
@@ -6905,7 +9455,32 @@
         "recovery": "30-45"
       },
       "tempo": "interval",
-      "progressionType": "distance_or_pace"
+      "progressionType": "distance_or_pace",
+      "suitableGoals": [
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "2-3",
+        "hypertrophy": "2-3",
+        "fat_loss": "3-4",
+        "endurance": "3-4",
+        "recovery": "2-2"
+      },
+      "coachingCues": [
+        "Giữ nhịp ổn định",
+        "Hít thở theo nhịp",
+        "Đừng hy sinh form vì tốc độ"
+      ],
+      "commonMistakes": [
+        "Hy sinh form vì tốc độ",
+        "Không hít thở đúng nhịp",
+        "Bỏ qua warmup"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "jumping_jack",
@@ -6970,7 +9545,34 @@
         "recovery": "15-20"
       },
       "tempo": "cyclic",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "march_in_place",
@@ -7032,7 +9634,34 @@
         "recovery": "10-15"
       },
       "tempo": "cyclic",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "arm_circle",
@@ -7093,7 +9722,34 @@
         "recovery": "10-15"
       },
       "tempo": "controlled",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hip_circle",
@@ -7156,7 +9812,34 @@
         "recovery": "10-15"
       },
       "tempo": "controlled",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "leg_swing",
@@ -7221,7 +9904,34 @@
         "recovery": "10-15"
       },
       "tempo": "controlled",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "band_pull_apart",
@@ -7285,7 +9995,34 @@
         "recovery": "10-15"
       },
       "tempo": "2-1-2",
-      "progressionType": "band_tension_then_reps"
+      "progressionType": "band_tension_then_reps",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "glute_activation_walk",
@@ -7349,7 +10086,34 @@
         "recovery": "10-15"
       },
       "tempo": "controlled",
-      "progressionType": "band_tension_then_distance"
+      "progressionType": "band_tension_then_distance",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "bodyweight_lunge_warmup",
@@ -7412,7 +10176,34 @@
         "recovery": "10-15"
       },
       "tempo": "controlled",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "scap_push_up",
@@ -7475,7 +10266,34 @@
         "recovery": "10-15"
       },
       "tempo": "2-1-2",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "worlds_greatest_stretch",
@@ -7540,7 +10358,34 @@
         "recovery": "10-15"
       },
       "tempo": "slow_controlled",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Động tác nhẹ nhàng, làm nóng dần",
+        "Tập trung vào biên độ động",
+        "Không cần tải nặng"
+      ],
+      "commonMistakes": [
+        "Quá nhanh",
+        "Biên độ quá nhỏ",
+        "Bỏ qua nhóm cơ sẽ tập"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "childs_pose",
@@ -7603,7 +10448,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "cat_cow",
@@ -7666,7 +10538,34 @@
         "recovery": "0-15"
       },
       "tempo": "slow_controlled",
-      "progressionType": "range_of_motion"
+      "progressionType": "range_of_motion",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hamstring_stretch",
@@ -7728,7 +10627,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "quad_stretch",
@@ -7792,7 +10718,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "hip_flexor_stretch",
@@ -7854,7 +10807,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "chest_doorway_stretch",
@@ -7917,7 +10897,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "lat_stretch_wall",
@@ -7982,7 +10989,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "figure_four_stretch",
@@ -8044,7 +11078,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "thread_the_needle",
@@ -8107,7 +11168,34 @@
         "recovery": "0-15"
       },
       "tempo": "hold",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "deep_breathing",
@@ -8167,7 +11255,34 @@
         "recovery": "0-15"
       },
       "tempo": "slow_breath",
-      "progressionType": "time"
+      "progressionType": "time",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss",
+        "endurance",
+        "recovery"
+      ],
+      "setRangeByGoal": {
+        "strength": "1-1",
+        "hypertrophy": "1-1",
+        "fat_loss": "1-1",
+        "endurance": "1-1",
+        "recovery": "1-1"
+      },
+      "coachingCues": [
+        "Giữ tư thế 20-30 giây",
+        "Hít thở sâu và thả lỏng",
+        "Kéo dãn nhẹ nhàng, không ép quá đau"
+      ],
+      "commonMistakes": [
+        "Ép quá mạnh gây đau",
+        "Giữ quá ngắn",
+        "Nín thở khi kéo dãn"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "assisted_pull_up",
@@ -8237,7 +11352,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-0-2-0",
-      "progressionType": "reps_then_remove_band"
+      "progressionType": "reps_then_remove_band",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "banded_pull_down",
@@ -8301,7 +11441,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-0-2-0",
-      "progressionType": "band_resistance_increase"
+      "progressionType": "band_resistance_increase",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "lat_pulldown_underhand",
@@ -8367,7 +11532,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-0-2-1",
-      "progressionType": "load_increase"
+      "progressionType": "load_increase",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo bằng lưng, không bằng tay",
+        "Giữ vai hạ xuống khi kéo",
+        "Siết bả vai lại ở đỉnh cử động"
+      ],
+      "commonMistakes": [
+        "Kéo bằng tay thay vì lưng",
+        "Lắc người để lên",
+        "Không kéo đủ sâu"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "single_arm_row",
@@ -8437,7 +11627,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-1-2-0",
-      "progressionType": "load_increase"
+      "progressionType": "load_increase",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Kéo khuỷu tay về phía sau, siết bả vai",
+        "Giữ ngực ưỡn, lưng thẳng",
+        "Đừng dùng lực quán tính, kéo chậm và kiểm soát"
+      ],
+      "commonMistakes": [
+        "Dùng lực quán tính",
+        "Không siết bả vai",
+        "Lưng tròn khi kéo"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "machine_incline_press",
@@ -8503,7 +11718,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-0-1-0",
-      "progressionType": "load_increase"
+      "progressionType": "load_increase",
+      "suitableGoals": [
+        "strength",
+        "hypertrophy",
+        "fat_loss"
+      ],
+      "setRangeByGoal": {
+        "strength": "4-5",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-4",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Giữ vai ép xuống và ra sau",
+        "Hít vào khi hạ, thở ra khi đẩy",
+        "Giữ core siết chặt suốt bài"
+      ],
+      "commonMistakes": [
+        "Mông bật khỏi ghế",
+        "Khuỷu tay bung quá rộng",
+        "Hạ tạ quá nhanh không kiểm soát"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "band_lateral_raise",
@@ -8568,7 +11808,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-0-2-0",
-      "progressionType": "band_resistance_increase"
+      "progressionType": "band_resistance_increase",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "machine_lateral_raise",
@@ -8632,7 +11897,32 @@
         "recovery": "45-60"
       },
       "tempo": "2-0-2-0",
-      "progressionType": "load_increase"
+      "progressionType": "load_increase",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Nâng tạ bằng vai, không bằng tay",
+        "Giữ khuỷu tay hơi cong",
+        "Đừng nâng quá cao qua vai"
+      ],
+      "commonMistakes": [
+        "Nâng quá cao gây đau vai",
+        "Dùng lực quán tính",
+        "Vai nhún lên"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     },
     {
       "id": "single_leg_calf_raise",
@@ -8691,7 +11981,32 @@
         "recovery": "60-90"
       },
       "tempo": "2-1-2-0",
-      "progressionType": "reps_then_load"
+      "progressionType": "reps_then_load",
+      "suitableGoals": [
+        "hypertrophy",
+        "fat_loss",
+        "endurance"
+      ],
+      "setRangeByGoal": {
+        "strength": "3-4",
+        "hypertrophy": "3-4",
+        "fat_loss": "3-3",
+        "endurance": "2-3",
+        "recovery": "2-3"
+      },
+      "coachingCues": [
+        "Siết cơ ở đỉnh cử động 1 giây",
+        "Hạ từ từ, có kiểm soát",
+        "Giữ lưng tựa sát vào ghế"
+      ],
+      "commonMistakes": [
+        "Lưng bật khỏi ghế",
+        "Dùng quán tính",
+        "Không siết ở đỉnh"
+      ],
+      "beginnerInstructions": null,
+      "advancedTips": null,
+      "videoUrl": null
     }
   ]
 }
